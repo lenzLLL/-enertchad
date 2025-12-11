@@ -1,98 +1,223 @@
 "use client";
 
-import { BarChart3, TrendingUp, Package, ShoppingCart, ArrowUpRight, ArrowDownRight, Users, Zap } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Package, ShoppingCart, ArrowUpRight, Zap, RefreshCw } from "lucide-react";
 
 export default function AdminDashboard() {
+  const [products, setProducts] = useState<any[]>([]);
+  const [articles, setArticles] = useState<any[]>([]);
+  const [orders, setOrders] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const loadData = async (isRefresh = false) => {
+    const setLoadingState = isRefresh ? setIsRefreshing : setIsLoading;
+    setLoadingState(true);
+    try {
+      const [pRes, aRes, oRes] = await Promise.all([
+        fetch('/api/products'),
+        fetch('/api/blog'),
+        fetch('/api/orders'),
+      ]);
+
+      const [pJson, aJson, oJson] = await Promise.all([
+        pRes.ok ? pRes.json() : [],
+        aRes.ok ? aRes.json() : [],
+        oRes.ok ? oRes.json() : [],
+      ]);
+
+      setProducts(Array.isArray(pJson) ? pJson : []);
+      setArticles(Array.isArray(aJson) ? aJson : []);
+      setOrders(Array.isArray(oJson) ? oJson : []);
+    } catch (e) {
+      console.error('Error loading dashboard data:', e);
+    } finally {
+      setLoadingState(false);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  // Derived stats
+  const totalProducts = products.length;
+  const totalOrders = orders.length;
+  const totalRevenue = orders.reduce((s, o) => s + (Number(o.amount) || 0), 0);
+  
+  // Format revenue with appropriate scale
+  const formatRevenue = (amount: number) => {
+    if (amount >= 1_000_000_000) {
+      return { value: (amount / 1_000_000_000).toFixed(1), suffix: 'Md', label: 'Milliards FCFA' };
+    } else if (amount >= 1_000_000) {
+      return { value: (amount / 1_000_000).toFixed(1), suffix: 'M', label: 'Millions FCFA' };
+    } else if (amount >= 1_000) {
+      return { value: (amount / 1_000).toFixed(1), suffix: 'K', label: 'Milliers FCFA' };
+    } else {
+      return { value: amount.toFixed(0), suffix: '', label: 'FCFA' };
+    }
+  };
+  
+  const formattedTotalRevenue = formatRevenue(totalRevenue);
+  
   const stats = [
     {
-      title: "Total Produits",
-      value: "248",
+      title: 'Total Produits',
+      value: isLoading ? '...' : String(totalProducts),
       icon: Package,
-      gradient: "from-[#1E5FA8] to-[#3a7ec8]",
-      change: "+12%",
-      positive: true,
-      label: "vs mois dernier",
+      gradient: 'from-[#1E5FA8] to-[#3a7ec8]',
+      change: '',
+      label: 'en base',
     },
     {
-      title: "Commandes",
-      value: "1,234",
+      title: 'Commandes',
+      value: isLoading ? '...' : String(totalOrders),
       icon: ShoppingCart,
-      gradient: "from-[#3AA655] to-[#5bc878]",
-      change: "+8%",
-      positive: true,
-      label: "vs mois dernier",
+      gradient: 'from-[#3AA655] to-[#5bc878]',
+      change: '',
+      label: 'en base',
     },
     {
-      title: "Revenus Totaux",
-      value: "45.2M",
+      title: 'Revenus Totaux',
+      value: isLoading ? '...' : `${formattedTotalRevenue.value}${formattedTotalRevenue.suffix}`,
       icon: Zap,
-      gradient: "from-[#E6C34A] to-[#f5d76e]",
-      change: "+23%",
-      positive: true,
-      label: "vs mois dernier",
+      gradient: 'from-[#E6C34A] to-[#f5d76e]',
+      change: '',
+      label: formattedTotalRevenue.label,
     },
-    {
-      title: "Clients Actifs",
-      value: "12.5K",
-      icon: Users,
-      gradient: "from-[#9333ea] to-[#c084fc]",
-      change: "+15%",
-      positive: true,
-      label: "vs mois dernier",
-    },
+    // 'Clients Actifs' card removed as requested
   ];
 
+  // Recent orders (most recent by date or createdAt)
+  const recentOrders = isLoading
+    ? []
+    : orders
+        .slice()
+        .sort((a, b) => {
+          const da = a.date ? new Date(a.date).getTime() : (a.createdAt ? new Date(a.createdAt).getTime() : 0);
+          const db = b.date ? new Date(b.date).getTime() : (b.createdAt ? new Date(b.createdAt).getTime() : 0);
+          return db - da;
+        })
+        .slice(0, 3)
+        .map((o) => ({
+          id: o.id,
+          product: o.product || '—',
+          customer: typeof o.customer === 'object' && o.customer?.name ? o.customer.name : (typeof o.customer === 'string' ? o.customer : '—'),
+          status: o.status || '—',
+          amount: (Number(o.amount) || 0).toLocaleString() + ' FCFA',
+          date: o.date || (o.createdAt ? new Date(o.createdAt).toISOString().split('T')[0] : ''),
+          icon: o.status === 'Livré' ? '✓' : o.status === 'En cours' ? '⏳' : '⚠️',
+        }));
 
-  const recentOrders = [
-    {
-      id: "#ORD-001",
-      product: "Panneau Solaire 500W",
-      customer: "Jean Dupont",
-      status: "Livré",
-      amount: "450,000 FCFA",
-      date: "2025-12-08",
-      icon: "✓",
-    },
-    {
-      id: "#ORD-002",
-      product: "Batterie 100Ah",
-      customer: "Marie Martin",
-      status: "En cours",
-      amount: "250,000 FCFA",
-      date: "2025-12-07",
-      icon: "⏳",
-    },
-    {
-      id: "#ORD-003",
-      product: "Onduleur 3000W",
-      customer: "Pierre Lefebvre",
-      status: "En attente",
-      amount: "380,000 FCFA",
-      date: "2025-12-06",
-      icon: "⚠️",
-    },
-  ];
+  // Top products by number of orders
+  const topProducts = (() => {
+    if (isLoading || orders.length === 0) return [];
+    const tally: Record<string, { sales: number; revenue: number }> = {};
+    orders.forEach((o) => {
+      // If order has items array (new format), iterate through them
+      if (Array.isArray(o.items) && o.items.length > 0) {
+        o.items.forEach((item: any) => {
+          const name = (item.name || 'Unknown').toString();
+          if (!tally[name]) tally[name] = { sales: 0, revenue: 0 };
+          tally[name].sales += item.quantity || 1;
+          tally[name].revenue += (Number(item.price) || 0) * (item.quantity || 1);
+        });
+      } else {
+        // Fallback to old format with product field
+        const name = (o.product || 'Unknown').toString();
+        if (!tally[name]) tally[name] = { sales: 0, revenue: 0 };
+        tally[name].sales += 1;
+        tally[name].revenue += Number(o.amount) || 0;
+      }
+    });
+    const list = Object.keys(tally).map((name) => ({ name, sales: tally[name].sales, revenue: tally[name].revenue }));
+    list.sort((a, b) => b.sales - a.sales);
+    const maxSales = list[0]?.sales || 1;
+    return list.slice(0, 3).map((p) => ({
+      name: p.name,
+      sales: p.sales,
+      revenue: (p.revenue / 1_000_000).toFixed(1) + 'M',
+      trend: `+${Math.round((p.sales / maxSales) * 100)}%`,
+    }));
+  })();
 
-  const topProducts = [
-    { name: "Panneau Solaire 500W", sales: 156, revenue: "70.2M", trend: "+25%" },
-    { name: "Batterie 100Ah", sales: 134, revenue: "33.5M", trend: "+18%" },
-    { name: "Onduleur 3000W", sales: 98, revenue: "37.2M", trend: "+12%" },
-  ];
+  // Monthly data for the last 7 months with dynamic scaling
+  const monthlyDataRaw = (() => {
+    const monthsNames = ["Jan","Fév","Mar","Avr","Mai","Juin","Juil","Aoû","Sep","Oct","Nov","Déc"];
+    const now = new Date();
+    const result: { month: string; revenue: number; orders: number }[] = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      const monthStart = new Date(d.getFullYear(), d.getMonth(), 1);
+      const monthEnd = new Date(d.getFullYear(), d.getMonth() + 1, 1);
+      const monthOrders = orders.filter((o) => {
+        const od = o.date ? new Date(o.date) : (o.createdAt ? new Date(o.createdAt) : null);
+        if (!od) return false;
+        return od >= monthStart && od < monthEnd;
+      });
+      // Keep revenue in raw FCFA (don't divide by million)
+      const revenue = monthOrders.reduce((s, o) => s + (Number(o.amount) || 0), 0);
+      const monthName = monthsNames[monthStart.getMonth()] || monthStart.toLocaleString('default',{month:'short'});
+      result.push({ 
+        month: monthName, 
+        revenue: revenue,
+        orders: monthOrders.length 
+      });
+    }
+    return result;
+  })();
 
-  const monthlyData = [
-    { month: "Jan", revenue: 2.5, orders: 45 },
-    { month: "Fév", revenue: 3.1, orders: 58 },
-    { month: "Mar", revenue: 3.8, orders: 72 },
-    { month: "Avr", revenue: 3.5, orders: 65 },
-    { month: "Mai", revenue: 4.2, orders: 85 },
-    { month: "Juin", revenue: 4.0, orders: 78 },
-    { month: "Juil", revenue: 4.7, orders: 92 },
-  ];
+  // Determine the scale for the chart (K for thousands, M for millions, B for billions)
+  const maxRawRevenue = Math.max(...monthlyDataRaw.map(d => d.revenue), 1);
+  let scale = 1;
+  let scaleLabel = 'FCFA';
+  if (maxRawRevenue >= 1_000_000_000) {
+    scale = 1_000_000_000;
+    scaleLabel = 'Milliards FCFA';
+  } else if (maxRawRevenue >= 1_000_000) {
+    scale = 1_000_000;
+    scaleLabel = 'Millions FCFA';
+  } else if (maxRawRevenue >= 1_000) {
+    scale = 1_000;
+    scaleLabel = 'Milliers FCFA';
+  }
+
+  // Convert monthly data to scaled values
+  const monthlyData = monthlyDataRaw.map(d => ({
+    ...d,
+    revenueScaled: Number((d.revenue / scale).toFixed(1))
+  }));
+
+  // Calculate month-over-month variation
+  const monthlyDataWithVariation = monthlyData.map((data, idx) => {
+    let variation = 0;
+    if (idx > 0) {
+      const prev = monthlyData[idx - 1].revenueScaled;
+      variation = prev !== 0 ? ((data.revenueScaled - prev) / prev) * 100 : 0;
+    }
+    return { ...data, variation };
+  });
+
+  // Find max for scaling the chart
+  const maxMonthlyRevenue = Math.max(...monthlyData.map(d => d.revenueScaled), 1);
 
   return (
     <div className="space-y-8">
+      {/* Header with Refresh Button */}
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-3xl font-bold text-gray-900">Tableau de Bord</h1>
+        <button
+          onClick={() => loadData(true)}
+          disabled={isRefreshing || isLoading}
+          className="flex items-center gap-2 px-4 py-2 bg-[#1E5FA8] text-white rounded-lg hover:bg-[#1a4a88] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+        >
+          <RefreshCw size={18} className={isRefreshing ? 'animate-spin' : ''} />
+          {isRefreshing ? 'Rafraîchissement...' : 'Rafraîchir'}
+        </button>
+      </div>
+
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
@@ -138,19 +263,49 @@ export default function AdminDashboard() {
           </div>
 
           <div className="space-y-6">
-            {/* Revenue Chart */}
-            <div>
-              <p className="text-xs md:text-sm font-semibold text-gray-700 mb-3 md:mb-4">Revenus (Millions FCFA)</p>
-              <div className="flex items-end justify-between h-40 md:h-48 gap-2 md:gap-3">
-                {monthlyData.map((data, idx) => (
-                  <div key={idx} className="flex-1 flex flex-col items-center">
-                    <div className="w-full bg-gradient-to-t from-[#1E5FA8] to-[#3a7ec8] rounded-t-lg hover:from-[#164a8a] hover:to-[#1E5FA8] transition-all" 
-                      style={{ height: `${(data.revenue / 4.7) * 100}%` }} 
-                    />
-                    <span className="text-xs text-gray-600 mt-3 font-medium">{data.month}</span>
-                  </div>
-                ))}
-              </div>
+            {/* Revenue Table */}
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b-2 border-gray-200 bg-gray-50">
+                    <th className="px-4 py-3 text-left font-semibold text-gray-700">Mois</th>
+                    <th className="px-4 py-3 text-right font-semibold text-gray-700">Revenus</th>
+                    <th className="px-4 py-3 text-right font-semibold text-gray-700">Commandes</th>
+                    <th className="px-4 py-3 text-right font-semibold text-gray-700">Variation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {monthlyDataWithVariation.map((data, idx) => (
+                    <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50 transition">
+                      <td className="px-4 py-3 font-medium text-gray-900">{data.month}</td>
+                      <td className="px-4 py-3 text-right">
+                        <span className="font-bold text-[#1E5FA8]">
+                          {(() => {
+                            if (scale === 1_000_000_000) return `${data.revenueScaled}Md`;
+                            if (scale === 1_000_000) return `${data.revenueScaled}M`;
+                            if (scale === 1_000) return `${data.revenueScaled}K`;
+                            return `${data.revenue}`;
+                          })()}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-right text-gray-700">
+                        <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">
+                          {data.orders}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-right">
+                        {idx === 0 ? (
+                          <span className="text-gray-400 text-xs">-</span>
+                        ) : (
+                          <span className={`font-semibold ${data.variation >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {data.variation >= 0 ? '↑' : '↓'} {Math.abs(data.variation).toFixed(1)}%
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

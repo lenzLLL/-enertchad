@@ -1,6 +1,14 @@
 .DS_Store
 /node_modules/
 
+# Environment variables (local, not committed)
+.env.local
+.env.*.local
+
 # React Router
 /.react-router/
 /build/
+
+# Next.js
+/.next/
+/out/

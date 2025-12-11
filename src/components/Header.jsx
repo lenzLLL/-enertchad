@@ -1,12 +1,72 @@
 "use client";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X, ShoppingCart, Check } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);      // Menu mobile
   const [cartOpen, setCartOpen] = useState(false);  // Modal panier
-  const { cart, cartCount, cartTotal, removeFromCart } = useCart();
+  const { cart, cartCount, cartTotal, removeFromCart, clearCart } = useCart();
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [customerName, setCustomerName] = useState("");
+  const [customerAddress, setCustomerAddress] = useState("");
+  const [customerContact, setCustomerContact] = useState("");
+  const [orderLoading, setOrderLoading] = useState(false);
+  const [orderError, setOrderError] = useState("");
+  const [orderPlaced, setOrderPlaced] = useState(false);
+
+  const handlePlaceOrder = async (e) => {
+    e && e.preventDefault && e.preventDefault();
+    setOrderError("");
+    if (cart.length === 0) return setOrderError('Votre panier est vide.');
+    if (!customerName.trim() || !customerAddress.trim() || !customerContact.trim()) {
+      return setOrderError('Veuillez renseigner votre nom, adresse et contact avant de valider la commande.');
+    }
+
+    setOrderLoading(true);
+    try {
+      const payload = {
+        items: cart,
+        amount: typeof cartTotal === 'number' ? cartTotal : Number(String(cartTotal).replace(/[.,]/g, '')),
+        customer: {
+          name: customerName,
+          address: customerAddress,
+          contact: customerContact,
+        },
+        status: 'En cours',
+      };
+
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err?.error || 'Erreur lors de la création de la commande');
+      }
+
+      // success
+      setOrderPlaced(true);
+      clearCart();
+      setShowCheckout(false);
+      setCustomerName('');
+      setCustomerAddress('');
+      setCustomerContact('');
+
+      // hide success after delay
+      setTimeout(() => {
+        setOrderPlaced(false);
+        setCartOpen(false);
+      }, 3500);
+    } catch (err) {
+      console.error('Order error', err);
+      setOrderError(err?.message || 'Erreur inattendue lors de la commande');
+    } finally {
+      setOrderLoading(false);
+    }
+  };
 
   const navItems = [
     { label: "Accueil", href: "/" },
@@ -166,24 +226,56 @@ export default function Header() {
               )}
             </div>
 
+            {/* SUCCESS MESSAGE */}
+            {orderPlaced && (
+              <div className="mb-4 p-4 bg-green-100 border border-green-500 rounded-lg text-center">
+                <Check size={24} className="text-green-600 mx-auto mb-2" />
+                <p className="text-green-700 font-semibold">Commande placée avec succès!</p>
+              </div>
+            )}
+
             {/* TOTAL */}
             <div className="flex justify-between font-bold text-lg mb-4">
               <span>Total :</span>
               <span>{(cartTotal).toLocaleString()} CFA</span>
             </div>
 
-            {/* BOUTON COMMANDER */}
-            <button
-              disabled={cart.length === 0}
-              onClick={() => setCartOpen(false)}
-              className={`block w-full py-3 rounded-lg text-center font-bold text-white transition-colors ${
-                cart.length === 0
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-[#1E5FA8] hover:bg-[#174a86]"
-              }`}
-            >
-              {cart.length === 0 ? "Panier vide" : "Continuer"}
-            </button>
+            {/* CHECKOUT FORM OR BUTTON */}
+            {showCheckout ? (
+              <form onSubmit={handlePlaceOrder} className="space-y-3">
+                <div>
+                  <label className="text-xs font-medium">Nom complet</label>
+                  <input value={customerName} onChange={(e) => setCustomerName(e.target.value)} className="w-full mt-1 px-3 py-2 border rounded-md text-sm" placeholder="Prénom Nom" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium">Adresse</label>
+                  <input value={customerAddress} onChange={(e) => setCustomerAddress(e.target.value)} className="w-full mt-1 px-3 py-2 border rounded-md text-sm" placeholder="Adresse de livraison" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium">Contact</label>
+                  <input value={customerContact} onChange={(e) => setCustomerContact(e.target.value)} className="w-full mt-1 px-3 py-2 border rounded-md text-sm" placeholder="Téléphone ou email" />
+                </div>
+                {orderError && <div className="text-xs text-red-600">{orderError}</div>}
+                <div className="flex items-center gap-2">
+                  <button type="submit" disabled={orderLoading} className="flex-1 bg-[#1E5FA8] text-white py-2 rounded-lg font-bold hover:bg-[#174a86] transition disabled:opacity-50 text-sm">
+                    {orderLoading ? 'Envoi...' : 'Confirmer'}
+                  </button>
+                  <button type="button" onClick={() => setShowCheckout(false)} className="px-3 py-2 rounded-lg border text-sm">Retour</button>
+                </div>
+              </form>
+            ) : (
+              <button
+                disabled={cart.length === 0}
+                onClick={() => setShowCheckout(true)}
+                className={`block w-full py-3 rounded-lg text-center font-bold text-white transition-colors ${
+                  cart.length === 0
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-[#1E5FA8] hover:bg-[#174a86]"
+                }`}
+              >
+                {cart.length === 0 ? "Panier vide" : "Passer la commande"}
+              </button>
+            )}
           </div>
         </div>
       )}

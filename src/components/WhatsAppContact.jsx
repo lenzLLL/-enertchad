@@ -1,6 +1,9 @@
 import { MessageCircle, Phone, Mail } from "lucide-react";
 
 export default function WhatsAppContact() {
+  const whatsappNumber = "+23566298696";
+  const whatsappId = whatsappNumber.replace(/[^0-9]/g, '');
+  
   return (
     <section className="py-24 px-4 bg-gradient-to-r from-[#1E5FA8] to-[#3AA655] relative overflow-hidden">
       {/* Decorative blobs */}
@@ -26,7 +29,7 @@ export default function WhatsAppContact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">Disponible sur WhatsApp</h3>
-                    <p className="text-gray-100">Réponses instantanées 24/7</p>
+                    <p className="text-gray-100">{whatsappNumber}</p>
                   </div>
                 </div>
 
@@ -36,7 +39,7 @@ export default function WhatsAppContact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">Support par téléphone</h3>
-                    <p className="text-gray-100">+235 XX XX XX XX</p>
+                    <p className="text-gray-100">{whatsappNumber}</p>
                   </div>
                 </div>
 
@@ -56,7 +59,7 @@ export default function WhatsAppContact() {
             <div className="p-12 flex flex-col justify-center">
               <div className="space-y-6">
                 <a
-                  href="https://wa.me/235XXXXXXXXX"
+                  href={`https://wa.me/${whatsappId}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center space-x-3 bg-gradient-to-r from-[#25D366] to-[#20BA58] text-white px-8 py-5 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-lg group"
@@ -66,7 +69,7 @@ export default function WhatsAppContact() {
                 </a>
 
                 <a
-                  href="tel:+235XXXXXXXXX"
+                  href={`tel:${whatsappNumber}`}
                   className="flex items-center justify-center space-x-3 bg-gradient-to-r from-[#1E5FA8] to-[#164a8a] text-white px-8 py-5 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-lg"
                 >
                   <Phone size={24} />

@@ -1,6 +1,6 @@
 import { Calendar, User, ArrowRight } from "lucide-react";
 
-export default function BlogSection() {
+export default function BlogSection({ articles: propArticles }) {
   const fuelTips =
     "https://raw.createusercontent.com/f65761c3-3a24-4d96-86d2-04e2ce50d663/";
   const evCharging =
@@ -8,7 +8,7 @@ export default function BlogSection() {
   const solarEnergy =
     "https://raw.createusercontent.com/65649431-384f-4f10-8370-24aa69766035/";
 
-  const articles = [
+  const fallbackArticles = [
     {
       id: 1,
       title: "L'énergie solaire: L'avenir du Tchad",
@@ -41,6 +41,34 @@ export default function BlogSection() {
     },
   ];
 
+  const propProvided = Array.isArray(propArticles);
+  const articlesToRender = propProvided ? propArticles : fallbackArticles;
+
+  // date parsing helper to handle strings, numbers and Firestore timestamps
+  function parseToDate(value) {
+    if (!value) return null;
+    if (value instanceof Date) return value;
+    if (typeof value.toDate === 'function') return value.toDate();
+    if (typeof value === 'object') {
+      if (typeof value.seconds === 'number') return new Date(value.seconds * 1000);
+      if (typeof value._seconds === 'number') return new Date(value._seconds * 1000);
+    }
+    if (typeof value === 'number') return value > 1e12 ? new Date(value) : new Date(value * 1000);
+    if (typeof value === 'string') {
+      const d = new Date(value);
+      if (!isNaN(d)) return d;
+      const n = Number(value);
+      if (!isNaN(n)) return n > 1e12 ? new Date(n) : new Date(n * 1000);
+    }
+    return null;
+  }
+
+  function formatDateStr(value) {
+    const d = parseToDate(value);
+    if (!d) return '';
+    try { return d.toLocaleDateString('fr-FR'); } catch (e) { return d.toDateString(); }
+  }
+
   return (
     <section className="py-32 px-4 bg-gradient-to-b from-white to-[#F5E6D3]">
       <div className="max-w-7xl mx-auto">
@@ -58,60 +86,68 @@ export default function BlogSection() {
         </div>
 
         {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {articles.map((article) => (
-            <article
-              key={article.id}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-[#E6C34A] group flex flex-col"
-            >
-              {/* Image */}
-              <div className="relative h-64 overflow-hidden bg-gray-300">
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="inline-block bg-[#E6C34A] text-[#1E5FA8] px-3 py-1 rounded-full text-xs font-bold">
-                    {article.category}
-                  </span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-8 flex flex-col flex-1">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#1E5FA8] transition">
-                  {article.title}
-                </h3>
-
-                <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-1">
-                  {article.excerpt}
-                </p>
-
-                {/* Meta */}
-                <div className="space-y-3 border-t border-gray-100 pt-6">
-                  <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <User size={16} />
-                    <span>{article.author}</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <Calendar size={16} />
-                    <span>{article.date}</span>
+        {propProvided && articlesToRender.length === 0 ? (
+          <div className="text-center py-12 mb-12">
+            <div className="text-6xl mb-4">📝</div>
+            <h3 className="text-2xl font-bold text-[#1E5FA8] mb-2">Aucun article disponible</h3>
+            <p className="text-gray-600">Il n'y a pas encore d'articles publiés. Revenez bientôt ou contactez l'administrateur.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-8 mb-12">
+            {articlesToRender.map((article, idx) => (
+              <article
+                key={article.id || article.slug || idx}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-[#E6C34A] group flex flex-col"
+              >
+                {/* Image */}
+                <div className="relative h-64 overflow-hidden bg-gray-300">
+                  <img
+                    src={article.image || article.imageUrl || ''}
+                    alt={article.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-block bg-[#E6C34A] text-[#1E5FA8] px-3 py-1 rounded-full text-xs font-bold">
+                      {article.category}
+                    </span>
                   </div>
                 </div>
 
-                {/* CTA */}
-                <a
-                  href={`/blog/${article.slug}`}
-                  className="mt-6 inline-flex items-center space-x-2 text-[#1E5FA8] font-bold group-hover:text-[#E6C34A] transition"
-                >
-                  <span>Lire l'article</span>
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition" />
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
+                {/* Content */}
+                <div className="p-8 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#1E5FA8] transition">
+                    {article.title}
+                  </h3>
+
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-1">
+                    {article.excerpt}
+                  </p>
+
+                  {/* Meta */}
+                  <div className="space-y-3 border-t border-gray-100 pt-6">
+                    <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <User size={16} />
+                      <span>{article.author || article.authorName || 'EnerTchad'}</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <Calendar size={16} />
+                      <span>{ article.date ? (typeof article.date === 'string' && article.date.length>0 && isNaN(Date.parse(article.date)) ? article.date : formatDateStr(article.date)) : (article.createdAt ? formatDateStr(article.createdAt) : '') }</span>
+                    </div>
+                  </div>
+
+                  {/* CTA */}
+                  <a
+                    href={`/blog/${article.slug}`}
+                    className="mt-6 inline-flex items-center space-x-2 text-[#1E5FA8] font-bold group-hover:text-[#E6C34A] transition"
+                  >
+                    <span>Lire l'article</span>
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition" />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
 
         {/* CTA Button */}
         <div className="text-center">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, ShoppingCart, Plus, Minus, X, Check } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import EmptyCart from "../../components/EmptyCart";
@@ -16,6 +16,12 @@ export default function Shop() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showCart, setShowCart] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [customerName, setCustomerName] = useState("");
+  const [customerAddress, setCustomerAddress] = useState("");
+  const [customerContact, setCustomerContact] = useState("");
+  const [orderLoading, setOrderLoading] = useState(false);
+  const [orderError, setOrderError] = useState("");
   
   const { 
     cart, 
@@ -27,104 +33,29 @@ export default function Shop() {
     cartCount 
   } = useCart();
 
-  const products = [
-    {
-      id: 1,
-      name: "Huile Moteur Premium 5L",
-      category: "Huile",
-      price: 15000,
-      image: oilImage,
-      description: "Huile moteur de qualité supérieure pour tous types de véhicules",
-    },
-    {
-      id: 2,
-      name: "Huile Diesel 200L",
-      category: "Huile",
-      price: 285000,
-      image: oilImage,
-      description: "Huile diesel en vrac pour stations-service",
-    },
-    {
-      id: 3,
-      name: "Huile Essence 5L",
-      category: "Huile",
-      price: 14500,
-      image: oilImage,
-      description: "Huile essence haute performance",
-    },
-    {
-      id: 4,
-      name: "Filtre à Air Auto",
-      category: "Pièces",
-      price: 8500,
-      image: oilImage,
-      description: "Filtre à air pour moteurs automobiles",
-    },
-    {
-      id: 5,
-      name: "Filtre à Huile",
-      category: "Pièces",
-      price: 6800,
-      image: oilImage,
-      description: "Filtre à huile moteur professionnel",
-    },
-    {
-      id: 6,
-      name: "Batterie Auto 12V",
-      category: "Pièces",
-      price: 35000,
-      image: oilImage,
-      description: "Batterie automobile 12V haute capacité",
-    },
-    {
-      id: 7,
-      name: "Kit Panneau Solaire 5kW",
-      category: "Énergie",
-      price: 2500000,
-      image: solarImage,
-      description: "Kit solaire complet 5kW avec installation",
-    },
-    {
-      id: 8,
-      name: "Kit Solaire Résidentiel 3kW",
-      category: "Énergie",
-      price: 1500000,
-      image: solarImage,
-      description: "Kit solaire résidentiel 3kW",
-    },
-    {
-      id: 9,
-      name: "Batterie Stockage 10kWh",
-      category: "Énergie",
-      price: 3200000,
-      image: solarImage,
-      description: "Batterie de stockage 10kWh pour système solaire",
-    },
-    {
-      id: 10,
-      name: "Additif Carburant",
-      category: "Additifs",
-      price: 5500,
-      image: oilImage,
-      description: "Additif carburant nettoyant et protecteur",
-    },
-    {
-      id: 11,
-      name: "Débactérisant Diesel",
-      category: "Additifs",
-      price: 4200,
-      image: oilImage,
-      description: "Débactérisant pour réservoirs diesel",
-    },
-    {
-      id: 12,
-      name: "Lubrifiant Chain Pro",
-      category: "Lubrifiant",
-      price: 9800,
-      image: oilImage,
-      description: "Lubrifiant professionnel pour chaînes",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      setIsLoading(true);
+      try {
+        const res = await fetch('/api/products');
+        const data = res.ok ? await res.json() : [];
+        if (!mounted) return;
+        setProducts(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error('Failed to load products:', err);
+        if (mounted) setProducts([]);
+      } finally {
+        if (mounted) setIsLoading(false);
+      }
+    };
+
+    load();
+    return () => { mounted = false };
+  }, []);
 
   const categories = [
     "Tous",
@@ -153,14 +84,55 @@ export default function Shop() {
     });
   };
 
-  const handlePlaceOrder = () => {
-    if (cart.length === 0) return;
-    setOrderPlaced(true);
-    setTimeout(() => {
+  const handlePlaceOrder = async (e) => {
+    e && e.preventDefault && e.preventDefault();
+    setOrderError("");
+    if (cart.length === 0) return setOrderError('Votre panier est vide.');
+    if (!customerName.trim() || !customerAddress.trim() || !customerContact.trim()) {
+      return setOrderError('Veuillez renseigner votre nom, adresse et contact avant de valider la commande.');
+    }
+
+    setOrderLoading(true);
+    try {
+      const payload = {
+        items: cart,
+        amount: typeof cartTotal === 'number' ? cartTotal : Number(String(cartTotal).replace(/[.,]/g, '')),
+        customer: {
+          name: customerName,
+          address: customerAddress,
+          contact: customerContact,
+        },
+        status: 'En cours',
+      };
+
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err?.error || 'Erreur lors de la création de la commande');
+      }
+
+      // success
+      setOrderPlaced(true);
       clearCart();
       setShowCart(false);
-      setOrderPlaced(false);
-    }, 3000);
+      setShowCheckout(false);
+      setCustomerName('');
+      setCustomerAddress('');
+      setCustomerContact('');
+
+      // hide success after delay
+      setTimeout(() => setOrderPlaced(false), 3500);
+    } catch (err) {
+      console.error('Order error', err);
+      setOrderError(err?.message || 'Erreur inattendue lors de la commande');
+    } finally {
+      setOrderLoading(false);
+    }
   };
 
   return (
@@ -253,45 +225,56 @@ export default function Shop() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Products Grid */}
             <div className="lg:col-span-3">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProducts.map((product) => (
-                  <div
-                    key={product.id}
-                    className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden"
-                  >
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-48 object-cover"
-                    />
-                    <div className="p-4">
-                      <h3 className="font-bold text-gray-900 mb-2 line-clamp-2">
-                        {product.name}
-                      </h3>
-                      <p className="text-sm text-gray-600 mb-4">
-                        {product.description}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-2xl font-bold text-[#1E5FA8]">
-                          {(product.price).toLocaleString()} FCFA
-                        </span>
-                        <button
-                          onClick={() => handleAddToCart(product)}
-                          className="bg-[#3AA655] text-white px-4 py-2 rounded-lg hover:bg-[#2d8242] transition font-semibold"
-                        >
-                          Ajouter
-                        </button>
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {isLoading
+                  ? Array.from({ length: 6 }).map((_, i) => (
+                      <div key={i} className="bg-white rounded-lg shadow-md transition-all overflow-hidden animate-pulse">
+                        <div className="w-full h-48 bg-gray-200" />
+                        <div className="p-4">
+                          <div className="h-6 bg-gray-200 rounded w-3/4 mb-2" />
+                          <div className="h-4 bg-gray-200 rounded w-full mb-4" />
+                          <div className="h-8 bg-gray-200 rounded w-1/3" />
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                ))}
+                    ))
+                  : filteredProducts.map((product) => (
+                      <div
+                        key={product.id || product.slug || Math.random()}
+                        className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all overflow-hidden"
+                      >
+                        <img
+                          src={product.image || oilImage}
+                          alt={product.name}
+                          className="w-full h-48 object-cover"
+                        />
+                        <div className="p-4">
+                          <h3 className="font-bold text-gray-900 mb-2 line-clamp-2">
+                            {product.name}
+                          </h3>
+                          <p className="text-sm text-gray-600 mb-4">
+                            {product.description}
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-2xl font-bold text-[#1E5FA8]">
+                              {(product.price).toLocaleString()} FCFA
+                            </span>
+                            <button
+                              onClick={() => handleAddToCart(product)}
+                              className="bg-[#3AA655] text-white px-4 py-2 rounded-lg hover:bg-[#2d8242] transition font-semibold"
+                            >
+                              Ajouter
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
               </div>
 
-              {filteredProducts.length === 0 && (
+              {!isLoading && filteredProducts.length === 0 && (
                 <div className="text-center py-12 col-span-3">
-                  <p className="text-gray-500 text-lg">
-                    Aucun produit trouvé dans cette catégorie.
-                  </p>
+                  <div className="text-5xl mb-4">🛒</div>
+                  <h3 className="text-2xl font-bold text-[#1E5FA8] mb-2">Aucun produit disponible</h3>
+                  <p className="text-gray-500 text-lg">Nous n'avons actuellement aucun produit correspondant à votre recherche. Revenez plus tard ou contactez-nous pour plus d'informations.</p>
                 </div>
               )}
             </div>
@@ -374,13 +357,40 @@ export default function Shop() {
                           {(cartTotal).toLocaleString()} FCFA
                         </span>
                       </div>
-                      <button
-                        onClick={handlePlaceOrder}
-                        disabled={cart.length === 0}
-                        className="w-full bg-gradient-to-r from-[#1E5FA8] to-[#3AA655] text-white py-3 rounded-lg font-bold hover:shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        Passer la commande
-                      </button>
+
+                      {showCheckout ? (
+                        <form onSubmit={handlePlaceOrder} className="space-y-3">
+                          <div>
+                            <label className="text-sm font-medium">Nom complet</label>
+                            <input value={customerName} onChange={(e) => setCustomerName(e.target.value)} className="w-full mt-1 px-3 py-2 border rounded-md" placeholder="Prénom Nom" />
+                          </div>
+                          <div>
+                            <label className="text-sm font-medium">Adresse</label>
+                            <input value={customerAddress} onChange={(e) => setCustomerAddress(e.target.value)} className="w-full mt-1 px-3 py-2 border rounded-md" placeholder="Adresse de livraison" />
+                          </div>
+                          <div>
+                            <label className="text-sm font-medium">Contact</label>
+                            <input value={customerContact} onChange={(e) => setCustomerContact(e.target.value)} className="w-full mt-1 px-3 py-2 border rounded-md" placeholder="Téléphone ou email" />
+                          </div>
+                          {orderError && <div className="text-sm text-red-600">{orderError}</div>}
+                          <div className="flex items-center gap-3">
+                            <button type="submit" disabled={orderLoading} className="flex-1 bg-gradient-to-r from-[#1E5FA8] to-[#3AA655] text-white py-2 rounded-lg font-bold hover:shadow-lg transition disabled:opacity-50">
+                              {orderLoading ? 'Envoi...' : 'Confirmer la commande'}
+                            </button>
+                            <button type="button" onClick={() => setShowCheckout(false)} className="px-4 py-2 rounded-lg border">Annuler</button>
+                          </div>
+                        </form>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => setShowCheckout(true)}
+                            disabled={cart.length === 0}
+                            className="w-full bg-gradient-to-r from-[#1E5FA8] to-[#3AA655] text-white py-3 rounded-lg font-bold hover:shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            Passer la commande
+                          </button>
+                        </>
+                      )}
                     </div>
                   </>
                 )}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { ArrowLeft, Calendar, Tag, Share2 } from "lucide-react";
 
 const fuelTips =
@@ -68,7 +69,86 @@ export default function BlogDetail() {
     },
   };
 
-  const article = articleData[slug];
+  const [article, setArticle] = useState(articleData[slug] || null);
+  const [loading, setLoading] = useState(!article);
+
+  // Helper: robustly parse various date formats (string, number, Firestore Timestamp)
+  function parseToDate(value) {
+    if (!value) return null;
+    // If it's already a Date
+    if (value instanceof Date) return value;
+    // Firestore Timestamp object with toDate()
+    if (typeof value.toDate === "function") return value.toDate();
+    // Firestore-like object { seconds: number }
+    if (typeof value === "object") {
+      if (typeof value.seconds === "number") return new Date(value.seconds * 1000);
+      if (typeof value._seconds === "number") return new Date(value._seconds * 1000);
+    }
+    // If it's a number or numeric string (timestamp ms or seconds)
+    if (typeof value === "number") {
+      // Heuristic: if value looks like seconds (10 digits), convert
+      return value > 1e12 ? new Date(value) : new Date(value * 1000);
+    }
+    if (typeof value === "string") {
+      // Try ISO parse first
+      const d = new Date(value);
+      if (!isNaN(d)) return d;
+      const n = Number(value);
+      if (!isNaN(n)) return n > 1e12 ? new Date(n) : new Date(n * 1000);
+    }
+    return null;
+  }
+
+  function formatArticleDate(articleObj) {
+    const raw = articleObj?.date || articleObj?.createdAt || articleObj?.publishedAt;
+    const d = parseToDate(raw);
+    if (!d) return "";
+    try {
+      return d.toLocaleDateString("fr-FR");
+    } catch (e) {
+      return d.toDateString();
+    }
+  }
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch('/api/blog');
+        if (!res.ok) throw new Error('Failed to fetch articles');
+        const list = await res.json();
+        if (!mounted) return;
+        // try to find by slug field
+        const found = Array.isArray(list) ? list.find(a => a.slug === slug) : null;
+        if (found) {
+          setArticle(found);
+        } else if (articleData[slug]) {
+          // keep existing fallback
+          setArticle(articleData[slug]);
+        } else {
+          setArticle(null);
+        }
+      } catch (err) {
+        // fall back to static map if fetch fails
+        if (articleData[slug]) setArticle(articleData[slug]);
+        else setArticle(null);
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    };
+
+    load();
+    return () => { mounted = false };
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center text-gray-600">Chargement de l'article…</div>
+      </div>
+    );
+  }
 
   if (!article) {
     return (
@@ -117,9 +197,9 @@ export default function BlogDetail() {
 
           <div className="flex flex-wrap gap-6 text-gray-600 mb-8">
             <div className="flex items-center space-x-2">
-              <Calendar size={20} />
-              <span>{new Date(article.date).toLocaleDateString("fr-FR")}</span>
-            </div>
+                <Calendar size={20} />
+                <span>{formatArticleDate(article)}</span>
+              </div>
             <div className="flex items-center space-x-2">
               <Tag size={20} />
               <span className="bg-[#3AA655] text-white px-3 py-1 rounded-full text-sm font-semibold">

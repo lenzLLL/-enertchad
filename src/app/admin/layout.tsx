@@ -5,6 +5,30 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { BarChart3, Package, ShoppingCart, Settings, LogOut, Menu, X, Bell, Clock, BookOpen } from "lucide-react";
 
+// Sub-component to handle dynamic date rendering
+function DateDisplay() {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  if (!mounted) {
+    return <span className="hidden sm:inline">Mise à jour: ...</span>;
+  }
+  
+  const now = new Date();
+  const fullDate = now.toLocaleDateString("fr-FR", { weekday: "long", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" });
+  const shortDate = now.toLocaleDateString("fr-FR", { month: "short", day: "numeric" });
+  
+  return (
+    <>
+      <span className="hidden sm:inline">Mise à jour: {fullDate}</span>
+      <span className="sm:hidden">{shortDate}</span>
+    </>
+  );
+}
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -132,8 +156,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </div>
             <p className="text-xs md:text-sm text-gray-500 mt-2 md:mt-1 flex items-center space-x-2">
               <Clock size={14} />
-              <span className="hidden sm:inline">Mise à jour: {new Date().toLocaleDateString("fr-FR", { weekday: "long", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" })}</span>
-              <span className="sm:hidden">{new Date().toLocaleDateString("fr-FR", { month: "short", day: "numeric" })}</span>
+              <DateDisplay />
             </p>
           </div>
           <div className="flex items-center space-x-3 md:space-x-6 flex-shrink-0">

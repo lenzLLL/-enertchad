@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, Upload, X } from "lucide-react";
 import Link from "next/link";
+import { UploadButton } from "@/utils/uploadthing";
 
 export default function CreateBlogPage() {
   const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ export default function CreateBlogPage() {
     content: "",
     category: "",
     author: "",
-    image: null,
+    imageUrl: "",
     status: "Brouillon",
   });
 
@@ -33,78 +34,22 @@ export default function CreateBlogPage() {
     }
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      if (!file.type.startsWith("image/")) {
-        setErrors((prev) => ({
-          ...prev,
-          image: "Veuillez sélectionner une image valide",
-        }));
-        return;
-      }
 
-      if (file.size > 5 * 1024 * 1024) {
-        setErrors((prev) => ({
-          ...prev,
-          image: "L'image ne doit pas dépasser 5MB",
-        }));
-        return;
-      }
 
-      setFormData((prev) => ({
-        ...prev,
-        image: file,
-      }));
 
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (typeof reader.result === "string") {
-          setImagePreview(reader.result);
-        }
-      };
-      reader.readAsDataURL(file);
+const validateForm = (): boolean => {
+  const newErrors: Record<string, string> = {};
 
-      setErrors((prev) => ({
-        ...prev,
-        image: "",
-      }));
-    }
-  };
+  if (!formData.title.trim()) newErrors.title = "Le titre est obligatoire";
+  if (!formData.excerpt.trim()) newErrors.excerpt = "L'extrait est obligatoire";
+  if (!formData.content.trim()) newErrors.content = "Le contenu est obligatoire";
+  if (!formData.category) newErrors.category = "La catégorie est obligatoire";
+  if (!formData.author.trim()) newErrors.author = "L'auteur est obligatoire";
+  if (!formData.imageUrl) newErrors.imageUrl = "L'image est obligatoire";
 
-  const removeImage = () => {
-    setFormData((prev) => ({
-      ...prev,
-      image: null,
-    }));
-    setImagePreview(null);
-  };
-
-  const validateForm = (): boolean => {
-    const newErrors: Record<string, string> = {};
-
-    if (!formData.title.trim()) {
-      newErrors.title = "Le titre est obligatoire";
-    }
-    if (!formData.excerpt.trim()) {
-      newErrors.excerpt = "L'extrait est obligatoire";
-    }
-    if (!formData.content.trim()) {
-      newErrors.content = "Le contenu est obligatoire";
-    }
-    if (!formData.category) {
-      newErrors.category = "La catégorie est obligatoire";
-    }
-    if (!formData.author.trim()) {
-      newErrors.author = "L'auteur est obligatoire";
-    }
-    if (!imagePreview) {
-      newErrors.image = "L'image est obligatoire";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -115,25 +60,60 @@ export default function CreateBlogPage() {
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      console.log("Article créé:", formData);
+    try {
+      // Ensure we have an image URL (uploaded via UploadThing)
+      const imageUrl = formData.imageUrl || imagePreview || "";
+
+      // generate slug from title
+      const slug = formData.title
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+
+      const res = await fetch("/api/blog", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: formData.title,
+          slug,
+          content: formData.content,
+          author: formData.author,
+          category: formData.category,
+          image: imageUrl,
+          excerpt: formData.excerpt,
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Erreur création article");
+      }
+
       alert("Article créé avec succès!");
-      setIsSubmitting(false);
+      // reset
       setFormData({
         title: "",
         excerpt: "",
         content: "",
         category: "",
         author: "",
-        image: null,
+        imageUrl: "",
         status: "Brouillon",
       });
       setImagePreview(null);
-    }, 1000);
+    } catch (error: any) {
+      alert(`Erreur : ${error.message}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const categories = ["Énergie", "Mobilité", "Maintenance", "Innovation", "Durabilité"];
-
+    const removeImage = () => {
+    setFormData((prev) => ({ ...prev, imageUrl: "" }));
+    
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -155,57 +135,50 @@ export default function CreateBlogPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Left Column - Image Upload */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 sticky top-24">
-                <h2 className="text-lg font-bold text-gray-900 mb-6">Image de couverture</h2>
-
-                {!imagePreview ? (
-                  <label className="block">
-                    <div className="relative border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-[#1E5FA8] hover:bg-blue-50 transition cursor-pointer group">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="hidden"
-                      />
-                      <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4 group-hover:text-[#1E5FA8]" />
-                      <p className="text-sm font-semibold text-gray-700 group-hover:text-[#1E5FA8]">
-                        Cliquez pour uploader
-                      </p>
-                      <p className="text-xs text-gray-500 mt-2">ou glissez-déposez</p>
-                      <p className="text-xs text-gray-400 mt-3">PNG, JPG, GIF (max 5MB)</p>
-                    </div>
-                  </label>
-                ) : (
-                  <div className="relative">
-                    <img
-                      src={imagePreview}
-                      alt="Preview"
-                      className="w-full h-64 object-cover rounded-xl"
-                    />
-                    <button
-                      type="button"
-                      onClick={removeImage}
-                      className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition shadow-lg"
-                    >
-                      <X size={20} />
-                    </button>
-                    <label className="absolute bottom-2 left-2 right-2">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="hidden"
-                      />
-                      <div className="bg-white text-center py-2 rounded-lg font-semibold text-sm text-[#1E5FA8] hover:bg-gray-100 cursor-pointer transition">
-                        Changer l'image
-                      </div>
-                    </label>
-                  </div>
-                )}
-                {errors.image && (
-                  <p className="text-red-500 text-sm mt-3 font-semibold">{errors.image}</p>
-                )}
-              </div>
+                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 sticky top-24">
+                               <h2 className="text-lg font-bold text-gray-900 mb-6">
+                                 Image de l'article
+                               </h2>
+               
+                               {!formData.imageUrl ? (
+                                 <UploadButton
+                       endpoint="imageUploader"
+                       onClientUploadComplete={(res) => {
+                         // Do something with the response
+                         console.log("Files: ", res[0]?.ufsUrl);
+                         setFormData((prev) => ({
+                           ...prev,
+                           imageUrl: res[0]?.ufsUrl || "",
+                         }));
+                       
+                       
+                       }}
+                       onUploadError={(error: Error) => {
+                         // Do something with the error.
+                         alert(`ERROR! ${error.message}`);
+                       }}
+                     />
+                               ) : (
+                                 <div className="relative">
+                                   <img
+                                     src={formData.imageUrl}
+                                     className="w-full h-64 object-cover rounded-xl"
+                                   />
+               
+                                   <button
+                                     type="button"
+                                     onClick={removeImage}
+                                     className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full shadow-lg"
+                                   >
+                                     <X size={20} />
+                                   </button>
+                                 </div>
+                               )}
+               
+                               {errors.imageUrl && (
+                                 <p className="text-red-500 text-sm mt-3">{errors.imageUrl}</p>
+                               )}
+                             </div>
             </div>
 
             {/* Right Column - Form Fields */}

@@ -11,6 +11,10 @@ import {
   MapPin,
   Shield,
   Zap as Lightning,
+  Truck,
+  Headset,
+  Recycle,
+  Flame,
 } from "lucide-react";
 import ServiceCard from "../../components/ServiceCard";
 
@@ -20,6 +24,8 @@ const carWashImage =
   "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/";
 const solarImage =
   "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84c680d4ac32/";
+const oilImage =
+  "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/";
 
 export default function Services() {
   const mainServices = [
@@ -30,22 +36,10 @@ export default function Services() {
         "Carburants de qualité supérieure, diesel et essence, disponibles 24/7 dans nos stations modernes et sécurisées.",
     },
     {
-      icon: Zap,
-      title: "Recharge Électrique",
+      icon: Truck,
+      title: "Livraison Mobile de Carburant",
       description:
-        "Stations de recharge rapide pour véhicules électriques. Technologie dernière génération, compatible tous modèles.",
-    },
-    {
-      icon: Wrench,
-      title: "Maintenance Auto",
-      description:
-        "Services d'entretien et de réparation automobiles professionnels, effectués par nos techniciens certifiés.",
-    },
-    {
-      icon: Leaf,
-      title: "Énergie Solaire",
-      description:
-        "Solutions d'énergie renouvelable pour particuliers et entreprises. Installation et maintenance complètes.",
+        "Service de livraison directe pour industriels et clients normaux - partout au Tchad",
     },
     {
       icon: Droplet,
@@ -54,10 +48,52 @@ export default function Services() {
         "Lubrifiants premium pour tous types de véhicules. Qualité certifiée internationale.",
     },
     {
+      icon: Truck,
+      title: "Import de Carburant",
+      description:
+        "Importation et distribution de carburant de qualité certifiée internationalement",
+    },
+    {
+      icon: Leaf,
+      title: "Énergie Solaire",
+      description:
+        "Solutions d'énergie renouvelable pour particuliers et entreprises. Installation et maintenance complètes.",
+    },
+    {
+      icon: Zap,
+      title: "Recharge Électrique",
+      description:
+        "Stations de recharge rapide pour véhicules électriques. Technologie dernière génération, compatible tous modèles.",
+    },
+    {
+      icon: Flame,
+      title: "Biogaz",
+      description:
+        "Production et distribution de biogaz pour énergie domestique et industrielle",
+    },
+    {
       icon: Sparkles,
       title: "Laverie Auto",
       description:
         "Services de nettoyage automatisé et écologique. Respectueux de l'environnement et efficace.",
+    },
+    {
+      icon: Wrench,
+      title: "Maintenance Auto",
+      description:
+        "Services d'entretien et de réparation automobiles professionnels, effectués par nos techniciens certifiés.",
+    },
+    {
+      icon: Recycle,
+      title: "Traitement de Déchets",
+      description:
+        "Unité complète de traitement des déchets plastiques et ménagers avec solutions durables",
+    },
+    {
+      icon: Headset,
+      title: "Assistance Technique",
+      description:
+        "Support technique 24/7 pour tous vos questions et problèmes",
     },
   ];
 
@@ -115,153 +151,330 @@ export default function Services() {
             Services Disponibles
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mainServices.map((service, idx) => (
-              <ServiceCard key={idx} {...service} />
-            ))}
-          </div>
+      
         </div>
       </section>
 
-      {/* Detailed Services */}
-      <section className="py-20 px-4 bg-gray-50">
+      {/* Detailed Services with Images */}
+      <section className="py-24 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          {/* Station-Service Detail */}
-          <div className="mb-20">
-            <h3 className="text-3xl font-bold text-[#003D7A] mb-4 font-poppins">
-              Station-Service EnerTchad
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* Station-Service */}
+          <div className="mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  Nos stations-service offrent une expérience complète avec
-                  carburants de haute qualité, disponibles 24 heures sur 24.
-                  Bénéficiez de:
+                <span className="text-[#1E5FA8] font-bold text-sm uppercase tracking-wide">Énergies Fossiles</span>
+                <h3 className="text-4xl font-bold text-[#1E5FA8] mb-4 mt-2">Station-Service</h3>
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Nos stations-service modernes offrent une expérience complète avec carburants de haute qualité, disponibles 24 heures sur 24.
                 </p>
-                <ul className="space-y-2">
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Diesel et essence ultra-pure
-                    </span>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <Fuel className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Diesel et essence ultra-pure certifiés</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Paiement numérique sécurisé
-                    </span>
+                  <li className="flex items-start space-x-3">
+                    <Fuel className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Paiement numérique sécurisé</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Shop de commodités intégré
-                    </span>
+                  <li className="flex items-start space-x-3">
+                    <Fuel className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Shop de commodités intégré</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Aire de repos confortable
-                    </span>
+                  <li className="flex items-start space-x-3">
+                    <Fuel className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Aire de repos confortable</span>
                   </li>
                 </ul>
               </div>
-              <img
-                src={evChargerImage}
-                alt="Station-service"
-                className="rounded-lg shadow-lg w-full"
-              />
+              <img src={evChargerImage} alt="Station-service" className="rounded-2xl shadow-xl w-full" />
             </div>
           </div>
 
-          {/* Recharge Électrique Detail */}
-          <div className="mb-20">
-            <h3 className="text-3xl font-bold text-[#003D7A] mb-4 font-poppins">
-              Recharge Électrique EV
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <img
-                src={carWashImage}
-                alt="Recharge électrique"
-                className="rounded-lg shadow-lg w-full"
-              />
+          {/* Livraison Mobile */}
+          <div className="mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <img src={oilImage} alt="Livraison mobile" className="rounded-2xl shadow-xl w-full" />
               <div>
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  Prêt à passer à l'électrique ? Notre réseau de recharge
-                  moderne vous accueille :
+                <span className="text-[#1E5FA8] font-bold text-sm uppercase tracking-wide">Énergies Fossiles</span>
+                <h3 className="text-4xl font-bold text-[#1E5FA8] mb-4 mt-2">Livraison Mobile de Carburant</h3>
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Service de livraison directe pour industriels et clients normaux partout au Tchad.
                 </p>
-                <ul className="space-y-2">
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Recharge rapide 30-80% en 30 min
-                    </span>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <Truck className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Livraison 24/7 sur site</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Compatible tous véhicules électriques
-                    </span>
+                  <li className="flex items-start space-x-3">
+                    <Truck className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Tarifs compétitifs et transparents</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Tarifs compétitifs et transparents
-                    </span>
+                  <li className="flex items-start space-x-3">
+                    <Truck className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Quantités variables selon besoins</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Application mobile de localisation
-                    </span>
+                  <li className="flex items-start space-x-3">
+                    <Truck className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Support client réactif</span>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
 
-          {/* Énergie Solaire Detail */}
+          {/* Import de Carburant */}
+          <div className="mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <span className="text-[#1E5FA8] font-bold text-sm uppercase tracking-wide">Énergies Fossiles</span>
+                <h3 className="text-4xl font-bold text-[#1E5FA8] mb-4 mt-2">Import de Carburant</h3>
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Importation et distribution de carburant de qualité certifiée internationalement.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <Shield className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Certifications internationales garanties</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Shield className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Contrôle qualité rigoureux</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Shield className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Approvisionnement régulier assuré</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Shield className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Logistique optimisée</span>
+                  </li>
+                </ul>
+              </div>
+              <img src={carWashImage} alt="Import carburant" className="rounded-2xl shadow-xl w-full" />
+            </div>
+          </div>
+
+          {/* Énergie Solaire */}
+          <div className="mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <img src={solarImage} alt="Énergie solaire" className="rounded-2xl shadow-xl w-full" />
+              <div>
+                <span className="text-[#3AA655] font-bold text-sm uppercase tracking-wide">Énergies Renouvelables</span>
+                <h3 className="text-4xl font-bold text-[#3AA655] mb-4 mt-2">Énergie Solaire</h3>
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Solutions d'énergie renouvelable clé en main pour particuliers et entreprises.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <Leaf className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Panneaux haute performance avec garantie</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Leaf className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Batterie de stockage longue durée</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Leaf className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Installation professionnelle garantie</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Leaf className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Maintenance et monitoring 24/7</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Recharge Électrique */}
+          <div className="mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <span className="text-[#3AA655] font-bold text-sm uppercase tracking-wide">Énergies Renouvelables</span>
+                <h3 className="text-4xl font-bold text-[#3AA655] mb-4 mt-2">Recharge Électrique</h3>
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Stations de recharge rapide pour véhicules électriques avec technologie dernière génération.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <Zap className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Recharge rapide 30-80% en 30 min</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Zap className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Compatible tous véhicules électriques</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Zap className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Tarifs compétitifs et transparents</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Zap className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Application mobile de localisation</span>
+                  </li>
+                </ul>
+              </div>
+              <img src={evChargerImage} alt="Recharge électrique" className="rounded-2xl shadow-xl w-full" />
+            </div>
+          </div>
+
+          {/* Biogaz */}
+          <div className="mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <img src={solarImage} alt="Biogaz" className="rounded-2xl shadow-xl w-full" />
+              <div>
+                <span className="text-[#3AA655] font-bold text-sm uppercase tracking-wide">Énergies Renouvelables</span>
+                <h3 className="text-4xl font-bold text-[#3AA655] mb-4 mt-2">Biogaz</h3>
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Production et distribution de biogaz pour énergie domestique et industrielle, solution écologique et durable.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <Flame className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Énergie écologique et renouvelable</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Flame className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Réduction des émissions de CO2</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Flame className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Tarifs avantageux long terme</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Flame className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Installation et support professionnels</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Maintenance Auto */}
+          <div className="mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <span className="text-[#E6C34A] font-bold text-sm uppercase tracking-wide">Services Complémentaires</span>
+                <h3 className="text-4xl font-bold text-[#E6C34A] mb-4 mt-2">Maintenance Auto</h3>
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Services d'entretien et de réparation automobiles professionnels effectués par nos techniciens certifiés.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <Wrench className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Techniciens qualifiés et certifiés</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Wrench className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Diagnostic complet gratuit</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Wrench className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Pièces détachées originales</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Wrench className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Garantie sur les réparations</span>
+                  </li>
+                </ul>
+              </div>
+              <img src={carWashImage} alt="Maintenance auto" className="rounded-2xl shadow-xl w-full" />
+            </div>
+          </div>
+
+          {/* Laverie Auto */}
+          <div className="mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <img src={evChargerImage} alt="Laverie auto" className="rounded-2xl shadow-xl w-full" />
+              <div>
+                <span className="text-[#E6C34A] font-bold text-sm uppercase tracking-wide">Services Complémentaires</span>
+                <h3 className="text-4xl font-bold text-[#E6C34A] mb-4 mt-2">Laverie Auto</h3>
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Services de nettoyage automatisé et écologique respectueux de l'environnement et efficace.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <Sparkles className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Nettoyage automatisé haute technologie</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Sparkles className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Produits écologiques certifiés</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Sparkles className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Résultats professionnels garantis</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Sparkles className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Tarifs forfaitaires avantageux</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Traitement de Déchets */}
+          <div className="mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <span className="text-[#E6C34A] font-bold text-sm uppercase tracking-wide">Services Complémentaires</span>
+                <h3 className="text-4xl font-bold text-[#E6C34A] mb-4 mt-2">Traitement de Déchets</h3>
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Unité complète de traitement des déchets plastiques et ménagers avec solutions durables et responsables.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <Recycle className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Traitement des déchets plastiques</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Recycle className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Gestion des déchets ménagers</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Recycle className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Recyclage optimisé et responsable</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Recycle className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Normes environnementales respectées</span>
+                  </li>
+                </ul>
+              </div>
+              <img src={oilImage} alt="Traitement déchets" className="rounded-2xl shadow-xl w-full" />
+            </div>
+          </div>
+
+          {/* Assistance Technique */}
           <div>
-            <h3 className="text-3xl font-bold text-[#003D7A] mb-4 font-poppins">
-              Solutions d'Énergie Solaire
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <img src={solarImage} alt="Assistance technique" className="rounded-2xl shadow-xl w-full" />
               <div>
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  Investissez dans l'avenir avec nos solutions solaires clé en
-                  main :
+                <span className="text-[#E6C34A] font-bold text-sm uppercase tracking-wide">Services Complémentaires</span>
+                <h3 className="text-4xl font-bold text-[#E6C34A] mb-4 mt-2">Assistance Technique</h3>
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                  Support technique 24/7 pour tous vos questions et problèmes avec nos services et produits.
                 </p>
-                <ul className="space-y-2">
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Panneaux solaires haute performance
-                    </span>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <Headset className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Support 24/7 par téléphone</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Batterie de stockage longue durée
-                    </span>
+                  <li className="flex items-start space-x-3">
+                    <Headset className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Assistance WhatsApp et email</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Installation professionnelle garantie
-                    </span>
+                  <li className="flex items-start space-x-3">
+                    <Headset className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Dépannage rapide et efficace</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-[#FFB800] rounded-full"></div>
-                    <span className="text-gray-700">
-                      Maintenance et support 24/7
-                    </span>
+                  <li className="flex items-start space-x-3">
+                    <Headset className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Équipe technique qualifiée</span>
                   </li>
                 </ul>
               </div>
-              <img
-                src={solarImage}
-                alt="Énergie solaire"
-                className="rounded-lg shadow-lg w-full"
-              />
             </div>
           </div>
         </div>
@@ -289,6 +502,68 @@ export default function Services() {
                 <p className="text-gray-600 text-sm">{benefit.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Information Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold text-center text-[#003D7A] mb-16 font-poppins">
+            Pourquoi Choisir EnerTchad ?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Livraison Gratuite */}
+            <div className="bg-gradient-to-br from-[#E8F4F8] to-[#D4E8F0] p-8 rounded-2xl text-center hover:shadow-lg transition-shadow">
+              <div className="w-16 h-16 mx-auto mb-4 bg-[#1E5FA8] rounded-full flex items-center justify-center">
+                <Truck className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-[#1E5FA8] mb-3">
+                Livraison Gratuite
+              </h3>
+              <p className="text-gray-700">
+                Nous existons pour vous faire plaisir
+              </p>
+            </div>
+
+            {/* Paiement Facile */}
+            <div className="bg-gradient-to-br from-[#F0F8E8] to-[#E0F0D4] p-8 rounded-2xl text-center hover:shadow-lg transition-shadow">
+              <div className="w-16 h-16 mx-auto mb-4 bg-[#3AA655] rounded-full flex items-center justify-center">
+                <Shield className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-[#3AA655] mb-3">
+                Paiement Facile
+              </h3>
+              <p className="text-gray-700">
+                Urna est enim pellentesque
+              </p>
+            </div>
+
+            {/* Suivez votre Commande */}
+            <div className="bg-gradient-to-br from-[#FEF9E8] to-[#FCF0D4] p-8 rounded-2xl text-center hover:shadow-lg transition-shadow">
+              <div className="w-16 h-16 mx-auto mb-4 bg-[#E6C34A] rounded-full flex items-center justify-center">
+                <Clock className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-[#E6C34A] mb-3">
+                Suivez votre Commande
+              </h3>
+              <p className="text-gray-700">
+                Nous travaillons pour votre tranquillité
+              </p>
+            </div>
+
+            {/* Questions ? */}
+            <div className="bg-gradient-to-br from-[#F8E8F4] to-[#F0D4E8] p-8 rounded-2xl text-center hover:shadow-lg transition-shadow">
+              <div className="w-16 h-16 mx-auto mb-4 bg-[#D946A6] rounded-full flex items-center justify-center">
+                <Headset className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-[#D946A6] mb-3">
+                Vous avez des questions ?
+              </h3>
+              <p className="text-gray-700">
+                Merci de les poser à notre équipe
+              </p>
+            </div>
           </div>
         </div>
       </section>

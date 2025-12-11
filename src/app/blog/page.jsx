@@ -2,7 +2,7 @@
 
 import BlogCard from "../../components/BlogCard";
 import { Search, Filter } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const fuelTips =
   "https://raw.createusercontent.com/f65761c3-3a24-4d96-86d2-04e2ce50d663/";
@@ -25,65 +25,29 @@ export default function BlogPage() {
     "Entretien",
   ];
 
-  const articles = [
-    {
-      slug: "economie-carburant-conseils",
-      title:
-        "Comment réduire votre consommation de carburant en 5 étapes simples",
-      excerpt:
-        "Découvrez nos conseils d'experts pour économiser du carburant et réduire vos dépenses mensuelles tout en protégeant l'environnement.",
-      image: fuelTips,
-      date: "2025-01-15",
-      category: "Conseils",
-    },
-    {
-      slug: "revolution-vehicules-electriques-tchad",
-      title: "La révolution des véhicules électriques arrive au Tchad",
-      excerpt:
-        "EnerTchad inaugure 8 nouvelles bornes de recharge rapide à N'Djaména. L'avenir de la mobilité est électrique.",
-      image: evCharging,
-      date: "2025-01-10",
-      category: "Mobilité Électrique",
-    },
-    {
-      slug: "choisir-huile-moteur-qualite",
-      title: "Comment choisir l'huile moteur adaptée à votre véhicule",
-      excerpt:
-        "Guide complet pour sélectionner la meilleure huile moteur selon le type de véhicule, le climat et vos habitudes de conduite.",
-      image: oilQuality,
-      date: "2025-01-05",
-      category: "Entretien",
-    },
-    {
-      slug: "energie-solaire-entreprises",
-      title:
-        "L'énergie solaire: solution d'avenir pour les entreprises tchadiennes",
-      excerpt:
-        "Comment les panneaux solaires peuvent réduire vos coûts énergétiques de 60% et garantir une alimentation stable.",
-      image: solarEnergy,
-      date: "2024-12-28",
-      category: "Énergie Solaire",
-    },
-    {
-      slug: "maintenance-vehicule-saison-seche",
-      title: "Maintenance automobile en saison sèche: les points essentiels",
-      excerpt:
-        "Protégez votre véhicule des rigueurs du climat sahélien avec notre checklist complète de maintenance saisonnière.",
-      image: fuelTips,
-      date: "2024-12-20",
-      category: "Entretien",
-    },
-    {
-      slug: "innovation-stations-service-connectees",
-      title:
-        "Nos stations-service connectées: l'innovation au service du client",
-      excerpt:
-        "Découvrez comment nos nouvelles technologies améliorent votre expérience: paiement mobile, suivi de consommation en temps réel.",
-      image: evCharging,
-      date: "2024-12-15",
-      category: "Innovation",
-    },
-  ];
+  const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      setIsLoading(true);
+      try {
+        const res = await fetch('/api/blog');
+        const data = res.ok ? await res.json() : [];
+        if (!mounted) return;
+        setArticles(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error('Failed to load articles:', err);
+        if (mounted) setArticles([]);
+      } finally {
+        if (mounted) setIsLoading(false);
+      }
+    };
+
+    load();
+    return () => { mounted = false };
+  }, []);
 
   const filteredArticles =
     selectedCategory === "Tous"
@@ -160,31 +124,32 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-[#1E5FA8]">
-              {selectedCategory === "Tous"
-                ? "Tous les articles"
-                : selectedCategory}
+              {selectedCategory === "Tous" ? "Tous les articles" : selectedCategory}
             </h2>
             <p className="text-gray-600 mt-2">
-              {filteredArticles.length} article
-              {filteredArticles.length > 1 ? "s" : ""}
+              {isLoading ? 'Chargement...' : `${filteredArticles.length} article${filteredArticles.length > 1 ? 's' : ''}`}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredArticles.map((article) => (
-              <BlogCard key={article.slug} {...article} />
-            ))}
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-8">
+            {isLoading
+              ? Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i} className="border border-gray-100 rounded-lg p-4 animate-pulse">
+                    <div className="w-full h-40 bg-gray-200 rounded mb-4" />
+                    <div className="h-6 bg-gray-200 rounded w-3/4 mb-2" />
+                    <div className="h-4 bg-gray-200 rounded w-5/6" />
+                  </div>
+                ))
+              : filteredArticles.map((article) => (
+                  <BlogCard key={article.slug || article.id || Math.random()} {...article} />
+                ))}
           </div>
 
-          {filteredArticles.length === 0 && (
+          {!isLoading && filteredArticles.length === 0 && (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">📝</div>
-              <h3 className="text-2xl font-bold text-[#1E5FA8] mb-2">
-                Aucun article trouvé
-              </h3>
-              <p className="text-gray-600">
-                Essayez une autre catégorie ou recherche
-              </p>
+              <h3 className="text-2xl font-bold text-[#1E5FA8] mb-2">Aucun article trouvé</h3>
+              <p className="text-gray-600">Il n'y a pas encore d'articles publiés. Revenez bientôt ou contactez l'administrateur.</p>
             </div>
           )}
         </div>
