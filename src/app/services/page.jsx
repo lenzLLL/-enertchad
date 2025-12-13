@@ -15,6 +15,7 @@ import {
   Headset,
   Recycle,
   Flame,
+  Wind,
 } from "lucide-react";
 import ServiceCard from "../../components/ServiceCard";
 
@@ -58,6 +59,12 @@ export default function Services() {
       title: "Énergie Solaire",
       description:
         "Solutions d'énergie renouvelable pour particuliers et entreprises. Installation et maintenance complètes.",
+    },
+    {
+      icon: Wind,
+      title: "Énergie Éolienne",
+      description:
+        "Installation et maintenance de systèmes éoliens adaptés aux besoins locaux, pour collectivités et entreprises.",
     },
     {
       icon: Zap,

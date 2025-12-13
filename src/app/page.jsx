@@ -19,6 +19,7 @@ import {
   Headset,
   Recycle,
   Flame,
+  Wind,
 } from "lucide-react";
 import ServiceCard from "../components/ServiceCard";
 import ProductCard from "../components/ProductCard";
@@ -82,11 +83,19 @@ export default function Home() {
       segment: "Énergies Renouvelables",
     },
     {
+      icon: Wind,
+      title: "Énergie Éolienne",
+      description:
+        "Solutions d'énergie éolienne pour entreprises et communautés : études, installation et maintenance de petites et moyennes turbines.",
+      segment: "Énergies Renouvelables",
+    },
+    {
       icon: Zap,
       title: "Recharge Électrique",
       description: "Stations de recharge rapide pour véhicules électriques",
       segment: "Énergies Renouvelables",
     },
+  
     {
       icon: Flame,
       title: "Biogaz",
