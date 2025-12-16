@@ -1,137 +1,291 @@
 "use client";
 
+import React from "react";
 import {
   Fuel,
   Zap,
-  Wrench,
-  Leaf,
   Droplet,
   Sparkles,
   Clock,
   MapPin,
-  Shield,
-  Zap as Lightning,
   TrendingUp,
   Truck,
   Headset,
   Recycle,
-  Flame,
+  Shield,
+  Lightning,
+  Leaf,
   Wind,
+  Flame,
+  Wrench,
+    Hammer,
+    Settings,
+    Activity,
+    Anchor,
+    GaugeCircle,
+    LineChart,
+    Cpu,
+    PaintBucket,Gauge,Atom
 } from "lucide-react";
 import ServiceCard from "../../components/ServiceCard";
 
-const evChargerImage =
-  "https://raw.createusercontent.com/54cd1c2a-59f3-4545-a962-6bdc7b2fd1a9/";
-const carWashImage =
-  "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/";
-const solarImage =
-  "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84c680d4ac32/";
-const oilImage =
-  "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/";
+const evChargerImage = "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84c680d4ac32/ev-charger.jpg";
+const solarImage = "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84c680d4ac32/solar.jpg";
+const oilImage = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/oil.jpg";
+const carWashImage = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/car-wash.jpg";
+const stationInterior = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/station.jpg";
 
 export default function Services() {
+  
+    const services = [
+    {
+    icon: Flame,
+    title: "Biomasse Solide",
+    description:
+      "Bois énergie, charbon de bois, résidus agricoles, briquettes et déchets agro-industriels.",
+    segment: "Énergies Renouvelables",
+  },
+  
+  // 💨 Biogaz
+  {
+    icon: Recycle,
+    title: "Biogaz",
+    description:
+      "Méthane issu de biodigesteurs, gaz de décharge et stations d’épuration.",
+    segment: "Énergies Renouvelables",
+  },
+  
+  // ⛽ Biocarburants liquides
+  {
+    icon: Droplet,
+    title: "Biocarburants Liquides",
+    description:
+      "Bioéthanol, biodiesel, biokérosène et huiles végétales pour mobilité et industrie.",
+    segment: "Énergies Renouvelables",
+  },
+  
+  // ⚡ Biohydrogène & Gaz de synthèse
+  {
+    icon: Atom,
+    title: "Biohydrogène & Gaz de Synthèse",
+    description:
+      "Hydrogène vert et syngas (CO + H₂) issus de la biomasse par fermentation ou gazéification.",
+    segment: "Énergies Renouvelables",
+  },
+   {
+    icon: Hammer,
+    title: "Forage & Complétion",
+    description:
+      "Forage directionnel et horizontal, cimentation intelligente et acquisition de données en temps réel.",
+    segment: "Énergies Fossiles",
+  },
+  {
+    icon: Gauge,
+    title: "Production & Optimisation",
+    description:
+      "Systèmes de levage artificiel (ESP, Gas Lift, Rod Pump) et gestion des flux multiphasiques.",
+    segment: "Énergies Fossiles",
+  },
+  
+  
+  // 🛠 Ingénierie & Maintenance
+  {
+    icon:PaintBucket,
+    title: "Ingénierie & Maintenance",
+    description:
+      "Stimulation hydraulique, interventions sur puits et maintenance prédictive et industrielle, conformité HSE.",
+    segment: "Énergies Fossiles",
+  },
+  
+  // 🌊 Offshore & Subsea
+  {
+    icon: Anchor,
+    title: "Offshore & Subsea",
+    description:
+      "Ingénierie sous-marine (SURF), inspection et monitoring des pipelines, precommissioning et decommissioning sécurisé.",
+    segment: "Énergies Fossiles",
+  },
+  
+      {
+        icon: Fuel,
+        title: "Station-Service",
+        description:
+          "Carburants de qualité supérieure, diesel et essence, disponibles 24/7",
+        segment: "Énergies Fossiles",
+      },
+      {
+        icon: Truck,
+        title: "Livraison Mobile de Carburant",
+        description:
+          "Service de livraison directe pour industriels et clients normaux - partout au Tchad",
+        segment: "Énergies Fossiles",
+      },
+      {
+        icon: Droplet,
+        title: "Huiles Moteur",
+        description: "Lubrifiants premium pour tous types de véhicules",
+        segment: "Énergies Fossiles",
+      },
+      {
+        icon: Truck,
+        title: "Import de Carburant",
+        description:
+          "Importation et distribution de carburant de qualité certifiée internationalement",
+        segment: "Énergies Fossiles",
+      },
+      {
+        icon: Fuel,
+        title: "Carburants Routiers",
+        description:
+          "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
+        segment: "Énergies Fossiles",
+      },
+      {
+        icon: Droplet,
+        title: "Combustibles de Chauffage",
+        description:
+          "Fioul domestique, kérosène/jet fuel et GPL (propane, butane) pour chauffage, cuisson et usages industriels.",
+        segment: "Énergies Fossiles",
+      },
+      {
+        icon: Leaf,
+        title: "Énergie Solaire",
+        description:
+          "Solutions d'énergie renouvelable pour particuliers et entreprises",
+        segment: "Énergies Renouvelables",
+      },
+      {
+        icon: Wind,
+        title: "Énergie Éolienne",
+        description:
+          "Solutions d'énergie éolienne pour entreprises et communautés : études, installation et maintenance de petites et moyennes turbines.",
+        segment: "Énergies Renouvelables",
+      },
+      {
+        icon: Zap,
+        title: "Recharge Électrique",
+        description: "Stations de recharge rapide pour véhicules électriques",
+        segment: "Énergies Renouvelables",
+      },
+    
+      {
+        icon: Flame,
+        title: "Biogaz",
+        description:
+          "Production et distribution de biogaz pour énergie domestique et industrielle",
+        segment: "Services Complémentaires",
+      },
+      {
+        icon: Sparkles,
+        title: "Laverie Auto",
+        description: "Services de nettoyage automatisé et écologique",
+        segment: "Services Complémentaires",
+      },
+      {
+        icon: TrendingUp,
+        title: "Produits Industriels",
+        description:
+          "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
+        segment: "Services Complémentaires",
+      },
+      {
+        icon: Sparkles,
+        title: "Produits Pétrochimiques (PP)",
+        description:
+          "Polypropylène (PP) : matière polyvalente pour emballages, textiles, pièces automobiles et équipements médicaux.",
+        segment: "Services Complémentaires",
+      },
+      {
+        icon: Wrench,
+        title: "Maintenance Auto",
+        description:
+          "Services d'entretien et de réparation automobiles professionnels",
+        segment: "Services Complémentaires",
+      },
+      {
+        icon: Recycle,
+        title: "Traitement de Déchets",
+        description:
+          "Unité complète de traitement des déchets plastiques et ménagers avec solutions durables",
+        segment: "Services Complémentaires",
+      },
+      {
+        icon: Headset,
+        title: "Assistance Technique",
+        description:
+          "Support technique 24/7 pour tous vos questions et problèmes",
+        segment: "Services Complémentaires",
+      },
+    ];
   const mainServices = [
     {
       icon: Fuel,
       title: "Station-Service",
       description:
         "Carburants de qualité supérieure, diesel et essence, disponibles 24/7 dans nos stations modernes et sécurisées.",
+      segment: "Énergies Fossiles",
     },
     {
       icon: Truck,
       title: "Livraison Mobile de Carburant",
       description:
-        "Service de livraison directe pour industriels et clients normaux - partout au Tchad",
+        "Service de livraison directe pour industriels et particuliers — ravitaillement sur site 24/7.",
+      segment: "Énergies Fossiles",
     },
     {
-      icon: Droplet,
-      title: "Huiles Moteur",
-      description:
-        "Lubrifiants premium pour tous types de véhicules. Qualité certifiée internationale.",
-    },
-    {
-      icon: Truck,
+      icon: Shield,
       title: "Import de Carburant",
       description:
-        "Importation et distribution de carburant de qualité certifiée internationalement",
-    },
-    {
-      icon: Fuel,
-      title: "Carburants Routiers",
-      description:
-        "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité moderne et véhicules lourds.",
-    },
-    {
-      icon: Droplet,
-      title: "Combustibles de Chauffage",
-      description:
-        "Fioul domestique, kérosène/jet fuel et GPL (propane, butane) pour usages résidentiels, aviation et industriels.",
+        "Importation et distribution de carburant certifié internationalement avec contrôle qualité rigoureux.",
+      segment: "Énergies Fossiles",
     },
     {
       icon: Leaf,
-      title: "Solaire photovoltaïque & thermique",
+      title: "Énergie Solaire",
       description:
-        "Production d’électricité et chauffage à partir du soleil. Solutions photovoltaïques et thermiques pour particuliers et entreprises.",
+        "Solutions photovoltaïques complètes : études, installation, stockage et maintenance pour entreprises et foyers.",
+      segment: "Énergies Renouvelables",
     },
     {
-      icon: Wind,
-      title: "Éolien",
+      icon: Zap,
+      title: "Recharge Électrique",
       description:
-        "Valorisation des vents pour une énergie propre et continue : études, installation et maintenance de turbines adaptées.",
+        "Stations de recharge rapide pour véhicules électriques avec monitoring et paiement numérique.",
+      segment: "Énergies Renouvelables",
     },
     {
       icon: Flame,
-      title: "Bioénergie (biodigesteurs, biogaz, biomasse)",
+      title: "Biogaz & Bioénergies",
       description:
-        "Transformation des déchets organiques en énergie et fertilisants via biodigesteurs, biogaz et valorisation de la biomasse.",
-    },
-    {
-      icon: Droplet,
-      title: "Hydroélectricité",
-      description:
-        "Exploitation des ressources hydriques pour une production locale et fiable d'énergie : petites et moyennes centrales.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Hybridation intelligente",
-      description:
-        "Intégration des renouvelables avec les réseaux existants (microgrids, stockage, contrôle) pour une efficacité maximale.",
-    },
-    {
-      icon: Sparkles,
-      title: "Laverie Auto",
-      description:
-        "Services de nettoyage automatisé et écologique. Respectueux de l'environnement et efficace.",
+        "Conception et exploitation de solutions biogaz, biodigesteurs et valorisation de biomasse pour production d'énergie durable.",
+      segment: "Bioénergies",
     },
     {
       icon: Wrench,
       title: "Maintenance Auto",
       description:
         "Services d'entretien et de réparation automobiles professionnels, effectués par nos techniciens certifiés.",
+      segment: "Services Complémentaires",
+    },
+    {
+      icon: Sparkles,
+      title: "Laverie Auto",
+      description:
+        "Laverie écologique et automatisée pour véhicules, utilisant des produits biodégradables.",
+      segment: "Services Complémentaires",
     },
     {
       icon: Recycle,
       title: "Traitement de Déchets",
       description:
-        "Unité complète de traitement des déchets plastiques et ménagers avec solutions durables",
-    },
-    {
-      icon: TrendingUp,
-      title: "Produits Industriels",
-      description:
-        "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
-    },
-    {
-      icon: Sparkles,
-      title: "Produits Pétrochimiques (PP)",
-      description:
-        "Polypropylène (PP) : matériau polyvalent pour emballages, textiles, pièces automobiles et équipements médicaux.",
+        "Solutions de collecte et traitement des déchets avec valorisation et recyclage responsables.",
+      segment: "Services Complémentaires",
     },
     {
       icon: Headset,
       title: "Assistance Technique",
-      description:
-        "Support technique 24/7 pour tous vos questions et problèmes",
+      description: "Support client 24/7, assistance technique et suivi après-vente.",
+      segment: "Services Complémentaires",
     },
   ];
 
@@ -152,14 +306,63 @@ export default function Services() {
       description: "Tous nos produits respectent les normes internationales",
     },
     {
-      icon: Lightning,
+      icon: Zap,
       title: "Technologie Moderne",
       description: "Équipements dernière génération et connectés",
     },
   ];
 
+  const segments = [
+    {
+      key: "Énergies Fossiles",
+      badge: "⛽ Carburants Premium 24/7",
+      title: "Énergies Fossiles",
+      description:
+        "Nous fournissons des carburants de haute qualité, des services de livraison mobile et des solutions d'importation certifiées internationalement.",
+      imageSrc: "/h8.jpg",
+      icon: Fuel,
+      accentFrom: "#1E5FA8",
+      accentTo: "#164a8a",
+    },
+    {
+      key: "Énergies Renouvelables",
+      badge: "🌱 Solutions Durables & Écologiques",
+      title: "Énergies Renouvelables",
+      description:
+        "EnerTchad s’engage à bâtir un avenir énergétique durable, inclusif et innovant.",
+      imageSrc: "/r.png",
+      icon: Leaf,
+      accentFrom: "#3AA655",
+      accentTo: "#2d8a45",
+    },
+    {
+      key: "Bioénergies",
+      badge: "🔥 Bioénergies",
+      title: "Bioénergies",
+      description:
+        "Valorisation de la biomasse et production d'énergies renouvelables : biomasse solide, biogaz, biocarburants et solutions de biohydrogène.",
+      imageSrc: solarImage,
+      icon: Leaf,
+      accentFrom: "#3AA655",
+      accentTo: "#2d8a45",
+    },
+    {
+      key: "Services Complémentaires",
+      badge: "🛠️ Automobile & Environnement",
+      title: "Services Complémentaires",
+      description:
+        "Maintenance automobile professionnelle, laverie écologique et gestion responsable des déchets.",
+      imageSrc: carWashImage,
+      icon: Wrench,
+      accentFrom: "#E6C34A",
+      accentTo: "#d4a028",
+    },
+  ];
+
   return (
     <div>
+
+      
       {/* Hero Banner Section - Same as Blog */}
       <section className="relative py-12 md:py-32 px-4 overflow-hidden">
         <img
@@ -181,342 +384,185 @@ export default function Services() {
           </p>
         </div>
       </section>
+  <section className="py-8 md:py-32 px-4 bg-gradient-to-b from-[#F5E6D3] to-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A]/10 rounded-full blur-3xl"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-20">
+            <span className="text-[#3AA655] font-bold text-sm uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
+              ✨ 
+            </span>
+            <h2 className="text-3xl md:text-6xl font-bold text-[#1E5FA8] mb-6">
+             Nos solutions  <span className="bg-gradient-to-r from-[#3AA655] to-[#E6C34A] bg-clip-text text-transparent">complètes</span>
+            </h2>
+            <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto leading-relaxed">
+              Découvrez notre gamme complète de solutions énergétiques et services automobiles adaptés à vos besoins
+            </p>
+          </div>
 
+          {/* Énergies Fossiles Segment */}
+          <div className="mb-24">
+            {/* Intro avec image */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-20 bg-gradient-to-br from-[#F5F9FF] to-white rounded-3xl p-2 lg:p-16">
+              <div className="order-2 md:order-1">
+                <div className="inline-block mb-6 px-4 py-2 bg-blue-100 rounded-full">
+                  <span className="text-[#1E5FA8] font-bold text-xs uppercase tracking-widest">⛽ Carburants Premium 24/7</span>
+                </div>
+                <h3 className="text-2xl md:text-6xl font-bold text-[#1E5FA8] mb-6">Énergies Fossiles</h3>
+                <p className="text-gray-700 text-xl leading-relaxed">
+                  Nous fournissons des carburants de haute qualité, des services de livraison mobile et des solutions d'importation certifiées internationalement. Disponibles partout au Tchad avec un service fiable et professionnel.
+                </p>
+              </div>
+              <img src={"/h8.jpg"} alt="Énergies Fossiles" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
+            </div>
+
+            <div className="flex items-center space-x-3 mb-8">
+              <Fuel className="w-8 h-8 text-[#1E5FA8]" />
+              <h3 className="text-2xl font-bold text-[#1E5FA8]">Nos Services</h3>
+              <div className="flex-1 h-1 bg-gradient-to-r from-[#1E5FA8] to-transparent rounded-full"></div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
+              {services.filter(s => s.segment === "Énergies Fossiles").map((service, idx) => {
+                const ServiceIcon = service.icon;
+                return (
+                  <div 
+                    key={idx}
+                    className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#1E5FA8]"
+                  >
+                    <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
+                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                    </div>
+                    <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#1E5FA8] transition line-clamp-1 md:line-clamp-none">
+                      {service.title}
+                    </h4>
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                      {service.description}
+                    </p>
+                    <a 
+                      href="/services"
+                      className="inline-flex items-center space-x-2 text-[#1E5FA8] font-bold text-sm md:text-base group-hover:text-[#E6C34A] transition"
+                    >
+                      <span>En savoir plus</span>
+                      <span className="transform group-hover:translate-x-1 transition">→</span>
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Énergies Renouvelables Segment */}
+          <div className="mb-24">
+            {/* Intro avec image */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-8 md:mb-20 bg-gradient-to-br from-[#F0F8E8] to-white rounded-3xl p-2 lg:p-16">
+              <img src={"/r.png"} alt="Énergies Renouvelables" className="rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
+              <div>
+                <div className="inline-block mb-6 px-4 py-2 bg-green-100 rounded-full">
+                  <span className="text-[#3AA655] font-bold text-xs uppercase tracking-widest">🌱 Solutions Durables & Écologiques</span>
+                </div>
+                <h3 className="text-2xl md:text-6xl font-bold text-[#3AA655] mb-6">Énergies Renouvelables</h3>
+                <p className="text-gray-700 text-xl leading-relaxed">
+                  EnerTchad s’engage à bâtir un avenir énergétique durable, inclusif et innovant.  
+Nous intégrons les énergies renouvelables comme pilier stratégique de la transition énergétique et du développement continental. En réduisant les émissions de CO₂ et en contribuant aux objectifs ESG, nous favorisons l’autonomie énergétique des communautés et des industries, tout en créant de la valeur locale à travers l’emploi, la formation et l’inclusion, grâce à des innovations vertes et des solutions digitales dédiées au suivi et à l’optimisation des performances.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-3 mb-8">
+              <Leaf className="w-8 h-8 text-[#3AA655]" />
+              <h3 className="text-2xl font-bold text-[#3AA655]">Nos Services</h3>
+              <div className="flex-1 h-1 bg-gradient-to-r from-[#3AA655] to-transparent rounded-full"></div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
+              {services.filter(s => s.segment === "Énergies Renouvelables").map((service, idx) => {
+                const ServiceIcon = service.icon;
+                return (
+                  <div 
+                    key={idx}
+                    className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#3AA655]"
+                  >
+                    <div className="bg-gradient-to-br from-[#3AA655] to-[#2d8a45] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
+                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                    </div>
+                    <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#3AA655] transition line-clamp-1 md:line-clamp-none">
+                      {service.title}
+                    </h4>
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                      {service.description}
+                    </p>
+                    <a 
+                      href="/services"
+                      className="inline-flex items-center space-x-2 text-[#3AA655] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
+                    >
+                      <span>En savoir plus</span>
+                      <span className="transform group-hover:translate-x-1 transition">→</span>
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Services Complémentaires Segment */}
+          <div className="mb-16">
+            {/* Intro avec image */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-20 bg-gradient-to-br from-[#FEF9E8] to-white rounded-3xl p-2 lg:p-16">
+              <div className="order-2 md:order-1">
+                <div className="inline-block mb-6 px-4 py-2 bg-yellow-100 rounded-full">
+                  <span className="text-[#E6C34A] font-bold text-xs uppercase tracking-widest">🛠️ Automobile & Environnement</span>
+                </div>
+                <h3 className="text-2xl md:text-6xl font-bold text-[#E6C34A] mb-6">Services Complémentaires</h3>
+                <p className="text-gray-700 text-xl leading-relaxed">
+                  Complétez votre expérience EnerTchad avec nos services : maintenance automobile professionnelle, laverie écologique haute technologie et gestion responsable des déchets pour un Tchad plus vert.
+                </p>
+              </div>
+              <img src={carWashImage} alt="Services Complémentaires" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
+            </div>
+
+            <div className="flex items-center space-x-3 mb-8">
+              <Wrench className="w-8 h-8 text-[#E6C34A]" />
+              <h3 className="text-2xl font-bold text-[#E6C34A]">Nos Services</h3>
+              <div className="flex-1 h-1 bg-gradient-to-r from-[#E6C34A] to-transparent rounded-full"></div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
+              {services.filter(s => s.segment === "Services Complémentaires").map((service, idx) => {
+                const ServiceIcon = service.icon;
+                return (
+                  <div 
+                    key={idx}
+                    className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#E6C34A]"
+                  >
+                    <div className="bg-gradient-to-br from-[#E6C34A] to-[#d4a028] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
+                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                    </div>
+                    <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#E6C34A] transition line-clamp-1 md:line-clamp-none">
+                      {service.title}
+                    </h4>
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                      {service.description}
+                    </p>
+                    <a 
+                      href="/services"
+                      className="inline-flex items-center space-x-2 text-[#E6C34A] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
+                    >
+                      <span>En savoir plus</span>
+                      <span className="transform group-hover:translate-x-1 transition">→</span>
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* CTA avec WhatsApp */}
+        
+
+    
+        </div>
+      </section>
       {/* Main Services */}
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold text-center text-[#003D7A] mb-8 md:mb-12 font-poppins">
-            Services Disponibles
-          </h2>
-
-      
-        </div>
-      </section>
-
+   
       {/* Detailed Services with Images */}
-      <section className="py-24 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          {/* Station-Service */}
-          <div className="mb-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <span className="text-[#1E5FA8] font-bold text-sm uppercase tracking-wide">Énergies Fossiles</span>
-                <h3 className="text-2xl md:text-4xl font-bold text-[#1E5FA8] mb-3 md:mb-4 mt-2">Station-Service</h3>
-                <p className="text-gray-700 mb-4 md:mb-6 leading-relaxed text-sm md:text-lg">
-                  Nos stations-service modernes offrent une expérience complète avec carburants de haute qualité, disponibles 24 heures sur 24.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <Fuel className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Diesel et essence ultra-pure certifiés</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Fuel className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Paiement numérique sécurisé</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Fuel className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Shop de commodités intégré</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Fuel className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Aire de repos confortable</span>
-                  </li>
-                </ul>
-              </div>
-              <img src={evChargerImage} alt="Station-service" className="rounded-2xl shadow-xl w-full" />
-            </div>
-          </div>
-
-          {/* Livraison Mobile */}
-          <div className="mb-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <img src={oilImage} alt="Livraison mobile" className="rounded-2xl shadow-xl w-full" />
-              <div>
-                <span className="text-[#1E5FA8] font-bold text-sm uppercase tracking-wide">Énergies Fossiles</span>
-                <h3 className="text-2xl md:text-4xl font-bold text-[#1E5FA8] mb-3 md:mb-4 mt-2">Livraison Mobile de Carburant</h3>
-                <p className="text-gray-700 mb-4 md:mb-6 leading-relaxed text-sm md:text-lg">
-                  Service de livraison directe pour industriels et clients normaux partout au Tchad.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <Truck className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Livraison 24/7 sur site</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Truck className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Tarifs compétitifs et transparents</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Truck className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Quantités variables selon besoins</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Truck className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Support client réactif</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Import de Carburant */}
-          <div className="mb-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <span className="text-[#1E5FA8] font-bold text-sm uppercase tracking-wide">Énergies Fossiles</span>
-                <h3 className="text-4xl font-bold text-[#1E5FA8] mb-4 mt-2">Import de Carburant</h3>
-                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-                  Importation et distribution de carburant de qualité certifiée internationalement.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <Shield className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Certifications internationales garanties</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Shield className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Contrôle qualité rigoureux</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Shield className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Approvisionnement régulier assuré</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Shield className="w-5 h-5 text-[#1E5FA8] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Logistique optimisée</span>
-                  </li>
-                </ul>
-              </div>
-              <img src={carWashImage} alt="Import carburant" className="rounded-2xl shadow-xl w-full" />
-            </div>
-          </div>
-
-          {/* Énergie Solaire */}
-          <div className="mb-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <img src={solarImage} alt="Énergie solaire" className="rounded-2xl shadow-xl w-full" />
-              <div>
-                <span className="text-[#3AA655] font-bold text-sm uppercase tracking-wide">Énergies Renouvelables</span>
-                <h3 className="text-4xl font-bold text-[#3AA655] mb-4 mt-2">Énergie Solaire</h3>
-                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-                  Solutions d'énergie renouvelable clé en main pour particuliers et entreprises.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <Leaf className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Panneaux haute performance avec garantie</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Leaf className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Batterie de stockage longue durée</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Leaf className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Installation professionnelle garantie</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Leaf className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Maintenance et monitoring 24/7</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Recharge Électrique */}
-          <div className="mb-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <span className="text-[#3AA655] font-bold text-sm uppercase tracking-wide">Énergies Renouvelables</span>
-                <h3 className="text-4xl font-bold text-[#3AA655] mb-4 mt-2">Recharge Électrique</h3>
-                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-                  Stations de recharge rapide pour véhicules électriques avec technologie dernière génération.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <Zap className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Recharge rapide 30-80% en 30 min</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Zap className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Compatible tous véhicules électriques</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Zap className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Tarifs compétitifs et transparents</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Zap className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Application mobile de localisation</span>
-                  </li>
-                </ul>
-              </div>
-              <img src={evChargerImage} alt="Recharge électrique" className="rounded-2xl shadow-xl w-full" />
-            </div>
-          </div>
-
-          {/* Biogaz */}
-          <div className="mb-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <img src={solarImage} alt="Biogaz" className="rounded-2xl shadow-xl w-full" />
-              <div>
-                <span className="text-[#3AA655] font-bold text-sm uppercase tracking-wide">Énergies Renouvelables</span>
-                <h3 className="text-4xl font-bold text-[#3AA655] mb-4 mt-2">Biogaz</h3>
-                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-                  Production et distribution de biogaz pour énergie domestique et industrielle, solution écologique et durable.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <Flame className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Énergie écologique et renouvelable</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Flame className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Réduction des émissions de CO2</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Flame className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Tarifs avantageux long terme</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Flame className="w-5 h-5 text-[#3AA655] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Installation et support professionnels</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Maintenance Auto */}
-          <div className="mb-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <span className="text-[#E6C34A] font-bold text-sm uppercase tracking-wide">Services Complémentaires</span>
-                <h3 className="text-4xl font-bold text-[#E6C34A] mb-4 mt-2">Maintenance Auto</h3>
-                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-                  Services d'entretien et de réparation automobiles professionnels effectués par nos techniciens certifiés.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <Wrench className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Techniciens qualifiés et certifiés</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Wrench className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Diagnostic complet gratuit</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Wrench className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Pièces détachées originales</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Wrench className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Garantie sur les réparations</span>
-                  </li>
-                </ul>
-              </div>
-              <img src={carWashImage} alt="Maintenance auto" className="rounded-2xl shadow-xl w-full" />
-            </div>
-          </div>
-
-          {/* Laverie Auto */}
-          <div className="mb-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <img src={evChargerImage} alt="Laverie auto" className="rounded-2xl shadow-xl w-full" />
-              <div>
-                <span className="text-[#E6C34A] font-bold text-sm uppercase tracking-wide">Services Complémentaires</span>
-                <h3 className="text-4xl font-bold text-[#E6C34A] mb-4 mt-2">Laverie Auto</h3>
-                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-                  Services de nettoyage automatisé et écologique respectueux de l'environnement et efficace.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <Sparkles className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Nettoyage automatisé haute technologie</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Sparkles className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Produits écologiques certifiés</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Sparkles className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Résultats professionnels garantis</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Sparkles className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Tarifs forfaitaires avantageux</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Traitement de Déchets */}
-          <div className="mb-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <span className="text-[#E6C34A] font-bold text-sm uppercase tracking-wide">Services Complémentaires</span>
-                <h3 className="text-4xl font-bold text-[#E6C34A] mb-4 mt-2">Traitement de Déchets</h3>
-                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-                  Unité complète de traitement des déchets plastiques et ménagers avec solutions durables et responsables.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <Recycle className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Traitement des déchets plastiques</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Recycle className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Gestion des déchets ménagers</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Recycle className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Recyclage optimisé et responsable</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Recycle className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Normes environnementales respectées</span>
-                  </li>
-                </ul>
-              </div>
-              <img src={oilImage} alt="Traitement déchets" className="rounded-2xl shadow-xl w-full" />
-            </div>
-          </div>
-
-          {/* Assistance Technique */}
-          <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <img src={solarImage} alt="Assistance technique" className="rounded-2xl shadow-xl w-full" />
-              <div>
-                <span className="text-[#E6C34A] font-bold text-sm uppercase tracking-wide">Services Complémentaires</span>
-                <h3 className="text-4xl font-bold text-[#E6C34A] mb-4 mt-2">Assistance Technique</h3>
-                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-                  Support technique 24/7 pour tous vos questions et problèmes avec nos services et produits.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <Headset className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Support 24/7 par téléphone</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Headset className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Assistance WhatsApp et email</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Headset className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Dépannage rapide et efficace</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Headset className="w-5 h-5 text-[#E6C34A] flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Équipe technique qualifiée</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+  
 
       {/* Benefits */}
       <section className="py-20 px-4">
@@ -526,20 +572,23 @@ export default function Services() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-shadow text-center"
-              >
-                <div className="flex justify-center mb-4">
-                  <benefit.icon size={40} className="text-[#FFB800]" />
+            {benefits.map((benefit, idx) => {
+              const Icon = benefit.icon;
+              return (
+                <div
+                  key={idx}
+                  className="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-shadow text-center"
+                >
+                  <div className="flex justify-center mb-4">
+                    <Icon size={40} className="text-[#FFB800]" />
+                  </div>
+                  <h3 className="font-bold text-lg text-[#003D7A] mb-2">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">{benefit.description}</p>
                 </div>
-                <h3 className="font-bold text-lg text-[#003D7A] mb-2">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{benefit.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
