@@ -168,13 +168,7 @@ export default function Services() {
         segment: "Énergies Renouvelables",
       },
     
-      {
-        icon: Flame,
-        title: "Biogaz",
-        description:
-          "Production et distribution de biogaz pour énergie domestique et industrielle",
-        segment: "Services Complémentaires",
-      },
+ 
       {
         icon: Sparkles,
         title: "Laverie Auto",
@@ -186,14 +180,14 @@ export default function Services() {
         title: "Produits Industriels",
         description:
           "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
-        segment: "Services Complémentaires",
+        segment: "Énergies Fossiles",
       },
       {
         icon: Sparkles,
         title: "Produits Pétrochimiques (PP)",
         description:
           "Polypropylène (PP) : matière polyvalente pour emballages, textiles, pièces automobiles et équipements médicaux.",
-        segment: "Services Complémentaires",
+        segment: "Énergies Fossiles",
       },
       {
         icon: Wrench,
