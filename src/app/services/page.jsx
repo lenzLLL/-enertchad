@@ -122,27 +122,27 @@ export default function Services() {
       },
       {
         icon: Droplet,
-        title: "Huiles Moteur",
+        title: "Produits Lubrifiants",
         description: "Lubrifiants premium pour tous types de véhicules",
         segment: "Énergies Fossiles",
       },
       {
         icon: Truck,
-        title: "Import de Carburant",
+        title: "Import et export de produits pétroliers",
         description:
           "Importation et distribution de carburant de qualité certifiée internationalement",
         segment: "Énergies Fossiles",
       },
       {
         icon: Fuel,
-        title: "Carburants Routiers",
+        title: "Produits de carburants routiers",
         description:
           "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
         segment: "Énergies Fossiles",
       },
       {
         icon: Droplet,
-        title: "Combustibles de Chauffage",
+        title: "Produits de combustibles de chauffage",
         description:
           "Fioul domestique, kérosène/jet fuel et GPL (propane, butane) pour chauffage, cuisson et usages industriels.",
         segment: "Énergies Fossiles",

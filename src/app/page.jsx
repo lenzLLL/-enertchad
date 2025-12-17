@@ -53,178 +53,179 @@ export default function Home() {
   const whatsappNumber = "+23566298696";
   
   const services = [
-  {
-  icon: Flame,
-  title: "Biomasse Solide",
-  description:
-    "Bois énergie, charbon de bois, résidus agricoles, briquettes et déchets agro-industriels.",
-  segment: "Énergies Renouvelables",
-},
-
-// 💨 Biogaz
-{
-  icon: Recycle,
-  title: "Biogaz",
-  description:
-    "Méthane issu de biodigesteurs, gaz de décharge et stations d’épuration.",
-  segment: "Énergies Renouvelables",
-},
-
-// ⛽ Biocarburants liquides
-{
-  icon: Droplet,
-  title: "Biocarburants Liquides",
-  description:
-    "Bioéthanol, biodiesel, biokérosène et huiles végétales pour mobilité et industrie.",
-  segment: "Énergies Renouvelables",
-},
-
-// ⚡ Biohydrogène & Gaz de synthèse
-{
-  icon: Atom,
-  title: "Biohydrogène & Gaz de Synthèse",
-  description:
-    "Hydrogène vert et syngas (CO + H₂) issus de la biomasse par fermentation ou gazéification.",
-  segment: "Énergies Renouvelables",
-},
- {
-  icon: Hammer,
-  title: "Forage & Complétion",
-  description:
-    "Forage directionnel et horizontal, cimentation intelligente et acquisition de données en temps réel.",
-  segment: "Énergies Fossiles",
-},
-{
-  icon: Gauge,
-  title: "Production & Optimisation",
-  description:
-    "Systèmes de levage artificiel (ESP, Gas Lift, Rod Pump) et gestion des flux multiphasiques.",
-  segment: "Énergies Fossiles",
-},
-
-
-// 🛠 Ingénierie & Maintenance
-{
-  icon:PaintBucket,
-  title: "Ingénierie & Maintenance",
-  description:
-    "Stimulation hydraulique, interventions sur puits et maintenance prédictive et industrielle, conformité HSE.",
-  segment: "Énergies Fossiles",
-},
-
-// 🌊 Offshore & Subsea
-{
-  icon: Anchor,
-  title: "Offshore & Subsea",
-  description:
-    "Ingénierie sous-marine (SURF), inspection et monitoring des pipelines, precommissioning et decommissioning sécurisé.",
-  segment: "Énergies Fossiles",
-},
-
+     {
+     icon: Flame,
+     title: "Biomasse Solide",
+     description:
+       "Bois énergie, charbon de bois, résidus agricoles, briquettes et déchets agro-industriels.",
+     segment: "Énergies Renouvelables",
+   },
+   
+   // 💨 Biogaz
+   {
+     icon: Recycle,
+     title: "Biogaz",
+     description:
+       "Méthane issu de biodigesteurs, gaz de décharge et stations d’épuration.",
+     segment: "Énergies Renouvelables",
+   },
+   
+   // ⛽ Biocarburants liquides
+   {
+     icon: Droplet,
+     title: "Biocarburants Liquides",
+     description:
+       "Bioéthanol, biodiesel, biokérosène et huiles végétales pour mobilité et industrie.",
+     segment: "Énergies Renouvelables",
+   },
+   
+   // ⚡ Biohydrogène & Gaz de synthèse
+   {
+     icon: Atom,
+     title: "Biohydrogène & Gaz de Synthèse",
+     description:
+       "Hydrogène vert et syngas (CO + H₂) issus de la biomasse par fermentation ou gazéification.",
+     segment: "Énergies Renouvelables",
+   },
     {
-      icon: Fuel,
-      title: "Station-Service",
-      description:
-        "Carburants de qualité supérieure, diesel et essence, disponibles 24/7",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Truck,
-      title: "Livraison Mobile de Carburant",
-      description:
-        "Service de livraison directe pour industriels et clients normaux - partout au Tchad",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Droplet,
-      title: "Huiles Moteur",
-      description: "Lubrifiants premium pour tous types de véhicules",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Truck,
-      title: "Import de Carburant",
-      description:
-        "Importation et distribution de carburant de qualité certifiée internationalement",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Fuel,
-      title: "Carburants Routiers",
-      description:
-        "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Droplet,
-      title: "Combustibles de Chauffage",
-      description:
-        "Fioul domestique, kérosène/jet fuel et GPL (propane, butane) pour chauffage, cuisson et usages industriels.",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Leaf,
-      title: "Énergie Solaire",
-      description:
-        "Solutions d'énergie renouvelable pour particuliers et entreprises",
-      segment: "Énergies Renouvelables",
-    },
-    {
-      icon: Wind,
-      title: "Énergie Éolienne",
-      description:
-        "Solutions d'énergie éolienne pour entreprises et communautés : études, installation et maintenance de petites et moyennes turbines.",
-      segment: "Énergies Renouvelables",
-    },
-    {
-      icon: Zap,
-      title: "Recharge Électrique",
-      description: "Stations de recharge rapide pour véhicules électriques",
-      segment: "Énergies Renouvelables",
-    },
-
-    {
-      icon: Sparkles,
-      title: "Laverie Auto",
-      description: "Services de nettoyage automatisé et écologique",
-      segment: "Services Complémentaires",
-    },
-    {
-      icon: TrendingUp,
-      title: "Produits Industriels",
-      description:
-        "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Sparkles,
-      title: "Produits Pétrochimiques (PP)",
-      description:
-        "Polypropylène (PP) : matière polyvalente pour emballages, textiles, pièces automobiles et équipements médicaux.",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Wrench,
-      title: "Maintenance Auto",
-      description:
-        "Services d'entretien et de réparation automobiles professionnels",
-      segment: "Services Complémentaires",
-    },
-    {
-      icon: Recycle,
-      title: "Traitement de Déchets",
-      description:
-        "Unité complète de traitement des déchets plastiques et ménagers avec solutions durables",
-      segment: "Services Complémentaires",
-    },
-    {
-      icon: Headset,
-      title: "Assistance Technique",
-      description:
-        "Support technique 24/7 pour tous vos questions et problèmes",
-      segment: "Services Complémentaires",
-    },
-  ];
+     icon: Hammer,
+     title: "Forage & Complétion",
+     description:
+       "Forage directionnel et horizontal, cimentation intelligente et acquisition de données en temps réel.",
+     segment: "Énergies Fossiles",
+   },
+   {
+     icon: Gauge,
+     title: "Production & Optimisation",
+     description:
+       "Systèmes de levage artificiel (ESP, Gas Lift, Rod Pump) et gestion des flux multiphasiques.",
+     segment: "Énergies Fossiles",
+   },
+   
+   
+   // 🛠 Ingénierie & Maintenance
+   {
+     icon:PaintBucket,
+     title: "Ingénierie & Maintenance",
+     description:
+       "Stimulation hydraulique, interventions sur puits et maintenance prédictive et industrielle, conformité HSE.",
+     segment: "Énergies Fossiles",
+   },
+   
+   // 🌊 Offshore & Subsea
+   {
+     icon: Anchor,
+     title: "Offshore & Subsea",
+     description:
+       "Ingénierie sous-marine (SURF), inspection et monitoring des pipelines, precommissioning et decommissioning sécurisé.",
+     segment: "Énergies Fossiles",
+   },
+   
+       {
+         icon: Fuel,
+         title: "Station-Service",
+         description:
+           "Carburants de qualité supérieure, diesel et essence, disponibles 24/7",
+         segment: "Énergies Fossiles",
+       },
+       {
+         icon: Truck,
+         title: "Livraison Mobile de Carburant",
+         description:
+           "Service de livraison directe pour industriels et clients normaux - partout au Tchad",
+         segment: "Énergies Fossiles",
+       },
+       {
+         icon: Droplet,
+         title: "Produits Lubrifiants",
+         description: "Lubrifiants premium pour tous types de véhicules",
+         segment: "Énergies Fossiles",
+       },
+       {
+         icon: Truck,
+         title: "Import et export de produits pétroliers",
+         description:
+           "Importation et distribution de carburant de qualité certifiée internationalement",
+         segment: "Énergies Fossiles",
+       },
+       {
+         icon: Fuel,
+         title: "Produits de carburants routiers",
+         description:
+           "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
+         segment: "Énergies Fossiles",
+       },
+       {
+         icon: Droplet,
+         title: "Produits de combustibles de chauffage",
+         description:
+           "Fioul domestique, kérosène/jet fuel et GPL (propane, butane) pour chauffage, cuisson et usages industriels.",
+         segment: "Énergies Fossiles",
+       },
+       {
+         icon: Leaf,
+         title: "Énergie Solaire",
+         description:
+           "Solutions d'énergie renouvelable pour particuliers et entreprises",
+         segment: "Énergies Renouvelables",
+       },
+       {
+         icon: Wind,
+         title: "Énergie Éolienne",
+         description:
+           "Solutions d'énergie éolienne pour entreprises et communautés : études, installation et maintenance de petites et moyennes turbines.",
+         segment: "Énergies Renouvelables",
+       },
+       {
+         icon: Zap,
+         title: "Recharge Électrique",
+         description: "Stations de recharge rapide pour véhicules électriques",
+         segment: "Énergies Renouvelables",
+       },
+     
+  
+       {
+         icon: Sparkles,
+         title: "Laverie Auto",
+         description: "Services de nettoyage automatisé et écologique",
+         segment: "Services Complémentaires",
+       },
+       {
+         icon: TrendingUp,
+         title: "Produits Industriels",
+         description:
+           "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
+         segment: "Énergies Fossiles",
+       },
+       {
+         icon: Sparkles,
+         title: "Produits Pétrochimiques (PP)",
+         description:
+           "Polypropylène (PP) : matière polyvalente pour emballages, textiles, pièces automobiles et équipements médicaux.",
+         segment: "Énergies Fossiles",
+       },
+       {
+         icon: Wrench,
+         title: "Maintenance Auto",
+         description:
+           "Services d'entretien et de réparation automobiles professionnels",
+         segment: "Services Complémentaires",
+       },
+       {
+         icon: Recycle,
+         title: "Traitement de Déchets",
+         description:
+           "Unité complète de traitement des déchets plastiques et ménagers avec solutions durables",
+         segment: "Services Complémentaires",
+       },
+       {
+         icon: Headset,
+         title: "Assistance Technique",
+         description:
+           "Support technique 24/7 pour tous vos questions et problèmes",
+         segment: "Services Complémentaires",
+       },
+     ];
 
   const [products, setProducts] = useState([]);
   const [articles, setArticles] = useState([]);
