@@ -471,7 +471,7 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
 
             <div className="flex items-center space-x-3 mb-8">
               <Leaf className="w-8 h-8 text-[#3AA655]" />
-              <h3 className="text-2xl font-bold text-[#3AA655]">Nos Services</h3>
+              <h3 className="text-2xl font-bold text-[#3AA655]">Bioénergies</h3>
               <div className="flex-1 h-1 bg-gradient-to-r from-[#3AA655] to-transparent rounded-full"></div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
