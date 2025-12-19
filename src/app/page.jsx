@@ -13,6 +13,7 @@ import {
   Truck,
   Recycle,
   Headset,
+  PackageSearch,
   MessageCircle,
   MapPin,
   Users,
@@ -28,7 +29,8 @@ import {
   GaugeCircle,
   LineChart,
   Cpu,
-  PaintBucket,Gauge,Atom
+  PaintBucket,Gauge,Atom,
+  FuelIcon
 
 } from "lucide-react";
 import Promo from "../components/Promo";
@@ -51,7 +53,29 @@ const evChargerImage =
 
 export default function Home() {
   const whatsappNumber = "+23566298696";
-  
+  const ps = [
+      
+          {
+         icon: Droplet,
+         title: "Lubrifiants",
+         description: "Lubrifiants premium pour tous types de véhicules",
+         segment: "Énergies Fossiles",
+       },
+        {
+         icon: Droplet,
+         title: "Combustibles de chauffage",
+         description:
+           "Fioul domestique, kérosène/jet fuel et GPL (propane, butane) pour chauffage, cuisson et usages industriels.",
+         segment: "Énergies Fossiles",
+       },
+          {
+         icon: Sparkles,
+         title: "Produits Industriels et Pétrochimiques (PP)",
+         description:
+           "Polypropylène (PP) : matière polyvalente pour emballages, textiles, pièces automobiles et équipements médicaux.",
+         segment: "Énergies Fossiles",
+       },
+  ]
   const services = [
      {
      icon: Flame,
@@ -69,7 +93,13 @@ export default function Home() {
        "Méthane issu de biodigesteurs, gaz de décharge et stations d’épuration.",
      segment: "Énergies Renouvelables",
    },
-   
+    {
+     icon: Gauge,
+     title: "Production & Optimisation",
+     description:
+       "Systèmes de levage artificiel (ESP, Gas Lift, Rod Pump) et gestion des flux multiphasiques.",
+     segment: "Énergies Fossiles",
+   },
    // ⛽ Biocarburants liquides
    {
      icon: Droplet,
@@ -94,13 +124,7 @@ export default function Home() {
        "Forage directionnel et horizontal, cimentation intelligente et acquisition de données en temps réel.",
      segment: "Énergies Fossiles",
    },
-   {
-     icon: Gauge,
-     title: "Production & Optimisation",
-     description:
-       "Systèmes de levage artificiel (ESP, Gas Lift, Rod Pump) et gestion des flux multiphasiques.",
-     segment: "Énergies Fossiles",
-   },
+
    
    
    // 🛠 Ingénierie & Maintenance
@@ -136,16 +160,17 @@ export default function Home() {
          segment: "Énergies Fossiles",
        },
        {
-         icon: Droplet,
-         title: "Produits Lubrifiants",
-         description: "Lubrifiants premium pour tous types de véhicules",
+         icon: Truck,
+         title: "Transport",
+         description:
+           "Le transport, le stockage et la distribution des hydrocarbures et de leurs dérivés.",
          segment: "Énergies Fossiles",
        },
-       {
-         icon: Truck,
-         title: "Import et export de produits pétroliers",
+         {
+         icon: FuelIcon,
+         title: "Raffinérie",
          description:
-           "Importation et distribution de carburant de qualité certifiée internationalement",
+           "Le raffinage, la transformation et la valorisation des produits pétroliers et gaziers.",
          segment: "Énergies Fossiles",
        },
        {
@@ -155,13 +180,7 @@ export default function Home() {
            "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
          segment: "Énergies Fossiles",
        },
-       {
-         icon: Droplet,
-         title: "Produits de combustibles de chauffage",
-         description:
-           "Fioul domestique, kérosène/jet fuel et GPL (propane, butane) pour chauffage, cuisson et usages industriels.",
-         segment: "Énergies Fossiles",
-       },
+
        {
          icon: Leaf,
          title: "Énergie Solaire",
@@ -197,13 +216,7 @@ export default function Home() {
            "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
          segment: "Énergies Fossiles",
        },
-       {
-         icon: Sparkles,
-         title: "Produits Pétrochimiques (PP)",
-         description:
-           "Polypropylène (PP) : matière polyvalente pour emballages, textiles, pièces automobiles et équipements médicaux.",
-         segment: "Énergies Fossiles",
-       },
+
        {
          icon: Wrench,
          title: "Maintenance Auto",
@@ -346,7 +359,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 md:py-20 bg-gradient-to-r from-[#1E5FA8] via-[#1a5a8a] to-[#3AA655] relative overflow-hidden">
+      <section className="py-12 md:py-20 hidden lg:block bg-gradient-to-r from-[#1E5FA8] via-[#1a5a8a] to-[#3AA655] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
@@ -394,12 +407,20 @@ export default function Home() {
                 <p className="text-gray-700 text-xl leading-relaxed">
                   Nous fournissons des carburants de haute qualité, des services de livraison mobile et des solutions d'importation certifiées internationalement. Disponibles partout au Tchad avec un service fiable et professionnel.
                 </p>
-                            <div className=" mt-10">
+                            <div className=" mt-10 flex items-center gap-2">
                 <a
                     href="/services"
                     className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition shadow-lg bg-yellow-400 hover:bg-yellow-500 text-blue-900`}
                  >
                      Voir tous les services
+                     <ArrowRight size={20} />
+                </a>
+
+                  <a
+                    href="/products"
+                    className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition shadow-lg bg-transparent border-2 border-yellow-400 hover:shadow-yellow-500 hover:shadow-sm text-blue-900`}
+                 >
+                     Voir tous les produits
                      <ArrowRight size={20} />
                 </a>
              </div>
@@ -414,6 +435,39 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
               {services.filter(s => s.segment === "Énergies Fossiles").slice(0,3).map((service, idx) => {
+                const ServiceIcon = service.icon;
+                return (
+                  <div 
+                    key={idx}
+                    className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#1E5FA8]"
+                  >
+                    <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
+                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                    </div>
+                    <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#1E5FA8] transition line-clamp-1 md:line-clamp-none">
+                      {service.title}
+                    </h4>
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                      {service.description}
+                    </p>
+                    <a 
+                      href="/services"
+                      className="inline-flex items-center space-x-2 text-[#1E5FA8] font-bold text-sm md:text-base group-hover:text-[#E6C34A] transition"
+                    >
+                      <span>En savoir plus</span>
+                      <span className="transform group-hover:translate-x-1 transition">→</span>
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+             <div className="flex items-center space-x-3 mb-8 mt-10">
+              <PackageSearch className="w-8 h-8 text-[#1E5FA8]" />
+              <h3 className="text-2xl font-bold text-[#1E5FA8]">Nos Produits</h3>
+              <div className="flex-1 h-1 bg-gradient-to-r from-[#1E5FA8] to-transparent rounded-full"></div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
+              {ps.filter(s => s.segment === "Énergies Fossiles").slice(0,3).map((service, idx) => {
                 const ServiceIcon = service.icon;
                 return (
                   <div 
@@ -1031,7 +1085,25 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
 
       {/* Blog Section - render with optional message when empty */}
       {(!isLoadingData) && <BlogSection articles={articles} />}
-
+       <section className="py-12 md:py-20 block lg:hidden bg-gradient-to-r from-[#1E5FA8] via-[#1a5a8a] to-[#3AA655] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, idx) => (
+              <div key={idx} className="text-center text-white group">
+                <div className="bg-white/10 backdrop-blur-sm p-4 md:p-6 rounded-2xl mb-4 group-hover:bg-white/20 transition transform group-hover:scale-110">
+                  <stat.icon className="w-10 h-10 md:w-14 md:h-14 mx-auto text-[#E6C34A] group-hover:text-white transition" />
+                </div>
+                <div className="text-2xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-[#E6C34A] to-white bg-clip-text text-transparent">{stat.value}</div>
+                <div className="text-xs md:text-sm text-gray-100 font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* CTA Section */}
       <section className="py-24 px-4 bg-gradient-to-r from-[#E6C34A] to-[#d4a028]">
         <div className="max-w-5xl mx-auto text-center">
