@@ -17,6 +17,7 @@ import {
   Leaf,
   Wind,
   Flame,
+  FuelIcon,
   Wrench,
     Hammer,
     Settings,
