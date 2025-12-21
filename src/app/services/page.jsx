@@ -42,8 +42,10 @@ export default function Services() {
      {
      icon: Flame,
      title: "Biomasse Solide",
-     description:
-       "Bois énergie, charbon de bois, résidus agricoles, briquettes et déchets agro-industriels.",
+        description:
+          "Bois énergie, charbon de bois, résidus agricoles, briquettes et déchets agro-industriels.",
+            desc: "Bois énergie, charbon de bois et résidus agricoles transformés en briquettes et combustibles solides. Nous fournissons études de filière, solutions de transformation locale, et accompagnement pour la mise en place de chaînes de valeur durables et rentables.",
+          img: "/services/biomasse.jpg",
      segment: "Énergies Renouvelables",
    },
    
@@ -51,23 +53,29 @@ export default function Services() {
    {
      icon: Recycle,
      title: "Biogaz",
-     description:
-       "Méthane issu de biodigesteurs, gaz de décharge et stations d’épuration.",
+    description:
+      "Méthane issu de biodigesteurs, gaz de décharge et stations d’épuration.",
+    desc: "Conception, construction et exploitation de systèmes de biodigestion pour valoriser les déchets organiques en énergie (biogaz) et nutriments. Services complets : études, dimensionnement, exploitation, maintenance et formation des équipes locales.",
+    img: "/services/biogaz.jpg",
      segment: "Énergies Renouvelables",
    },
     {
      icon: Gauge,
      title: "Production & Optimisation",
-     description:
-       "Systèmes de levage artificiel (ESP, Gas Lift, Rod Pump) et gestion des flux multiphasiques.",
+    description:
+      "Systèmes de levage artificiel (ESP, Gas Lift, Rod Pump) et gestion des flux multiphasiques.",
+        desc: "Optimisation de la production pétrolière par sélection et intégration de systèmes de levage artificiel (ESP, gas lift, pompes à tiges), instrumentation et analyses multiphasiques pour améliorer la récupération et réduire les coûts opérationnels.",
+      img: "/services/production.jpg",
      segment: "Énergies Fossiles",
    },
    // ⛽ Biocarburants liquides
    {
      icon: Droplet,
      title: "Biocarburants Liquides",
-     description:
-       "Bioéthanol, biodiesel, biokérosène et huiles végétales pour mobilité et industrie.",
+    description:
+      "Bioéthanol, biodiesel, biokérosène et huiles végétales pour mobilité et industrie.",
+    desc: "Mise en place de filières de production et distribution de biocarburants (bioéthanol, biodiesel, biokérosène), incluant formulation, contrôles qualité, certifications et intégration logistique pour marchés locaux et industriels.",
+    img: "/services/biocarburants.jpg",
      segment: "Énergies Renouvelables",
    },
    
@@ -75,15 +83,19 @@ export default function Services() {
    {
      icon: Atom,
      title: "Biohydrogène & Gaz de Synthèse",
-     description:
-       "Hydrogène vert et syngas (CO + H₂) issus de la biomasse par fermentation ou gazéification.",
+    description:
+      "Hydrogène vert et syngas (CO + H₂) issus de la biomasse par fermentation ou gazéification.",
+    desc: "Solutions intégrées pour la production d'hydrogène vert et de syngaz à partir de biomasse, incluant gazéification, purification, stockage et stratégies d'intégration industrielle pour décarboner les processus énergétiques.",
+    img: "/services/hydrogene.jpg",
      segment: "Énergies Renouvelables",
    },
     {
      icon: Hammer,
      title: "Forage & Complétion",
-     description:
-       "Forage directionnel et horizontal, cimentation intelligente et acquisition de données en temps réel.",
+    description:
+      "Forage directionnel et horizontal, cimentation intelligente et acquisition de données en temps réel.",
+        desc: "Forage et complétion avec technologies modernes, instrumentation temps réel, procédures HSE strictes et opérations de cimentation avancée pour garantir intégrité, performance et sécurité des puits.",
+      img: "/services/forage.jpg",
      segment: "Énergies Fossiles",
    },
 
@@ -93,8 +105,9 @@ export default function Services() {
    {
      icon:PaintBucket,
      title: "Ingénierie & Maintenance",
-     description:
-       "Stimulation hydraulique, interventions sur puits et maintenance prédictive et industrielle, conformité HSE.",
+    description:
+      "Stimulation hydraulique, interventions sur puits et maintenance prédictive et industrielle, conformité HSE.",
+    desc: "Ingénierie et maintenance industrielle : nous réalisons des études d'ingénierie complètes, la conception et l'exécution d'opérations de stimulation et d'interventions en puits (cimentation, complétion, réparations ponctuelles) et mettons en place des programmes de maintenance prédictive basés sur capteurs IoT, analyses vibratoires et surveillance conditionnelle. Nous intégrons la télésurveillance SCADA, établissons plans HSE et procédures d'urgence, gérons les pièces de rechange critiques et assurons la formation des équipes locales. Ces services visent à minimiser les arrêts non planifiés, optimiser la disponibilité des actifs, prolonger la durée de vie des installations et réduire les coûts opérationnels sur le long terme.",
      segment: "Énergies Fossiles",
    },
    
@@ -110,57 +123,65 @@ export default function Services() {
        {
          icon: Fuel,
          title: "Station-Service",
-         description:
-           "Carburants de qualité supérieure, diesel et essence, disponibles 24/7",
+        description:
+          "Carburants de qualité supérieure, diesel et essence, disponibles 24/7",
+        desc: "Réseau de stations-service modernes et sécurisées avec carburants certifiés, services annexes, boutiques et solutions digitales de paiement. Programmes de partenariat pour entreprises, gestion flotte et assistance 24/7.",
          segment: "Énergies Fossiles",
        },
        {
          icon: Truck,
          title: "Livraison Mobile de Carburant",
-         description:
-           "Service de livraison directe pour industriels et clients normaux - partout au Tchad",
+        description:
+          "Service de livraison directe pour industriels et clients normaux - partout au Tchad",
+        desc: "Livraison mobile de carburant sur site pour entreprises et particuliers, flotte dédiée et procédures de sécurité.",
          segment: "Énergies Fossiles",
        },
        {
          icon: Truck,
          title: "Transport",
-         description:
-           "Le transport, le stockage et la distribution des hydrocarbures et de leurs dérivés.",
+        description:
+          "Le transport, le stockage et la distribution des hydrocarbures et de leurs dérivés.",
+        desc: "Transport et logistique pour hydrocarbures, stockage sécurisé et distribution sur mesure pour clients industriels.",
          segment: "Énergies Fossiles",
        },
          {
          icon: FuelIcon,
          title: "Raffinérie",
-         description:
-           "Le raffinage, la transformation et la valorisation des produits pétroliers et gaziers.",
+        description:
+          "Le raffinage, la transformation et la valorisation des produits pétroliers et gaziers.",
+        desc: "Services et conseil pour raffineries: optimisation des procédés, transformation et valorisation des produits.",
          segment: "Énergies Fossiles",
        },
        {
          icon: Fuel,
          title: "Produits de carburants routiers",
-         description:
-           "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
+        description:
+          "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
+        desc: "Gamme complète de carburants routiers conformes aux normes, fourniture et support pour stations et flottes.",
          segment: "Énergies Fossiles",
        },
 
        {
          icon: Leaf,
          title: "Énergie Solaire",
-         description:
-           "Solutions d'énergie renouvelable pour particuliers et entreprises",
+        description:
+          "Solutions d'énergie renouvelable pour particuliers et entreprises",
+        desc: "Conception, installation et maintenance de systèmes photovoltaïques pour particuliers et entreprises, solutions de financement.",
          segment: "Énergies Renouvelables",
        },
        {
          icon: Wind,
          title: "Énergie Éolienne",
-         description:
-           "Solutions d'énergie éolienne pour entreprises et communautés : études, installation et maintenance de petites et moyennes turbines.",
+        description:
+          "Solutions d'énergie éolienne pour entreprises et communautés : études, installation et maintenance de petites et moyennes turbines.",
+        desc: "Études de faisabilité, installation et maintenance de turbines éoliennes adaptées aux besoins locaux et industriels.",
          segment: "Énergies Renouvelables",
        },
        {
          icon: Zap,
          title: "Recharge Électrique",
-         description: "Stations de recharge rapide pour véhicules électriques",
+        description: "Stations de recharge rapide pour véhicules électriques",
+        desc: "Déploiement de stations de recharge rapide, solutions Smart Charging et intégration pour flottes et infrastructures.",
          segment: "Énergies Renouvelables",
        },
      
@@ -168,36 +189,41 @@ export default function Services() {
        {
          icon: Sparkles,
          title: "Laverie Auto",
-         description: "Services de nettoyage automatisé et écologique",
+        description: "Services de nettoyage automatisé et écologique",
+        desc: "Laverie auto automatisée et écologique avec économie d'eau et solutions de recyclage pour flottes et particuliers.",
          segment: "Services Complémentaires",
        },
        {
          icon: TrendingUp,
          title: "Produits Industriels",
-         description:
-           "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
+        description:
+          "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
+        desc: "Fourniture de produits industriels et solutions d'approvisionnement pour usages lourds, avec conseil technique et logistique.",
          segment: "Énergies Fossiles",
        },
 
        {
          icon: Wrench,
          title: "Maintenance Auto",
-         description:
-           "Services d'entretien et de réparation automobiles professionnels",
+        description:
+          "Services d'entretien et de réparation automobiles professionnels",
+        desc: "Services d'entretien, diagnostic et réparation automobile pour particuliers et flottes, interventions rapides et pièces d'origine.",
          segment: "Services Complémentaires",
        },
        {
          icon: Recycle,
          title: "Traitement de Déchets",
-         description:
-           "Unité complète de traitement des déchets plastiques et ménagers avec solutions durables",
+        description:
+          "Unité complète de traitement des déchets plastiques et ménagers avec solutions durables",
+        desc: "Unités de traitement et valorisation des déchets plastiques et ménagers, technologies de recyclage et filières de revalorisation.",
          segment: "Services Complémentaires",
        },
        {
          icon: Headset,
          title: "Assistance Technique",
-         description:
-           "Support technique 24/7 pour tous vos questions et problèmes",
+        description:
+          "Support technique 24/7 pour tous vos questions et problèmes",
+        desc: "Hotline et assistance technique 24/7, interventions terrain et support pour assurer la continuité des activités.",
          segment: "Services Complémentaires",
        },
      ];
@@ -207,6 +233,7 @@ export default function Services() {
       title: "Station-Service",
       description:
         "Carburants de qualité supérieure, diesel et essence, disponibles 24/7 dans nos stations modernes et sécurisées.",
+      desc: "Réseau de stations-service modernes avec carburants certifiés, services annexes et sécurité renforcée.",
       segment: "Énergies Fossiles",
     },
     {
@@ -214,6 +241,7 @@ export default function Services() {
       title: "Livraison Mobile de Carburant",
       description:
         "Service de livraison directe pour industriels et particuliers — ravitaillement sur site 24/7.",
+      desc: "Livraison mobile de carburant sur site, avec flotte dédiée, sécurité et traçabilité des opérations.",
       segment: "Énergies Fossiles",
     },
     {
@@ -221,6 +249,7 @@ export default function Services() {
       title: "Import de Carburant",
       description:
         "Importation et distribution de carburant certifié internationalement avec contrôle qualité rigoureux.",
+      desc: "Importation et distribution de carburant conforme aux normes internationales, avec contrôle qualité et logistique dédiée.",
       segment: "Énergies Fossiles",
     },
     {
@@ -228,6 +257,7 @@ export default function Services() {
       title: "Énergie Solaire",
       description:
         "Solutions photovoltaïques complètes : études, installation, stockage et maintenance pour entreprises et foyers.",
+      desc: "Conception et installation de systèmes solaires PV, stockage et maintenance, avec expertise pour projets résidentiels et commerciaux.",
       segment: "Énergies Renouvelables",
     },
     {
@@ -235,6 +265,7 @@ export default function Services() {
       title: "Recharge Électrique",
       description:
         "Stations de recharge rapide pour véhicules électriques avec monitoring et paiement numérique.",
+      desc: "Installation et gestion de stations de recharge rapide, intégration de solutions de paiement et monitoring pour flottes et usagers.",
       segment: "Énergies Renouvelables",
     },
     {
@@ -413,7 +444,11 @@ export default function Services() {
                     className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#1E5FA8]"
                   >
                     <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
-                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      {ServiceIcon ? (
+                        <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      ) : (
+                        <Droplet className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      )}
                     </div>
                     <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#1E5FA8] transition line-clamp-1 md:line-clamp-none">
                       {service.title}
@@ -465,7 +500,11 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                     className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#3AA655]"
                   >
                     <div className="bg-gradient-to-br from-[#3AA655] to-[#2d8a45] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
-                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      {ServiceIcon ? (
+                        <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      ) : (
+                        <Droplet className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      )}
                     </div>
                     <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#3AA655] transition line-clamp-1 md:line-clamp-none">
                       {service.title}
@@ -516,7 +555,11 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                     className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#E6C34A]"
                   >
                     <div className="bg-gradient-to-br from-[#E6C34A] to-[#d4a028] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
-                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      {ServiceIcon ? (
+                        <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      ) : (
+                        <Droplet className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      )}
                     </div>
                     <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#E6C34A] transition line-clamp-1 md:line-clamp-none">
                       {service.title}

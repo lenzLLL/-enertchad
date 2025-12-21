@@ -28,6 +28,7 @@ import {
     PaintBucket,Gauge,Atom
 } from "lucide-react";
 import ServiceCard from "../../components/ServiceCard";
+import { ps } from "../../data/products";
 
 const evChargerImage = "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84c680d4ac32/ev-charger.jpg";
 const solarImage = "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84c680d4ac32/solar.jpg";
@@ -36,29 +37,14 @@ const carWashImage = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-
 const stationInterior = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/station.jpg";
 
 export default function Services() {
-   const ps = [
-        
-            {
-           icon: Droplet,
-           title: "Lubrifiants",
-           description: "Lubrifiants premium pour tous types de véhicules",
-           segment: "Énergies Fossiles",
-         },
-          {
-           icon: Droplet,
-           title: "Combustibles de chauffage",
-           description:
-             "Fioul domestique, kérosène/jet fuel et GPL (propane, butane) pour chauffage, cuisson et usages industriels.",
-           segment: "Énergies Fossiles",
-         },
-            {
-           icon: Sparkles,
-           title: "Produits Industriels et Pétrochimiques (PP)",
-           description:
-             "Polypropylène (PP) : matière polyvalente pour emballages, textiles, pièces automobiles et équipements médicaux.",
-           segment: "Énergies Fossiles",
-         },
-    ]
+  function toSlug(title: string) {
+    return title
+      .normalize("NFD")
+      .replace(/\p{M}/gu, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
     
   const mainServices = [
     {
@@ -272,7 +258,11 @@ export default function Services() {
                     className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#1E5FA8]"
                   >
                     <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
-                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      {ServiceIcon ? (
+                        <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      ) : (
+                        <Droplet className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      )}
                     </div>
                     <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#1E5FA8] transition line-clamp-1 md:line-clamp-none">
                       {service.title}
@@ -281,7 +271,7 @@ export default function Services() {
                       {service.description}
                     </p>
                     <a 
-                      href="/services"
+                      href={`/products/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#1E5FA8] font-bold text-sm md:text-base group-hover:text-[#E6C34A] transition"
                     >
                       <span>En savoir plus</span>

@@ -29,9 +29,10 @@ import {
   GaugeCircle,
   LineChart,
   Cpu,
-  PaintBucket,Gauge,Atom,
+  PaintBucket,
+  Gauge,
+  Atom,
   FuelIcon
-
 } from "lucide-react";
 import Promo from "../components/Promo";
 import TestimonialCard from "../components/TestimonialCard";
@@ -39,6 +40,7 @@ import FAQSection from "../components/FAQSection";
 import WhatsAppContact from "../components/WhatsAppContact";
 import BlogSection from "../components/BlogSection";
 import ProductCard from "../components/ProductCard";
+import { ps } from "../data/products";
 
 const carWashImage =
   "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/";
@@ -53,37 +55,15 @@ const evChargerImage =
 
 export default function Home() {
   const whatsappNumber = "+23566298696";
-  const ps = [
-      
-          {
-         icon: Droplet,
-         title: "Lubrifiants",
-         description: "Lubrifiants premium pour tous types de véhicules",
-         segment: "Énergies Fossiles",
-       },
-        {
-         icon: Droplet,
-         title: "Combustibles de chauffage",
-         description:
-           "Fioul domestique, kérosène/jet fuel et GPL (propane, butane) pour chauffage, cuisson et usages industriels.",
-         segment: "Énergies Fossiles",
-       },
-          {
-         icon: Sparkles,
-         title: "Produits Industriels et Pétrochimiques (PP)",
-         description:
-           "Polypropylène (PP) : matière polyvalente pour emballages, textiles, pièces automobiles et équipements médicaux.",
-         segment: "Énergies Fossiles",
-       },
-  ]
   const services = [
      {
-     icon: Flame,
-     title: "Biomasse Solide",
-     description:
-       "Bois énergie, charbon de bois, résidus agricoles, briquettes et déchets agro-industriels.",
-     segment: "Énergies Renouvelables",
-   },
+       icon: Flame,
+       title: "Biomasse Solide",
+       description:
+         "Bois énergie, charbon de bois, résidus agricoles, briquettes et déchets agro-industriels.",
+        desc: "Bois énergie, charbon de bois et résidus agricoles transformés en briquettes et combustibles solides pour usages domestiques et industriels. Nous fournissons études de filière, transformation locale, garantie qualité et accompagnement logistique pour créer des chaînes de valeur durables.",
+       segment: "Énergies Renouvelables",
+     },
    
    // 💨 Biogaz
    {
@@ -91,6 +71,7 @@ export default function Home() {
      title: "Biogaz",
      description:
        "Méthane issu de biodigesteurs, gaz de décharge et stations d’épuration.",
+    desc: "Production et valorisation de biogaz à partir de déchets organiques, boues et résidus agricoles. Nous livrons des systèmes de biodigestion clé en main, études de faisabilité, dimensionnement et maintenance, visant la production d'énergie locale et la réduction des émissions de gaz à effet de serre.",
      segment: "Énergies Renouvelables",
    },
     {
@@ -98,6 +79,7 @@ export default function Home() {
      title: "Production & Optimisation",
      description:
        "Systèmes de levage artificiel (ESP, Gas Lift, Rod Pump) et gestion des flux multiphasiques.",
+      desc: "Optimisation complète de la production : sélection et déploiement de systèmes ESP, gas lift et pompes, intégration de systèmes de monitoring temps réel et analyses multiphasiques pour augmenter la récupération et réduire les coûts opérationnels.",
      segment: "Énergies Fossiles",
    },
    // ⛽ Biocarburants liquides
@@ -106,6 +88,7 @@ export default function Home() {
      title: "Biocarburants Liquides",
      description:
        "Bioéthanol, biodiesel, biokérosène et huiles végétales pour mobilité et industrie.",
+    desc: "Conception et approvisionnement de biocarburants (bioéthanol, biodiesel, biokérosène) conformes aux normes, avec suivi qualité, optimisation des processus et solutions logistiques pour intégration dans les chaînes d'approvisionnement industrielles et routières.",
      segment: "Énergies Renouvelables",
    },
    
@@ -115,6 +98,7 @@ export default function Home() {
      title: "Biohydrogène & Gaz de Synthèse",
      description:
        "Hydrogène vert et syngas (CO + H₂) issus de la biomasse par fermentation ou gazéification.",
+     desc: "Solutions intégrées pour la production d'hydrogène vert et de syngaz à partir de biomasse, incluant gazéification, purification, stockage et stratégies d'intégration industrielle pour décarboner les processus énergétiques.",
      segment: "Énergies Renouvelables",
    },
     {
@@ -122,26 +106,27 @@ export default function Home() {
      title: "Forage & Complétion",
      description:
        "Forage directionnel et horizontal, cimentation intelligente et acquisition de données en temps réel.",
+     desc: "Services complets de forage et complétion incluant forage directionnel/horizontal, cimentation avancée, interventions spécialisées et instrumentation temps réel pour optimiser la production, garantir l'intégrité des puits et réduire les risques opérationnels.",
      segment: "Énergies Fossiles",
    },
 
-   
-   
    // 🛠 Ingénierie & Maintenance
    {
-     icon:PaintBucket,
+     icon: PaintBucket,
      title: "Ingénierie & Maintenance",
      description:
        "Stimulation hydraulique, interventions sur puits et maintenance prédictive et industrielle, conformité HSE.",
+    desc: "Ingénierie et maintenance pour installations énergétiques : nous conduisons des études d'ingénierie approfondies, concevons et exécutons des opérations de stimulation et d'intervention en puits (cimentation, complétion, réparations localisées) et déployons des programmes de maintenance prédictive reposant sur capteurs IoT, analyses vibratoires et surveillance conditionnelle. Nous intégrons la télésurveillance SCADA, développons protocoles HSE, gérons les stocks critiques et formons les équipes locales pour garantir une exploitation sûre et efficiente. L'objectif est de réduire considérablement les arrêts non planifiés, d'optimiser la disponibilité des installations, d'accroître la durée de vie des équipements et de maîtriser les coûts opérationnels sur le long terme.",
      segment: "Énergies Fossiles",
    },
-   
+
    // 🌊 Offshore & Subsea
    {
      icon: Anchor,
      title: "Offshore & Subsea",
      description:
-       "Ingénierie sous-marine (SURF), inspection et monitoring des pipelines, precommissioning et decommissioning sécurisé.",
+       "Ingénierie sous-marine (SURF), inspection et monitoring des pipelines, precommissioning et decommissioning sécurisé.",
+     desc: "Prestations offshore : SURF, inspection ROV, monitoring des pipelines, opérations de precommissioning et decommissioning avec normes internationales de sécurité et gestion des risques maritimes.",
      segment: "Énergies Fossiles",
    },
    
@@ -150,6 +135,7 @@ export default function Home() {
          title: "Station-Service",
          description:
            "Carburants de qualité supérieure, diesel et essence, disponibles 24/7",
+         desc: "Réseau de stations-service modernes et sécurisées offrant carburants certifiés, boutiques, services annexes et solutions de paiement numériques. Assistance 24/7 et programmes de partenariat pour entreprises et flottes.",
          segment: "Énergies Fossiles",
        },
        {
@@ -157,6 +143,7 @@ export default function Home() {
          title: "Livraison Mobile de Carburant",
          description:
            "Service de livraison directe pour industriels et clients normaux - partout au Tchad",
+         desc: "Livraison mobile de carburant pour entreprises et particuliers, avec flotte dédiée et traçabilité des opérations.",
          segment: "Énergies Fossiles",
        },
        {
@@ -164,6 +151,7 @@ export default function Home() {
          title: "Transport",
          description:
            "Le transport, le stockage et la distribution des hydrocarbures et de leurs dérivés.",
+         desc: "Services de transport, stockage et distribution pour produits pétroliers avec gestion logistique et conformité réglementaire.",
          segment: "Énergies Fossiles",
        },
          {
@@ -171,6 +159,7 @@ export default function Home() {
          title: "Raffinérie",
          description:
            "Le raffinage, la transformation et la valorisation des produits pétroliers et gaziers.",
+         desc: "Conseil et opérations pour raffineries: optimisation de procédés, transformation et valorisation des produits pétroliers.",
          segment: "Énergies Fossiles",
        },
        {
@@ -178,6 +167,7 @@ export default function Home() {
          title: "Produits de carburants routiers",
          description:
            "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
+         desc: "Large gamme de carburants routiers conformes aux normes, fourniture et support pour stations et flottes professionnelles.",
          segment: "Énergies Fossiles",
        },
 
@@ -186,6 +176,7 @@ export default function Home() {
          title: "Énergie Solaire",
          description:
            "Solutions d'énergie renouvelable pour particuliers et entreprises",
+         desc: "Conception et installation de systèmes solaires PV pour particuliers et entreprises, incluant maintenance et solutions de financement.",
          segment: "Énergies Renouvelables",
        },
        {
@@ -193,12 +184,14 @@ export default function Home() {
          title: "Énergie Éolienne",
          description:
            "Solutions d'énergie éolienne pour entreprises et communautés : études, installation et maintenance de petites et moyennes turbines.",
+         desc: "Études, installation et maintenance de turbines éoliennes pour projets communautaires et industriels, avec gestion de projet complète.",
          segment: "Énergies Renouvelables",
        },
        {
          icon: Zap,
          title: "Recharge Électrique",
          description: "Stations de recharge rapide pour véhicules électriques",
+         desc: "Déploiement et gestion de stations de recharge rapide, solutions pour flottes et intégration de systèmes de paiement et supervision.",
          segment: "Énergies Renouvelables",
        },
      
@@ -207,6 +200,7 @@ export default function Home() {
          icon: Sparkles,
          title: "Laverie Auto",
          description: "Services de nettoyage automatisé et écologique",
+         desc: "Laverie auto écologique avec systèmes de nettoyage automatisé et recyclage des eaux, services pour particuliers et flottes.",
          segment: "Services Complémentaires",
        },
        {
@@ -214,21 +208,16 @@ export default function Home() {
          title: "Produits Industriels",
          description:
            "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
+         desc: "Fourniture de produits industriels (lubrifiants, solvants, asphalte) pour usages industriels lourds, avec conseils techniques et logistique.",
          segment: "Énergies Fossiles",
        },
 
-       {
-         icon: Wrench,
-         title: "Maintenance Auto",
-         description:
-           "Services d'entretien et de réparation automobiles professionnels",
-         segment: "Services Complémentaires",
-       },
        {
          icon: Recycle,
          title: "Traitement de Déchets",
          description:
            "Unité complète de traitement des déchets plastiques et ménagers avec solutions durables",
+         desc: "Solutions de traitement et valorisation des déchets plastiques et ménagers, technologies de recyclage et filières de revalorisation.",
          segment: "Services Complémentaires",
        },
        {
@@ -236,6 +225,7 @@ export default function Home() {
          title: "Assistance Technique",
          description:
            "Support technique 24/7 pour tous vos questions et problèmes",
+         desc: "Assistance technique 24/7, support hotline et interventions terrain pour résoudre incidents et conseiller sur solutions EnerTchad.",
          segment: "Services Complémentaires",
        },
      ];
@@ -275,6 +265,15 @@ export default function Home() {
     { icon: Zap, value: "8", label: "Bornes électriques" },
     { icon: Award, value: "15 ans", label: "D'expérience" },
   ];
+
+  function toSlug(title) {
+    return title
+      .normalize("NFD")
+      .replace(/\p{M}/gu, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
 
   const testimonials = [
     {
@@ -359,32 +358,14 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 md:py-20 hidden lg:block bg-gradient-to-r from-[#1E5FA8] via-[#1a5a8a] to-[#3AA655] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="text-center text-white group">
-                <div className="bg-white/10 backdrop-blur-sm p-4 md:p-6 rounded-2xl mb-4 group-hover:bg-white/20 transition transform group-hover:scale-110">
-                  <stat.icon className="w-10 h-10 md:w-14 md:h-14 mx-auto text-[#E6C34A] group-hover:text-white transition" />
-                </div>
-                <div className="text-2xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-[#E6C34A] to-white bg-clip-text text-transparent">{stat.value}</div>
-                <div className="text-xs md:text-sm text-gray-100 font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Services Section with Segments */}
       <section className="py-8 md:py-32 px-4 bg-gradient-to-b from-[#F5E6D3] to-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A]/10 rounded-full blur-3xl"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
-            <span className="text-[#3AA655] font-bold text-sm uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
+            <span className="text-[#3AA655] font-bold text-xl uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
               ✨ Nos Solutions
             </span>
             <h2 className="text-3xl md:text-6xl font-bold text-[#1E5FA8] mb-6">
@@ -407,20 +388,22 @@ export default function Home() {
                 <p className="text-gray-700 text-xl leading-relaxed">
                   Nous fournissons des carburants de haute qualité, des services de livraison mobile et des solutions d'importation certifiées internationalement. Disponibles partout au Tchad avec un service fiable et professionnel.
                 </p>
-                            <div className=" mt-10 flex items-center gap-2">
+                            <div className="mt-10 flex items-center gap-2 w-full">
                 <a
                     href="/services"
-                    className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition shadow-lg bg-yellow-400 hover:bg-yellow-500 text-blue-900`}
+                    className={`w-1/2 sm:w-auto inline-flex items-center justify-center text-center gap-2 px-4 sm:px-8 py-3 rounded-xl font-bold transition shadow-lg bg-yellow-400 hover:bg-yellow-500 text-blue-900`}
                  >
-                     Voir tous les services
+                     <span className="sm:hidden">Services</span>
+                     <span className="hidden sm:inline">Voir tous les services</span>
                      <ArrowRight size={20} />
                 </a>
 
                   <a
                     href="/products"
-                    className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition shadow-lg bg-transparent border-2 border-yellow-400 hover:shadow-yellow-500 hover:shadow-sm text-blue-900`}
+                    className={`w-1/2 sm:w-auto inline-flex items-center justify-center text-center gap-2 px-4 sm:px-8 py-3 rounded-xl font-bold transition shadow-lg bg-transparent border-2 border-yellow-400 hover:shadow-yellow-500 hover:shadow-sm text-blue-900`}
                  >
-                     Voir tous les produits
+                     <span className="sm:hidden">Produits</span>
+                     <span className="hidden sm:inline">Voir tous les produits</span>
                      <ArrowRight size={20} />
                 </a>
              </div>
@@ -442,7 +425,11 @@ export default function Home() {
                     className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#1E5FA8]"
                   >
                     <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
-                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      {ServiceIcon ? (
+                        <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      ) : (
+                        <Droplet className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      )}
                     </div>
                     <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#1E5FA8] transition line-clamp-1 md:line-clamp-none">
                       {service.title}
@@ -451,7 +438,7 @@ export default function Home() {
                       {service.description}
                     </p>
                     <a 
-                      href="/services"
+                      href={`/products/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#1E5FA8] font-bold text-sm md:text-base group-hover:text-[#E6C34A] transition"
                     >
                       <span>En savoir plus</span>
@@ -475,7 +462,11 @@ export default function Home() {
                     className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#1E5FA8]"
                   >
                     <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
-                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      {ServiceIcon ? (
+                        <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      ) : (
+                        <Droplet className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      )}
                     </div>
                     <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#1E5FA8] transition line-clamp-1 md:line-clamp-none">
                       {service.title}
@@ -484,7 +475,7 @@ export default function Home() {
                       {service.description}
                     </p>
                     <a 
-                      href="/services"
+                      href={`/products/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#1E5FA8] font-bold text-sm md:text-base group-hover:text-[#E6C34A] transition"
                     >
                       <span>En savoir plus</span>
@@ -538,7 +529,11 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                     className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#3AA655]"
                   >
                     <div className="bg-gradient-to-br from-[#3AA655] to-[#2d8a45] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
-                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      {ServiceIcon ? (
+                        <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      ) : (
+                        <Droplet className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      )}
                     </div>
                     <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#3AA655] transition line-clamp-1 md:line-clamp-none">
                       {service.title}
@@ -547,7 +542,7 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                       {service.description}
                     </p>
                     <a 
-                      href="/services"
+                      href={`/products/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#3AA655] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
                     >
                       <span>En savoir plus</span>
@@ -599,7 +594,11 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                     className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#E6C34A]"
                   >
                     <div className="bg-gradient-to-br from-[#E6C34A] to-[#d4a028] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
-                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      {ServiceIcon ? (
+                        <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      ) : (
+                        <Droplet className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                      )}
                     </div>
                     <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#E6C34A] transition line-clamp-1 md:line-clamp-none">
                       {service.title}
@@ -608,7 +607,7 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                       {service.description}
                     </p>
                     <a 
-                      href="/services"
+                      href={`/products/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#E6C34A] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
                     >
                       <span>En savoir plus</span>
