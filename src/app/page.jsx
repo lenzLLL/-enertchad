@@ -368,15 +368,8 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A]/10 rounded-full blur-3xl"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
-            <span className="text-[#3AA655] font-bold text-3xl md:text-6xl  uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
-              ✨ Nos Solutions
-            </span>
-            <h2 className="text-xl md:text-3xl font-bold text-[#1E5FA8] mb-6">
-              Des Services <span className="bg-gradient-to-r from-[#3AA655] to-[#E6C34A] bg-clip-text text-transparent">Complets</span>
-            </h2>
-            <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto leading-relaxed">
-              Découvrez notre gamme complète de solutions énergétiques et services automobiles adaptés à vos besoins
-            </p>
+           
+           
           </div>
 
           {/* Énergies Fossiles Segment */}
@@ -392,23 +385,9 @@ export default function Home() {
                   Nous fournissons des carburants de haute qualité, des services de livraison mobile et des solutions d'importation certifiées internationalement. Disponibles partout au Tchad avec un service fiable et professionnel.
                 </p>
                             <div className="mt-10 flex items-center gap-2 w-full">
-                <a
-                    href="/services"
-                    className={`w-1/2 sm:w-auto inline-flex items-center justify-center text-center gap-2 px-4 sm:px-8 py-3 rounded-xl font-bold transition shadow-lg bg-yellow-400 hover:bg-yellow-500 text-blue-900`}
-                 >
-                     <span className="sm:hidden">Services</span>
-                     <span className="hidden sm:inline">Voir tous les services</span>
-                     <ArrowRight size={20} />
-                </a>
+               
 
-                  <a
-                    href="/products"
-                    className={`w-1/2 sm:w-auto inline-flex items-center justify-center text-center gap-2 px-4 sm:px-8 py-3 rounded-xl font-bold transition shadow-lg bg-transparent border-2 border-yellow-400 hover:shadow-yellow-500 hover:shadow-sm text-blue-900`}
-                 >
-                     <span className="sm:hidden">Produits</span>
-                     <span className="hidden sm:inline">Voir tous les produits</span>
-                     <ArrowRight size={20} />
-                </a>
+         
              </div>
               </div>
               <img src={"/h8.jpg"} alt="Énergies Fossiles" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
@@ -416,8 +395,16 @@ export default function Home() {
 
             <div className="flex items-center space-x-3 mb-8">
               <Fuel className="w-8 h-8 text-[#1E5FA8]" />
-              <h3 className="text-2xl font-bold text-[#1E5FA8]">Nos Services</h3>
+              <h3 className="text-md lg:text-2xl font-bold text-[#1E5FA8]">Nos Services</h3>
               <div className="flex-1 h-1 bg-gradient-to-r from-[#1E5FA8] to-transparent rounded-full"></div>
+               <a
+                    href="/services"
+                    className={`w-auto inline-flex items-center justify-center text-center gap-2 px-4 sm:px-8 py-3  font-bold transition text-blue-900`}
+                 >
+                     <span className="sm:hidden text-md">Tous Les Services</span>
+                     <span className="hidden text-xl sm:inline">Voir tous les services</span>
+                     <ArrowRight size={20} />
+                </a>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
               {services.filter(s => s.segment === "Énergies Fossiles").slice(0,3).map((service, idx) => {
@@ -453,8 +440,16 @@ export default function Home() {
             </div>
              <div className="flex items-center space-x-3 mb-8 mt-10">
               <PackageSearch className="w-8 h-8 text-[#1E5FA8]" />
-              <h3 className="text-2xl font-bold text-[#1E5FA8]">Nos Produits</h3>
+              <h3 className="text-md lg:text-2xl font-bold text-[#1E5FA8]">Nos Produits</h3>
               <div className="flex-1 h-1 bg-gradient-to-r from-[#1E5FA8] to-transparent rounded-full"></div>
+                       <a
+                    href="/products"
+                    className={`w-auto  inline-flex items-center justify-center text-center gap-2 px-4 sm:px-8 py-3 rounded-xl font-bold transition text-blue-900`}
+                 >
+                     <span className="sm:hidden text-md">tous les Produits</span>
+                     <span className="hidden sm:inline text-xl">Voir tous les produits</span>
+                     <ArrowRight size={20} />
+                </a>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
               {ps.filter(s => s.segment === "Énergies Fossiles").slice(0,3).map((service, idx) => {
@@ -506,20 +501,8 @@ export default function Home() {
 Nous intégrons les énergies renouvelables comme pilier stratégique de la transition énergétique et du développement continental. En réduisant les émissions de CO₂ et en contribuant aux objectifs ESG, nous favorisons l’autonomie énergétique des communautés et des industries, tout en créant de la valeur locale à travers l’emploi, la formation et l’inclusion, grâce à des innovations vertes et des solutions digitales dédiées au suivi et à l’optimisation des performances.
                 </p>
                         <div className=" mt-10 flex gap-4 justify-center">
-                           <a
-                            href="/services"
-                           className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition shadow-lg bg-green-600 hover:bg-green-700 text-white`}
-                           >
-                          Voir tous les services
-                          <ArrowRight size={20} />
-                        </a>
-                           <a
-                            href="/products"
-                           className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition border-2 border-green-600 text-green-700 hover:bg-green-600 hover:text-white`}
-                           >
-                          Voir tous les produits
-                          <ArrowRight size={20} />
-                        </a>
+                          
+                        
                       </div>
               </div>
               
@@ -527,8 +510,15 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
 
             <div className="flex items-center space-x-3 mb-8">
               <Leaf className="w-8 h-8 text-[#3AA655]" />
-              <h3 className="text-2xl font-bold text-[#3AA655]">Bioénergies</h3>
+              <h3 className=" text-md lg:text-2xl font-bold text-[#3AA655]">Bioénergies</h3>
               <div className="flex-1 h-1 bg-gradient-to-r from-[#3AA655] to-transparent rounded-full"></div>
+             <a
+                            href="/services"
+                           className={`inline-flex text-md lg:text-xl items-center gap-2 px-8 py-4 rounded-xl font-bold  transition  text-green-600`}
+                           >
+                          Voir tous les services
+                          <ArrowRight size={20} />
+                        </a>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
               {services.filter(s => s.segment === "Énergies Renouvelables").slice(0,3).map((service, idx) => {
@@ -578,13 +568,7 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                   Complétez votre expérience EnerTchad avec nos services : maintenance automobile professionnelle, laverie écologique haute technologie et gestion responsable des déchets pour un Tchad plus vert.
                 </p>
                    <div className="mt-10">
-                <a
-                    href="/services"
-                    className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition shadow-lg bg-yellow-400 hover:bg-yellow-500 text-blue-900`}
-                 >
-                     Voir tous les services
-                     <ArrowRight size={20} />
-                </a>
+ 
              </div>
               </div>
               <img src={carWashImage} alt="Services Complémentaires" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
@@ -592,8 +576,15 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
 
             <div className="flex items-center space-x-3 mb-8">
               <Wrench className="w-8 h-8 text-[#E6C34A]" />
-              <h3 className="text-2xl font-bold text-[#E6C34A]">Nos Services</h3>
+              <h3 className="text-md lg:text-2xl font-bold text-[#E6C34A]">Nos Services</h3>
               <div className="flex-1 h-1 bg-gradient-to-r from-[#E6C34A] to-transparent rounded-full"></div>
+                           <a
+                    href="/services"
+                    className={`inline-flex text-md lg:text-xl items-center gap-2 px-8 py-4 rounded-xl font-bold  transition text-[#E6C34A] `}
+                 >
+                     tous les services
+                     <ArrowRight size={20} />
+                </a>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
               {services.filter(s => s.segment === "Services Complémentaires").slice(0,3).map((service, idx) => {

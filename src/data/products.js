@@ -1,5 +1,13 @@
 export const ps = [
-  {
+    {
+    icon: null,
+    title: "Carburants Routiers",
+    description: "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
+    desc: "Carburants routiers de haute qualité : Essence (SP95, SP98, E10, E85) pour une mobilité moderne, performance moteur et compatibilité avec véhicules récents ; Gazole (B7, B10, B30, GNR) formulé pour robustesse et endurance des véhicules lourds et engins industriels. Nos carburants sont fournis avec contrôles qualité stricts, options de livraison pour flottes et stations-service, et supports techniques pour intégration et conformité réglementaire.",
+    img: "/products/carburants-routiers.jpg",
+    segment: "Énergies Fossiles",
+  },
+    {
     icon: null,
     title: "Lubrifiants",
     description: "Lubrifiants premium pour tous types de véhicules",
@@ -23,14 +31,7 @@ export const ps = [
     img: "/products/petrochimie.jpg",
     segment: "Énergies Fossiles",
   },
-  {
-    icon: null,
-    title: "Carburants Routiers",
-    description: "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
-    desc: "Carburants routiers de haute qualité : Essence (SP95, SP98, E10, E85) pour une mobilité moderne, performance moteur et compatibilité avec véhicules récents ; Gazole (B7, B10, B30, GNR) formulé pour robustesse et endurance des véhicules lourds et engins industriels. Nos carburants sont fournis avec contrôles qualité stricts, options de livraison pour flottes et stations-service, et supports techniques pour intégration et conformité réglementaire.",
-    img: "/products/carburants-routiers.jpg",
-    segment: "Énergies Fossiles",
-  },
+
 ];
 
 export default ps;
