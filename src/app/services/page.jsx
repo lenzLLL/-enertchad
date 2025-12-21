@@ -144,12 +144,12 @@ export default function Services() {
         description:
           "Carburants de qualité supérieure, diesel et essence, disponibles 24/7",
         desc: "Réseau de stations-service modernes et sécurisées avec carburants certifiés, services annexes, boutiques et solutions digitales de paiement. Programmes de partenariat pour entreprises, gestion flotte et assistance 24/7.",
-         segment: "Énergies Fossiles",
+         segment: "Services Complémentaires",
        },
        
        {
          icon: Truck,
-         title: "Transport et livraison de carburant",
+         title: "Transport et livraison",
         description:
           "Le transport, le stockage et la distribution des hydrocarbures et de leurs dérivés.",
         desc: "Transport et logistique pour hydrocarbures, stockage sécurisé et distribution sur mesure pour clients industriels.",

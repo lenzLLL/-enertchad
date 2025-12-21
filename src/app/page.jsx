@@ -146,12 +146,12 @@ export default function Home() {
          description:
            "Carburants de qualité supérieure, diesel et essence, disponibles 24/7",
          desc: "Réseau de stations-service modernes et sécurisées offrant carburants certifiés, boutiques, services annexes et solutions de paiement numériques. Assistance 24/7 et programmes de partenariat pour entreprises et flottes.",
-         segment: "Énergies Fossiles",
+         segment: "Services Complémentaires",
        },
        
        {
          icon: Truck,
-         title: "Transport et livraison de carburant",
+         title: "Transport et livraison",
          description:
            "Le transport, le stockage et la distribution des hydrocarbures et de leurs dérivés.",
          desc: "Services de transport, stockage et distribution pour produits pétroliers avec gestion logistique et conformité réglementaire.",
@@ -340,7 +340,7 @@ export default function Home() {
               aria-label="Découvrir nos services"
               className="inline-flex items-center justify-center w-[50vw] md:w-auto px-4 py-2 md:px-10 md:py-4 bg-[#E6C34A] text-[#1E5FA8] rounded-lg font-bold hover:bg-[#d4a028] transition-all shadow-xl text-sm md:text-lg"
             >
-              Découvrir nos services
+              Découvrir nos solutions
             </a>
             <a
               href="/contact"
