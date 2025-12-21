@@ -110,6 +110,16 @@ export default function Home() {
      segment: "Énergies Fossiles",
    },
 
+    // Services spécialisés de puits
+    {
+      icon: GaugeCircle,
+      title: "Services spécialisés de puits",
+      description: "Slickline, Wireline, Coiled Tubing, Fishing, Well Testing et Workover pour opérations de puits.",
+      desc: "Offre complète de services spécialisés de puits : Slickline (opérations mécaniques, ouverture/fermeture de vannes, récupération d’outils), Wireline (diagraphies, mesures de pression/température, acquisition de données), Coiled Tubing (nettoyage, acidification, interventions sous pression), Fishing Services (récupération d’outils perdus), Well Testing (tests de production et caractérisation des réservoirs) et Workover (réhabilitation, remplacement d’équipements et optimisation des débits). Ces services visent à garantir la performance, la sécurité et la longévité des puits.",
+      segment: "Énergies Fossiles",
+      img: "/services/puits.jpg",
+    },
+
    // 🛠 Ingénierie & Maintenance
    {
      icon: PaintBucket,
@@ -148,7 +158,7 @@ export default function Home() {
        },
        {
          icon: Truck,
-         title: "Transport",
+         title: "Transport et livraison de carburant",
          description:
            "Le transport, le stockage et la distribution des hydrocarbures et de leurs dérivés.",
          desc: "Services de transport, stockage et distribution pour produits pétroliers avec gestion logistique et conformité réglementaire.",
@@ -162,14 +172,14 @@ export default function Home() {
          desc: "Conseil et opérations pour raffineries: optimisation de procédés, transformation et valorisation des produits pétroliers.",
          segment: "Énergies Fossiles",
        },
-       {
-         icon: Fuel,
-         title: "Produits de carburants routiers",
-         description:
-           "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
-         desc: "Large gamme de carburants routiers conformes aux normes, fourniture et support pour stations et flottes professionnelles.",
-         segment: "Énergies Fossiles",
-       },
+      //  {
+      //    icon: Fuel,
+      //    title: "Produits de carburants routiers",
+      //    description:
+      //      "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
+      //    desc: "Large gamme de carburants routiers conformes aux normes, fourniture et support pour stations et flottes professionnelles.",
+      //    segment: "Énergies Fossiles",
+      //  },
 
        {
          icon: Leaf,
@@ -203,14 +213,14 @@ export default function Home() {
          desc: "Laverie auto écologique avec systèmes de nettoyage automatisé et recyclage des eaux, services pour particuliers et flottes.",
          segment: "Services Complémentaires",
        },
-       {
-         icon: TrendingUp,
-         title: "Produits Industriels",
-         description:
-           "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
-         desc: "Fourniture de produits industriels (lubrifiants, solvants, asphalte) pour usages industriels lourds, avec conseils techniques et logistique.",
-         segment: "Énergies Fossiles",
-       },
+      //  {
+      //    icon: TrendingUp,
+      //    title: "Produits Industriels",
+      //    description:
+      //      "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
+      //    desc: "Fourniture de produits industriels (lubrifiants, solvants, asphalte) pour usages industriels lourds, avec conseils techniques et logistique.",
+      //    segment: "Énergies Fossiles",
+      //  },
 
        {
          icon: Recycle,
@@ -438,7 +448,7 @@ export default function Home() {
                       {service.description}
                     </p>
                     <a 
-                      href={`/products/${toSlug(service.title)}`}
+                      href={`/services/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#1E5FA8] font-bold text-sm md:text-base group-hover:text-[#E6C34A] transition"
                     >
                       <span>En savoir plus</span>
@@ -502,15 +512,22 @@ export default function Home() {
                   EnerTchad s’engage à bâtir un avenir énergétique durable, inclusif et innovant.  
 Nous intégrons les énergies renouvelables comme pilier stratégique de la transition énergétique et du développement continental. En réduisant les émissions de CO₂ et en contribuant aux objectifs ESG, nous favorisons l’autonomie énergétique des communautés et des industries, tout en créant de la valeur locale à travers l’emploi, la formation et l’inclusion, grâce à des innovations vertes et des solutions digitales dédiées au suivi et à l’optimisation des performances.
                 </p>
-                       <div className=" mt-10">
-                          <a
-                                href="/services"
-                               className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition shadow-lg bg-green-600 hover:bg-green-700`}
-                          >
-                                   Voir tous les services
-                                   <ArrowRight size={20} />
-                            </a>
-                     </div>
+                        <div className=" mt-10 flex gap-4 justify-center">
+                           <a
+                            href="/services"
+                           className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition shadow-lg bg-green-600 hover:bg-green-700 text-white`}
+                           >
+                          Voir tous les services
+                          <ArrowRight size={20} />
+                        </a>
+                           <a
+                            href="/products"
+                           className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition border-2 border-green-600 text-green-700 hover:bg-green-600 hover:text-white`}
+                           >
+                          Voir tous les produits
+                          <ArrowRight size={20} />
+                        </a>
+                      </div>
               </div>
               
             </div>
@@ -542,7 +559,7 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                       {service.description}
                     </p>
                     <a 
-                      href={`/products/${toSlug(service.title)}`}
+                      href={`/services/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#3AA655] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
                     >
                       <span>En savoir plus</span>
@@ -607,7 +624,7 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                       {service.description}
                     </p>
                     <a 
-                      href={`/products/${toSlug(service.title)}`}
+                      href={`/services/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#E6C34A] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
                     >
                       <span>En savoir plus</span>

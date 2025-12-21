@@ -37,6 +37,14 @@ const carWashImage = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-
 const stationInterior = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/station.jpg";
 
 export default function Services() {
+  function toSlug(title) {
+    return title
+      .normalize("NFD")
+      .replace(/\p{M}/gu, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
   
       const services = [
      {
@@ -99,6 +107,16 @@ export default function Services() {
      segment: "Énergies Fossiles",
    },
 
+    // Services spécialisés de puits
+    {
+      icon: GaugeCircle,
+      title: "Services spécialisés de puits",
+      description: "Slickline, Wireline, Coiled Tubing, Fishing, Well Testing et Workover pour opérations de puits.",
+      desc: "Offre complète de services spécialisés de puits : Slickline (opérations mécaniques, ouverture/fermeture de vannes, récupération d’outils), Wireline (diagraphies, mesures de pression/température, acquisition de données), Coiled Tubing (nettoyage, acidification, interventions sous pression), Fishing Services (récupération d’outils perdus), Well Testing (tests de production et caractérisation des réservoirs) et Workover (réhabilitation, remplacement d’équipements et optimisation des débits). Ces services visent à garantir la performance, la sécurité et la longévité des puits.",
+      img: "/services/puits.jpg",
+      segment: "Énergies Fossiles",
+    },
+
    
    
    // 🛠 Ingénierie & Maintenance
@@ -138,7 +156,7 @@ export default function Services() {
        },
        {
          icon: Truck,
-         title: "Transport",
+         title: "Transport et livraison de carburant",
         description:
           "Le transport, le stockage et la distribution des hydrocarbures et de leurs dérivés.",
         desc: "Transport et logistique pour hydrocarbures, stockage sécurisé et distribution sur mesure pour clients industriels.",
@@ -152,14 +170,7 @@ export default function Services() {
         desc: "Services et conseil pour raffineries: optimisation des procédés, transformation et valorisation des produits.",
          segment: "Énergies Fossiles",
        },
-       {
-         icon: Fuel,
-         title: "Produits de carburants routiers",
-        description:
-          "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
-        desc: "Gamme complète de carburants routiers conformes aux normes, fourniture et support pour stations et flottes.",
-         segment: "Énergies Fossiles",
-       },
+    
 
        {
          icon: Leaf,
@@ -193,14 +204,7 @@ export default function Services() {
         desc: "Laverie auto automatisée et écologique avec économie d'eau et solutions de recyclage pour flottes et particuliers.",
          segment: "Services Complémentaires",
        },
-       {
-         icon: TrendingUp,
-         title: "Produits Industriels",
-        description:
-          "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
-        desc: "Fourniture de produits industriels et solutions d'approvisionnement pour usages lourds, avec conseil technique et logistique.",
-         segment: "Énergies Fossiles",
-       },
+     
 
        {
          icon: Wrench,
@@ -457,7 +461,7 @@ export default function Services() {
                       {service.description}
                     </p>
                     <a 
-                      href="/services"
+                      href={`/services/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#1E5FA8] font-bold text-sm md:text-base group-hover:text-[#E6C34A] transition"
                     >
                       <span>En savoir plus</span>
@@ -513,7 +517,7 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                       {service.description}
                     </p>
                     <a 
-                      href="/services"
+                      href={`/services/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#3AA655] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
                     >
                       <span>En savoir plus</span>
@@ -568,7 +572,7 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                       {service.description}
                     </p>
                     <a 
-                      href="/services"
+                      href={`/services/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#E6C34A] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
                     >
                       <span>En savoir plus</span>
