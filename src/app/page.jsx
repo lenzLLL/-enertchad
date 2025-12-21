@@ -371,7 +371,7 @@ export default function Home() {
             <span className="text-[#3AA655] font-bold text-3xl md:text-6xl  uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
               ✨ Nos Solutions
             </span>
-            <h2 className="text-md font-bold text-[#1E5FA8] mb-6">
+            <h2 className="text-xl md:text-3xl font-bold text-[#1E5FA8] mb-6">
               Des Services <span className="bg-gradient-to-r from-[#3AA655] to-[#E6C34A] bg-clip-text text-transparent">Complets</span>
             </h2>
             <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto leading-relaxed">
