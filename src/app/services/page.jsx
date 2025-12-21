@@ -146,14 +146,7 @@ export default function Services() {
         desc: "Réseau de stations-service modernes et sécurisées avec carburants certifiés, services annexes, boutiques et solutions digitales de paiement. Programmes de partenariat pour entreprises, gestion flotte et assistance 24/7.",
          segment: "Énergies Fossiles",
        },
-       {
-         icon: Truck,
-         title: "Livraison Mobile de Carburant",
-        description:
-          "Service de livraison directe pour industriels et clients normaux - partout au Tchad",
-        desc: "Livraison mobile de carburant sur site pour entreprises et particuliers, flotte dédiée et procédures de sécurité.",
-         segment: "Énergies Fossiles",
-       },
+       
        {
          icon: Truck,
          title: "Transport et livraison de carburant",

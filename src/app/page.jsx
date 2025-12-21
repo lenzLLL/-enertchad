@@ -148,14 +148,7 @@ export default function Home() {
          desc: "Réseau de stations-service modernes et sécurisées offrant carburants certifiés, boutiques, services annexes et solutions de paiement numériques. Assistance 24/7 et programmes de partenariat pour entreprises et flottes.",
          segment: "Énergies Fossiles",
        },
-       {
-         icon: Truck,
-         title: "Livraison Mobile de Carburant",
-         description:
-           "Service de livraison directe pour industriels et clients normaux - partout au Tchad",
-         desc: "Livraison mobile de carburant pour entreprises et particuliers, avec flotte dédiée et traçabilité des opérations.",
-         segment: "Énergies Fossiles",
-       },
+       
        {
          icon: Truck,
          title: "Transport et livraison de carburant",
@@ -375,10 +368,10 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A]/10 rounded-full blur-3xl"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
-            <span className="text-[#3AA655] font-bold text-xl uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
+            <span className="text-[#3AA655] font-bold text-3xl md:text-6xl  uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
               ✨ Nos Solutions
             </span>
-            <h2 className="text-3xl md:text-6xl font-bold text-[#1E5FA8] mb-6">
+            <h2 className="text-md font-bold text-[#1E5FA8] mb-6">
               Des Services <span className="bg-gradient-to-r from-[#3AA655] to-[#E6C34A] bg-clip-text text-transparent">Complets</span>
             </h2>
             <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto leading-relaxed">
