@@ -4,7 +4,7 @@
 # Environment variables (local, not committed)
 .env.local
 .env.*.local
-
+.next/
 # React Router
 /.react-router/
 /build/

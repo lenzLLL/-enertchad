@@ -1,11 +1,29 @@
 "use client";
 import { Menu, X, ShoppingCart, Check } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);      // Menu mobile
+  const [energiesOpen, setEnergiesOpen] = useState(false); // Dropdown Energies (desktop)
+  const [energiesMobileOpen, setEnergiesMobileOpen] = useState(false); // mobile submenu
   const [cartOpen, setCartOpen] = useState(false);  // Modal panier
+  const energiesRef = useRef(null);
+  const energiesMobileRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (energiesRef.current && !energiesRef.current.contains(e.target)) {
+        setEnergiesOpen(false);
+      }
+      if (energiesMobileRef.current && !energiesMobileRef.current.contains(e.target)) {
+        setEnergiesMobileOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
   const { cart, cartCount, cartTotal, removeFromCart, clearCart } = useCart();
   const [showCheckout, setShowCheckout] = useState(false);
   const [customerName, setCustomerName] = useState("");
@@ -70,6 +88,9 @@ export default function Header() {
 
   const navItems = [
     { label: "Accueil", href: "/" },
+    { label: "Énergies", href: "", isSelect: true },
+    { label: "Technologies", href: "/technologies" },
+    { label: "ESG", href: "/esg" },
     { label: "Services", href: "/services" },
     { label: "Boutique", href: "/shop" },
     { label: "Blog", href: "/blog" },
@@ -90,15 +111,40 @@ export default function Header() {
 
             {/* MENU DESKTOP */}
             <div className="hidden md:flex items-center space-x-1">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                if (item.isSelect) {
+                  return (
+                    <div key="energies" className="relative px-2" ref={energiesRef}>
+                      <button
+                        aria-haspopup="true"
+                        aria-expanded={energiesOpen}
+                        type="button"
+                        onClick={() => setEnergiesOpen((s) => !s)}
+                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
+                      >
+                        Énergies
+                      </button>
+
+                      {energiesOpen && (
+                        <div className="absolute right-0 mt-2 w-56 bg-white border rounded-md shadow-lg z-50">
+                          <a href="/energies-renouvelables" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnergiesOpen(false)}>Énergies renouvelables</a>
+                          <a href="/energies-fossiles" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnergiesOpen(false)}>Énergies fossiles</a>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
               <a
                 href="/contact"
                 className="ml-4 text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
@@ -142,16 +188,40 @@ export default function Header() {
           {isOpen && (
             <div className="md:hidden pb-6 border-t border-gray-200">
               <div className="space-y-1 py-4">
-                {navItems.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                ))}
+                {navItems.map((item) => {
+                  if (item.isSelect) {
+                    return (
+                      <div key="energies-mobile" className="px-2" ref={energiesMobileRef}>
+                        <button
+                          type="button"
+                          onClick={() => setEnergiesMobileOpen((s) => !s)}
+                          className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
+                        >
+                          <span>Énergies</span>
+                          <span className={`transform transition-transform ${energiesMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
+                        </button>
+
+                        {energiesMobileOpen && (
+                          <div className="pl-4 mt-2 space-y-1">
+                            <a href="/energies-renouvelables" onClick={() => { setIsOpen(false); setEnergiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Énergies renouvelables</a>
+                            <a href="/energies-fossiles" onClick={() => { setIsOpen(false); setEnergiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Énergies fossiles</a>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  );
+                })}
               </div>
 
               <div className="border-t border-gray-200 pt-4 space-y-3 px-2">
