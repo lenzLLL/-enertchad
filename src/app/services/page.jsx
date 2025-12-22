@@ -26,7 +26,12 @@ import {
     GaugeCircle,
     LineChart,
     Cpu,
-    PaintBucket,Gauge,Atom
+    PaintBucket,Gauge,Atom,
+  TreeDeciduous,
+  GitGraph,
+  AirVent,
+  FireExtinguisher,
+  BookOpen
 } from "lucide-react";
 import ServiceCard from "../../components/ServiceCard";
 
@@ -35,6 +40,7 @@ const solarImage = "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84
 const oilImage = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/oil.jpg";
 const carWashImage = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/car-wash.jpg";
 const stationInterior = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/station.jpg";
+import { ps, solarProductsServices, wasteCollectionServices, windProducts } from "../../data/products";
 
 export default function Services() {
   function toSlug(title) {
@@ -188,7 +194,48 @@ export default function Services() {
         desc: "Déploiement de stations de recharge rapide, solutions Smart Charging et intégration pour flottes et infrastructures.",
          segment: "Énergies Renouvelables",
        },
-     
+         {
+    icon: TreeDeciduous, // Remplacez par l'icône Lucide React appropriée
+    title: "Caractérisation des Biomasses",
+    description: "Analyse des différents types de biomasses disponibles.",
+    desc: "Caractérisation des biomasses telles que le bois, les résidus agricoles et les déchets organiques pour optimiser leur utilisation dans des projets bioénergétiques.",
+    segment: "Énergies Renouvelables",
+  },
+  {
+    icon: GitGraph, // Remplacez par l'icône Lucide React appropriée
+    title: "Études de Faisabilité",
+    description: "Analyse technico-économique pour projets durables.",
+    desc: "Études de faisabilité pour évaluer les opportunités d'investissement dans les projets bioénergétiques, en tenant compte des aspects techniques et économiques.",
+    segment: "Énergies Renouvelables",
+  },
+  {
+    icon: AirVent, // Remplacez par l'icône Lucide React appropriée
+    title: "Installation Biogaz",
+    description: "Mise en œuvre d'unités de biogaz.",
+    desc: "Installation de stations de biogaz pour transformer les déchets organiques en énergie renouvelable efficace.",
+    segment: "Énergies Renouvelables",
+  },
+  {
+    icon: FireExtinguisher, // Remplacez par l'icône Lucide React appropriée
+    title: "Chaudières Biomasse",
+    description: "Solution de chauffage efficace et durable.",
+    desc: "Installation de chaudières biomasse pour fournir de la chaleur durable à différents types d'industries et de collectivités.",
+    segment: "Énergies Renouvelables",
+  },
+  {
+    icon: Shield, // Remplacez par l'icône Lucide React appropriée
+    title: "Certification RED II",
+    description: "Accompagnement pour biocarburants durables.",
+    desc: "Aide à la certification RED II pour garantir que les biocarburants produits respectent les normes de durabilité requises.",
+    segment: "Énergies Renouvelables",
+  },
+  {
+    icon: BookOpen, // Remplacez par l'icône Lucide React appropriée
+    title: "Formation Techniques Bioénergies",
+    description: "Formations pour les professionnels du secteur.",
+    desc: "Ateliers et formations techniques sur les dernières technologies en bioénergies, adaptés aux besoins des collectivités, entreprises et agriculteurs.",
+    segment: "Énergies Renouvelables",
+  },
   
        {
          icon: Sparkles,
@@ -197,8 +244,7 @@ export default function Services() {
         desc: "Laverie auto automatisée et écologique avec économie d'eau et solutions de recyclage pour flottes et particuliers.",
          segment: "Services Complémentaires",
        },
-     
-
+        
        {
          icon: Wrench,
          title: "Maintenance Auto",
@@ -520,6 +566,125 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                 );
               })}
             </div>
+
+             <div className="flex items-center space-x-3 mb-8 mt-5">
+                          <Leaf className="w-8 h-8 text-[#3AA655]" />
+                          <h3 className=" text-md lg:text-2xl font-bold text-[#3AA655]">Energies Solaires</h3>
+                          <div className="flex-1 h-1 bg-gradient-to-r from-[#3AA655] to-transparent rounded-full"></div>
+                     
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
+                          {solarProductsServices.map((service, idx) => {
+                            const ServiceIcon = service.icon;
+                            return (
+                              <div 
+                                key={idx}
+                                className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#3AA655]"
+                              >
+                                <div className="bg-gradient-to-br from-[#3AA655] to-[#2d8a45] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
+                                  {ServiceIcon ? (
+                                    <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                                  ) : (
+                                    <Droplet className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                                  )}
+                                </div>
+                                <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#3AA655] transition line-clamp-1 md:line-clamp-none">
+                                  {service.title}
+                                </h4>
+                                <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                                  {service.description}
+                                </p>
+                                <a 
+                                  href={`/services/${toSlug(service.title)}`}
+                                  className="inline-flex items-center space-x-2 text-[#3AA655] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
+                                >
+                                  <span>En savoir plus</span>
+                                  <span className="transform group-hover:translate-x-1 transition">→</span>
+                                </a>
+                              </div>
+                            );
+                          })}
+                        </div>
+            
+                        <div className="flex items-center space-x-3 mb-8 mt-5">
+                          <Leaf className="w-8 h-8 text-[#3AA655]" />
+                          <h3 className=" text-md lg:text-2xl font-bold text-[#3AA655]">Energies Elionnes</h3>
+                          <div className="flex-1 h-1 bg-gradient-to-r from-[#3AA655] to-transparent rounded-full"></div>
+                    
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
+                          {windProducts.map((service, idx) => {
+                            const ServiceIcon = service.icon;
+                            return (
+                              <div 
+                                key={idx}
+                                className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#3AA655]"
+                              >
+                                <div className="bg-gradient-to-br from-[#3AA655] to-[#2d8a45] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
+                                  {ServiceIcon ? (
+                                    <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                                  ) : (
+                                    <Droplet className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                                  )}
+                                </div>
+                                <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#3AA655] transition line-clamp-1 md:line-clamp-none">
+                                  {service.title}
+                                </h4>
+                                <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                                  {service.description}
+                                </p>
+                                <a 
+                                  href={`/services/${toSlug(service.title)}`}
+                                  className="inline-flex items-center space-x-2 text-[#3AA655] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
+                                >
+                                  <span>En savoir plus</span>
+                                  <span className="transform group-hover:translate-x-1 transition">→</span>
+                                </a>
+                              </div>
+                            );
+                          })}
+                        </div>
+            
+            
+            
+                        <div className="flex items-center space-x-3 mb-8 mt-5">
+                          <Leaf className="w-8 h-8 text-[#3AA655]" />
+                          <h3 className=" text-md lg:text-2xl font-bold text-[#3AA655]">Gestion des déchets</h3>
+                          <div className="flex-1 h-1 bg-gradient-to-r from-[#3AA655] to-transparent rounded-full"></div>
+                    
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
+                          {wasteCollectionServices.map((service, idx) => {
+                            const ServiceIcon = service.icon;
+                            return (
+                              <div 
+                                key={idx}
+                                className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#3AA655]"
+                              >
+                                <div className="bg-gradient-to-br from-[#3AA655] to-[#2d8a45] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
+                                  {ServiceIcon ? (
+                                    <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                                  ) : (
+                                    <Droplet className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                                  )}
+                                </div>
+                                <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#3AA655] transition line-clamp-1 md:line-clamp-none">
+                                  {service.title}
+                                </h4>
+                                <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                                  {service.description}
+                                </p>
+                                <a 
+                                  href={`/services/${toSlug(service.title)}`}
+                                  className="inline-flex items-center space-x-2 text-[#3AA655] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
+                                >
+                                  <span>En savoir plus</span>
+                                  <span className="transform group-hover:translate-x-1 transition">→</span>
+                                </a>
+                              </div>
+                            );
+                          })}
+                        </div>
           </div>
 
           {/* Services Complémentaires Segment */}

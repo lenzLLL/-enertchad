@@ -1,0 +1,332 @@
+"use client";
+
+import React from "react";
+import {
+  Fuel,
+  Zap,
+  Droplet,
+  Sparkles,
+  Clock,
+  MapPin,
+  TrendingUp,
+  Truck,
+  Headset,
+  Recycle,
+  Shield,
+  Lightning,
+  Leaf,
+  Wind,
+  Flame,
+  FuelIcon,
+  Wrench,
+    Hammer,
+    Settings,
+    Activity,
+    Anchor,
+    GaugeCircle,
+    LineChart,
+    Cpu,
+    PaintBucket,Gauge,Atom
+} from "lucide-react";
+import ServiceCard from "../../components/ServiceCard";
+
+const evChargerImage = "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84c680d4ac32/ev-charger.jpg";
+const solarImage = "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84c680d4ac32/solar.jpg";
+const oilImage = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/oil.jpg";
+const carWashImage = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/car-wash.jpg";
+const stationInterior = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/station.jpg";
+
+export default function Services() {
+  function toSlug(title) {
+    return title
+      .normalize("NFD")
+      .replace(/\p{M}/gu, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+  
+      const services = [
+     {
+     icon: Flame,
+     title: "Biomasse Solide",
+        description:
+          "Bois énergie, charbon de bois, résidus agricoles, briquettes et déchets agro-industriels.",
+            desc: "Bois énergie, charbon de bois et résidus agricoles transformés en briquettes et combustibles solides. Nous fournissons études de filière, solutions de transformation locale, et accompagnement pour la mise en place de chaînes de valeur durables et rentables.",
+          img: "/services/biomasse.jpg",
+     segment: "Énergies Renouvelables",
+   },
+   
+   // 💨 Biogaz
+   {
+     icon: Recycle,
+     title: "Biogaz",
+    description:
+      "Méthane issu de biodigesteurs, gaz de décharge et stations d’épuration.",
+    desc: "Conception, construction et exploitation de systèmes de biodigestion pour valoriser les déchets organiques en énergie (biogaz) et nutriments. Services complets : études, dimensionnement, exploitation, maintenance et formation des équipes locales.",
+    img: "/services/biogaz.jpg",
+     segment: "Énergies Renouvelables",
+   },
+    {
+     icon: Gauge,
+     title: "Production & Optimisation",
+    description:
+      "Systèmes de levage artificiel (ESP, Gas Lift, Rod Pump) et gestion des flux multiphasiques.",
+        desc: "Optimisation de la production pétrolière par sélection et intégration de systèmes de levage artificiel (ESP, gas lift, pompes à tiges), instrumentation et analyses multiphasiques pour améliorer la récupération et réduire les coûts opérationnels.",
+      img: "/services/production.jpg",
+     segment: "Énergies Fossiles",
+   },
+   // ⛽ Biocarburants liquides
+   {
+     icon: Droplet,
+     title: "Biocarburants Liquides",
+    description:
+      "Bioéthanol, biodiesel, biokérosène et huiles végétales pour mobilité et industrie.",
+    desc: "Mise en place de filières de production et distribution de biocarburants (bioéthanol, biodiesel, biokérosène), incluant formulation, contrôles qualité, certifications et intégration logistique pour marchés locaux et industriels.",
+    img: "/services/biocarburants.jpg",
+     segment: "Énergies Renouvelables",
+   },
+   
+   // ⚡ Biohydrogène & Gaz de synthèse
+   {
+     icon: Atom,
+     title: "Biohydrogène & Gaz de Synthèse",
+    description:
+      "Hydrogène vert et syngas (CO + H₂) issus de la biomasse par fermentation ou gazéification.",
+    desc: "Solutions intégrées pour la production d'hydrogène vert et de syngaz à partir de biomasse, incluant gazéification, purification, stockage et stratégies d'intégration industrielle pour décarboner les processus énergétiques.",
+    img: "/services/hydrogene.jpg",
+     segment: "Énergies Renouvelables",
+   },
+    {
+     icon: Hammer,
+     title: "Forage & Complétion",
+    description:
+      "Forage directionnel et horizontal, cimentation intelligente et acquisition de données en temps réel.",
+        desc: "Forage et complétion avec technologies modernes, instrumentation temps réel, procédures HSE strictes et opérations de cimentation avancée pour garantir intégrité, performance et sécurité des puits.",
+      img: "/services/forage.jpg",
+     segment: "Énergies Fossiles",
+   },
+
+    // Services spécialisés de puits
+    {
+      icon: GaugeCircle,
+      title: "Services spécialisés de puits",
+      description: "Slickline, Wireline, Coiled Tubing, Fishing, Well Testing et Workover pour opérations de puits.",
+      desc: "Offre complète de services spécialisés de puits : Slickline (opérations mécaniques, ouverture/fermeture de vannes, récupération d’outils), Wireline (diagraphies, mesures de pression/température, acquisition de données), Coiled Tubing (nettoyage, acidification, interventions sous pression), Fishing Services (récupération d’outils perdus), Well Testing (tests de production et caractérisation des réservoirs) et Workover (réhabilitation, remplacement d’équipements et optimisation des débits). Ces services visent à garantir la performance, la sécurité et la longévité des puits.",
+      img: "/services/puits.jpg",
+      segment: "Énergies Fossiles",
+    },
+
+   
+   
+   // 🛠 Ingénierie & Maintenance
+   {
+     icon:PaintBucket,
+     title: "Ingénierie & Maintenance",
+    description:
+      "Stimulation hydraulique, interventions sur puits et maintenance prédictive et industrielle, conformité HSE.",
+    desc: "Ingénierie et maintenance industrielle : nous réalisons des études d'ingénierie complètes, la conception et l'exécution d'opérations de stimulation et d'interventions en puits (cimentation, complétion, réparations ponctuelles) et mettons en place des programmes de maintenance prédictive basés sur capteurs IoT, analyses vibratoires et surveillance conditionnelle. Nous intégrons la télésurveillance SCADA, établissons plans HSE et procédures d'urgence, gérons les pièces de rechange critiques et assurons la formation des équipes locales. Ces services visent à minimiser les arrêts non planifiés, optimiser la disponibilité des actifs, prolonger la durée de vie des installations et réduire les coûts opérationnels sur le long terme.",
+     segment: "Énergies Fossiles",
+   },
+   
+   // 🌊 Offshore & Subsea
+   {
+     icon: Anchor,
+     title: "Offshore & Subsea",
+     description:
+       "Ingénierie sous-marine (SURF), inspection et monitoring des pipelines, precommissioning et decommissioning sécurisé.",
+     segment: "Énergies Fossiles",
+   },
+   
+       {
+         icon: Fuel,
+         title: "Station-Service",
+        description:
+          "Carburants de qualité supérieure, diesel et essence, disponibles 24/7",
+        desc: "Réseau de stations-service modernes et sécurisées avec carburants certifiés, services annexes, boutiques et solutions digitales de paiement. Programmes de partenariat pour entreprises, gestion flotte et assistance 24/7.",
+         segment: "Services Complémentaires",
+       },
+       
+       {
+         icon: Truck,
+         title: "Transport et livraison",
+        description:
+          "Le transport, le stockage et la distribution des hydrocarbures et de leurs dérivés.",
+        desc: "Transport et logistique pour hydrocarbures, stockage sécurisé et distribution sur mesure pour clients industriels.",
+         segment: "Énergies Fossiles",
+       },
+         {
+         icon: FuelIcon,
+         title: "Raffinérie",
+        description:
+          "Le raffinage, la transformation et la valorisation des produits pétroliers et gaziers.",
+        desc: "Services et conseil pour raffineries: optimisation des procédés, transformation et valorisation des produits.",
+         segment: "Énergies Fossiles",
+       },
+    
+
+       {
+         icon: Leaf,
+         title: "Énergie Solaire",
+        description:
+          "Solutions d'énergie renouvelable pour particuliers et entreprises",
+        desc: "Conception, installation et maintenance de systèmes photovoltaïques pour particuliers et entreprises, solutions de financement.",
+         segment: "Énergies Renouvelables",
+       },
+       {
+         icon: Wind,
+         title: "Énergie Éolienne",
+        description:
+          "Solutions d'énergie éolienne pour entreprises et communautés : études, installation et maintenance de petites et moyennes turbines.",
+        desc: "Études de faisabilité, installation et maintenance de turbines éoliennes adaptées aux besoins locaux et industriels.",
+         segment: "Énergies Renouvelables",
+       },
+       {
+         icon: Zap,
+         title: "Recharge Électrique",
+        description: "Stations de recharge rapide pour véhicules électriques",
+        desc: "Déploiement de stations de recharge rapide, solutions Smart Charging et intégration pour flottes et infrastructures.",
+         segment: "Énergies Renouvelables",
+       },
+     
+  
+       {
+         icon: Sparkles,
+         title: "Laverie Auto",
+        description: "Services de nettoyage automatisé et écologique",
+        desc: "Laverie auto automatisée et écologique avec économie d'eau et solutions de recyclage pour flottes et particuliers.",
+         segment: "Services Complémentaires",
+       },
+     
+
+       {
+         icon: Wrench,
+         title: "Maintenance Auto",
+        description:
+          "Services d'entretien et de réparation automobiles professionnels",
+        desc: "Services d'entretien, diagnostic et réparation automobile pour particuliers et flottes, interventions rapides et pièces d'origine.",
+         segment: "Services Complémentaires",
+       },
+       {
+         icon: Recycle,
+         title: "Traitement de Déchets",
+        description:
+          "Unité complète de traitement des déchets plastiques et ménagers avec solutions durables",
+        desc: "Unités de traitement et valorisation des déchets plastiques et ménagers, technologies de recyclage et filières de revalorisation.",
+         segment: "Services Complémentaires",
+       },
+       {
+         icon: Headset,
+         title: "Assistance Technique",
+        description:
+          "Support technique 24/7 pour tous vos questions et problèmes",
+        desc: "Hotline et assistance technique 24/7, interventions terrain et support pour assurer la continuité des activités.",
+         segment: "Services Complémentaires",
+       },
+     ];
+ 
+
+ 
+  return (
+    <div>
+
+      
+      {/* Hero Banner Section - Same as Blog */}
+      <section className="relative py-12 md:py-32 px-4 overflow-hidden">
+        <img
+          src={solarImage}
+          alt="Services EnerTchad"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-[#F5E6D3]/95"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto text-center">
+          <span className="text-[#3AA655] font-bold text-sm uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
+            ⚙️ Nos Solutions
+          </span>
+          <h1 className="text-2xl md:text-6xl font-bold text-[#1E5FA8] mb-4 md:mb-6">
+            Energies <span className="bg-gradient-to-r from-[#3AA655] to-[#E6C34A] bg-clip-text text-transparent">Fossiles</span>
+          </h1>
+          <p className="text-gray-700 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
+            Solutions énergétiques et automobiles complètes pour tous vos besoins
+          </p>
+        </div>
+      </section>
+  <section className="py-8 md:py-32 px-4 bg-gradient-to-b from-[#F5E6D3] to-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A]/10 rounded-full blur-3xl"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+       
+
+          {/* Énergies Fossiles Segment */}
+          <div className="mb-24">
+            {/* Intro avec image */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-20 bg-gradient-to-br from-[#F5F9FF] to-white rounded-3xl p-2 lg:p-16">
+              <div className="order-2 md:order-1">
+                <div className="inline-block mb-6 px-4 py-2 bg-blue-100 rounded-full">
+                </div>
+                <h3 className="text-2xl md:text-6xl font-bold text-[#1E5FA8] mb-6">Énergies Fossiles</h3>
+                <p className="text-gray-700 text-xl leading-relaxed">
+                  Nous fournissons des carburants de haute qualité, des services de livraison mobile et des solutions d'importation certifiées internationalement. Disponibles partout au Tchad avec un service fiable et professionnel.
+                </p>
+              </div>
+              <img src={"/h8.jpg"} alt="Énergies Fossiles" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
+            </div>
+
+            <div className="flex items-center space-x-3 mb-8">
+              <Fuel className="w-8 h-8 text-[#1E5FA8]" />
+              <h3 className="text-2xl font-bold text-[#1E5FA8]">Nos Services</h3>
+              <div className="flex-1 h-1 bg-gradient-to-r from-[#1E5FA8] to-transparent rounded-full"></div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
+              {services.filter(s => s.segment === "Énergies Fossiles").map((service, idx) => {
+                const ServiceIcon = service.icon;
+                return (
+                  <div 
+                    key={idx}
+                    className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#1E5FA8]"
+                  >
+                    <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
+                      {ServiceIcon ? (
+                        <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      ) : (
+                        <Droplet className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      )}
+                    </div>
+                    <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#1E5FA8] transition line-clamp-1 md:line-clamp-none">
+                      {service.title}
+                    </h4>
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                      {service.description}
+                    </p>
+                    <a 
+                      href={`/services/${toSlug(service.title)}`}
+                      className="inline-flex items-center space-x-2 text-[#1E5FA8] font-bold text-sm md:text-base group-hover:text-[#E6C34A] transition"
+                    >
+                      <span>En savoir plus</span>
+                      <span className="transform group-hover:translate-x-1 transition">→</span>
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Énergies Renouvelables Segment */}
+         
+
+          {/* CTA avec WhatsApp */}
+        
+
+    
+        </div>
+      </section>
+      {/* Main Services */}
+   
+      {/* Detailed Services with Images */}
+  
+
+      {/* Benefits */}
+     
+    </div>
+  );
+}

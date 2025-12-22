@@ -2,26 +2,27 @@ import React from "react";
 import Link from "next/link";
 import {
 	Fuel,
-	Zap,
-	Droplet,
-	Sparkles,
-	Clock,
-	MapPin,
-	TrendingUp,
-	Truck,
-	Headset,
-	Recycle,
-	Shield,
-	Leaf,
-	Wind,
-	Flame,
-	FuelIcon,
-	Wrench,
-	Hammer,
-	Anchor,
-	Gauge,
-	Atom
+ 	Zap,
+ 	Droplet,
+ 	Sparkles,
+ 	Clock,
+ 	MapPin,
+ 	TrendingUp,
+ 	Truck,
+ 	Headset,
+ 	Recycle,
+ 	Shield,
+ 	Leaf,
+ 	Wind,
+ 	Flame,
+ 	FuelIcon,
+ 	Wrench,
+ 	Hammer,
+ 	Anchor,
+ 	Gauge,
+ 	Atom
 } from "lucide-react";
+import { ps, solarProductsServices, wasteCollectionServices, windProducts } from "../../../data/products";
 
 function toSlug(title) {
 	return title
@@ -56,9 +57,18 @@ const services = [
     { icon: Headset, title: "Assistance Technique", description: "Support technique 24/7 pour tous vos questions et problèmes", desc: "Support technique 24/7, assistance terrain et hotline pour interventions et conseils techniques.", img: "/services/assistance.jpg", segment: "Services Complémentaires" }
 ];
 
+// Combine local services with data-driven product/service arrays
+const allServices = [
+	...services,
+	...(Array.isArray(solarProductsServices) ? solarProductsServices : []),
+	...(Array.isArray(windProducts) ? windProducts : []),
+	...(Array.isArray(wasteCollectionServices) ? wasteCollectionServices : []),
+	...(Array.isArray(ps) ? ps : []),
+];
+
 export async function generateMetadata({ params }) {
 	const { slug } = params || {};
-	const service = services.find((s) => toSlug(s.title) === slug);
+	const service = allServices.find((s) => toSlug(s.title) === slug);
 	if (!service) return { title: "Service — EnerTchad" };
 	return {
 		title: `${service.title} — EnerTchad`,
@@ -72,7 +82,7 @@ export async function generateMetadata({ params }) {
 
 export default function ServiceDetail({ params }) {
 	const { slug } = params || {};
-	const service = services.find((s) => toSlug(s.title) === slug);
+	const service = allServices.find((s) => toSlug(s.title) === slug);
 
 	if (!service) {
 		return (
