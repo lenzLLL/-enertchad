@@ -8,6 +8,8 @@ import {
   Sparkles,
   Clock,
   MapPin,
+  ArrowRight,
+  PackageSearch,  
   TrendingUp,
   Truck,
   Headset,
@@ -29,7 +31,7 @@ import {
     PaintBucket,Gauge,Atom
 } from "lucide-react";
 import ServiceCard from "../../components/ServiceCard";
-
+import {ps} from "../../data/products";
 const evChargerImage = "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84c680d4ac32/ev-charger.jpg";
 const solarImage = "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84c680d4ac32/solar.jpg";
 const oilImage = "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/oil.jpg";
@@ -271,11 +273,17 @@ export default function Services() {
               </div>
               <img src={"/h8.jpg"} alt="Énergies Fossiles" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
             </div>
-
-            <div className="flex items-center space-x-3 mb-8">
+            <div id="services" className="flex items-center space-x-3 mb-8">
               <Fuel className="w-8 h-8 text-[#1E5FA8]" />
-              <h3 className="text-2xl font-bold text-[#1E5FA8]">Nos Services</h3>
+              <h3 className="text-md lg:text-2xl font-bold text-[#1E5FA8]">Nos Services</h3>
               <div className="flex-1 h-1 bg-gradient-to-r from-[#1E5FA8] to-transparent rounded-full"></div>
+               <a
+                    href="/energies-fossiles"
+                    className={`w-auto inline-flex items-center justify-center text-center gap-2 px-4 sm:px-8 py-3  font-bold transition text-blue-900`}
+                 >
+                     <span className="sm:hidden text-md">Tous Les Services</span>
+                     
+                </a>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
               {services.filter(s => s.segment === "Énergies Fossiles").map((service, idx) => {
@@ -300,6 +308,53 @@ export default function Services() {
                     </p>
                     <a 
                       href={`/services/${toSlug(service.title)}`}
+                      className="inline-flex items-center space-x-2 text-[#1E5FA8] font-bold text-sm md:text-base group-hover:text-[#E6C34A] transition"
+                    >
+                      <span>En savoir plus</span>
+                      <span className="transform group-hover:translate-x-1 transition">→</span>
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+            <div id="products" className="flex items-center space-x-3 mb-8 mt-10">
+              <PackageSearch className="w-8 h-8 text-[#1E5FA8]" />
+              <h3 className="text-md lg:text-2xl font-bold text-[#1E5FA8]">Nos Produits</h3>
+              <div className="flex-1 h-1 bg-gradient-to-r from-[#1E5FA8] to-transparent rounded-full"></div>
+                       <a
+                    href="/energies-fossiles"
+                    className={`w-auto  inline-flex items-center justify-center text-center gap-2 px-4 sm:px-8 py-3 rounded-xl font-bold transition text-blue-900`}
+                 >
+                     <span className="sm:hidden text-md">tous les Produits</span>
+                   
+                </a>
+            </div>
+            
+            {/* Contact anchor */}
+     
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
+              {ps.filter(s => s.segment === "Énergies Fossiles").map((service, idx) => {
+                const ServiceIcon = service.icon;
+                return (
+                  <div 
+                    key={idx}
+                    className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#1E5FA8]"
+                  >
+                    <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
+                      {ServiceIcon ? (
+                        <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      ) : (
+                        <Droplet className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
+                      )}
+                    </div>
+                    <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#1E5FA8] transition line-clamp-1 md:line-clamp-none">
+                      {service.title}
+                    </h4>
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                      {service.description}
+                    </p>
+                    <a 
+                      href={`/products/${toSlug(service.title)}`}
                       className="inline-flex items-center space-x-2 text-[#1E5FA8] font-bold text-sm md:text-base group-hover:text-[#E6C34A] transition"
                     >
                       <span>En savoir plus</span>

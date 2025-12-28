@@ -297,4 +297,29 @@ export const wasteCollectionServices = [
     desc: "Programmes de sensibilisation, formations, ateliers de réduction des déchets et éducation environnementale.",
     segment: "Gestion des Déchets",
   },
+  // Gestion des eaux - ajoutés
+  {
+    icon: Droplets,
+    title: "Collecte & Distribution (Eaux)",
+    description: "Captage, adduction et gestion des réseaux d'eau.",
+    desc:
+      "Captage des eaux de surface et souterraines, adduction d’eau potable (AEP), conception et réhabilitation de réseaux urbains et ruraux, ainsi que gestion des eaux pluviales pour réduire les inondations et préserver les ressources.",
+    segment: "Gestion des Eaux",
+  },
+  {
+    icon: Factory,
+    title: "Traitement & Valorisation (Eaux)",
+    description: "Stations de traitement et réutilisation des eaux.",
+    desc:
+      "Conception et exploitation de stations de traitement d’eau potable, unités de traitement des eaux usées, solutions de recyclage et réutilisation (irrigation, process industriels), désalinisation pour zones côtières, et valorisation des boues (production de biogaz, compostage).",
+    segment: "Gestion des Eaux",
+  },
+  {
+    icon: BookOpen,
+    title: "Réglementation & Capacités (Eaux)",
+    description: "Conformité, planification et renforcement des capacités.",
+    desc:
+      "Accompagnement conformité sanitaire et environnementale, élaboration de plans GIRE (Gestion Intégrée des Ressources en Eau), audits et contrôle qualité, campagnes de sensibilisation à l’usage rationnel de l’eau, et formations destinées aux collectivités et aux industries.",
+    segment: "Gestion des Eaux",
+  },
 ];

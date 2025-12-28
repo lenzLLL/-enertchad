@@ -35,6 +35,8 @@ import {
   FuelIcon,
   TreeDeciduous,
   GitGraph,
+  ChevronLeft,
+  ChevronRight,
   AirVent,
   FireExtinguisher,
   BookOpen,
@@ -285,6 +287,53 @@ export default function Home() {
   const [articles, setArticles] = useState([]);
   const [isLoadingData, setIsLoadingData] = useState(true);
 
+  // Hero slider content and state
+  const fossilService = services.find((s) => s.segment === "Énergies Fossiles");
+
+  const fossilSlide = {
+    badge: "⛽ Énergies Fossiles",
+    title: fossilService?.title ? "Énergies Fossiles" : "Énergies Fossiles",
+    subtitle: fossilService?.title || "Stations, transport & raffinerie",
+    description: fossilService?.desc || fossilService?.description || "Nos solutions en distribution de carburants, transport et services pour stations-service.",
+    image: "/h8.jpg",
+    cta1: { href: "/energies-fossiles", label: "Voir les services" },
+    cta2: { href: fossilService ? `/services/${toSlug(fossilService.title)}` : "/services", label: "En savoir plus" },
+  };
+
+  const heroSlides = [
+    {
+      badge: "⚡ Leader de l'énergie au Tchad",
+      title: "EnerTchad S.A",
+      subtitle: "L'énergie qui fait avancer le Tchad",
+      description:
+        "Distribution de carburant, énergies renouvelables, mobilité électrique et services automobiles de qualité supérieure",
+      image: "/h10.jpg",
+      cta1: { href: "/services", label: "Découvrir nos solutions" },
+      cta2: { href: "/contact", label: "Trouver une station" },
+    },
+    fossilSlide,
+    {
+      badge: "🌱 Solutions Durables",
+      title: "Énergies Renouvelables",
+      subtitle: "Solaire, éolien et bioénergies",
+      description:
+        "Conception et installation de systèmes solaires et équipements verts pour entreprises et collectivités.",
+      image: "/r.png",
+      cta1: { href: "/energies-renouvelables", label: "Nos solutions vertes" },
+      cta2: { href: "/contact", label: "Contactez-nous" },
+    },
+  ];
+
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered) return;
+    const t = setInterval(() => setHeroIndex((i) => (i + 1) % heroSlides.length), 6000);
+    return () => clearInterval(t);
+  }, [heroSlides.length, isHovered]);
+
   useEffect(() => {
     let mounted = true;
     const load = async () => {
@@ -359,52 +408,77 @@ export default function Home() {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative h-[60vh] md:h-screen flex items-center justify-center text-white overflow-hidden">
-        <img
-          src={"/h10.jpg"}
-          alt="EnerTchad"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1E5FA8]/20 via-[#1E5FA8]/10 to-transparent opacity-60"></div>
-
-        <div className="relative z-10 text-center max-w-5xl mx-auto px-4">
-          <div className="hidden md:inline-block bg-[#E6C34A] text-[#1E5FA8] px-4 py-1 rounded-full text-xs font-bold mb-4 shadow-lg">
-            ⚡ Leader de l'énergie au Tchad
-          </div>
-          <h1 className="hidden md:block font-bold text-3xl md:text-7xl mb-4 md:mb-6 font-poppins leading-tight">
-            EnerTchad S.A
-          </h1>
-          <p className="hidden md:block text-base md:text-3xl mb-3 md:mb-4 font-light">
-            L'énergie qui fait avancer le Tchad
-          </p>
-          <p className="hidden md:block text-sm md:text-lg mb-6 md:mb-10 text-gray-200 max-w-2xl mx-auto">
-            Distribution de carburant, énergies renouvelables, mobilité
-            électrique et services automobiles de qualité supérieure
-          </p>
-          <div className="flex flex-col md:flex-row gap-3 md:gap-4 justify-center items-center">
-            <a
-              href="/services"
-              aria-label="Découvrir nos services"
-              className="inline-flex items-center justify-center w-[50vw] md:w-auto px-4 py-2 md:px-10 md:py-4 bg-[#E6C34A] text-[#1E5FA8] rounded-lg font-bold hover:bg-[#d4a028] transition-all shadow-xl text-sm md:text-lg"
-            >
-              Découvrir nos solutions
-            </a>
-            <a
-              href="/contact"
-              aria-label="Trouver une station"
-              className="inline-flex items-center justify-center w-[50vw] md:w-auto px-4 py-2 md:px-10 md:py-4 border-2 border-white text-white rounded-lg font-bold hover:bg-white hover:text-[#1E5FA8] transition-all text-sm md:text-lg"
-            >
-              Trouver une station
-            </a>
+      {/* Hero Section (Slider) */}
+      <section
+        className="relative h-[60vh] md:h-screen flex items-center justify-center text-white overflow-hidden"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className="absolute inset-0">
+          <div
+            className="h-full flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${heroIndex * 100}%)` }}
+          >
+            {heroSlides.map((s, idx) => (
+              <div key={idx} className="min-w-full h-full relative">
+                <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#1E5FA8]/20 via-[#1E5FA8]/10 to-transparent opacity-60"></div>
+                <div className="relative z-20 text-center max-w-5xl mx-auto px-4 flex flex-col items-center justify-center h-full">
+                  <div className="hidden md:inline-block bg-[#E6C34A] text-[#1E5FA8] px-4 py-1 rounded-full text-xs font-bold mb-4 shadow-lg">
+                    {s.badge}
+                  </div>
+                  <h1 className="font-bold text-3xl md:text-7xl mb-4 md:mb-6 font-poppins leading-tight">{s.title}</h1>
+                  <p className="text-base md:text-3xl mb-3 md:mb-4 font-light">{s.subtitle}</p>
+                  <p className="text-sm md:text-lg mb-6 md:mb-10 text-gray-200 max-w-2xl mx-auto">{s.description}</p>
+                  <div className="flex flex-col md:flex-row gap-3 md:gap-4 justify-center items-center">
+                    <a
+                      href={s.cta1.href}
+                      aria-label={s.cta1.label}
+                      className="inline-flex items-center justify-center w-[50vw] md:w-auto px-6 py-3 md:px-12 md:py-4 bg-[#E6C34A] text-[#1E5FA8] rounded-full font-bold hover:scale-105 transform transition shadow-2xl text-sm md:text-lg"
+                    >
+                      {s.cta1.label}
+                    </a>
+                    <a
+                      href={s.cta2.href}
+                      aria-label={s.cta2.label}
+                      className="inline-flex items-center justify-center w-[50vw] md:w-auto px-6 py-3 md:px-12 md:py-4 border-2 border-white text-white rounded-full font-bold bg-white/5 hover:bg-white/20 transition shadow-lg text-sm md:text-lg"
+                    >
+                      {s.cta2.label}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Scroll indicator (hidden on mobile) */}
-        <div className="hidden md:block absolute md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20 pointer-events-none">
-          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-            <div className="w-1.5 h-3 bg-white rounded-full mt-2"></div>
-          </div>
+        {/* Controls */}
+        <button
+          onClick={() => setHeroIndex((i) => (i - 1 + heroSlides.length) % heroSlides.length)}
+          aria-label="Précédent"
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 z-40 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full shadow-lg ring-1 ring-white/20 backdrop-blur"
+        >
+          <ChevronLeft size={20} />
+        </button>
+        <button
+          onClick={() => setHeroIndex((i) => (i + 1) % heroSlides.length)}
+          aria-label="Suivant"
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 z-40 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full shadow-lg ring-1 ring-white/20 backdrop-blur"
+        >
+          <ChevronRight size={20} />
+        </button>
+
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex gap-3">
+          {heroSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setHeroIndex(i)}
+              aria-label={`Slide ${i + 1}`}
+              className={`w-8 h-2 rounded-full transition-all ${
+                i === heroIndex ? "bg-white scale-110" : "bg-white/40"
+              }`}
+            ></button>
+          ))}
         </div>
       </section>
 

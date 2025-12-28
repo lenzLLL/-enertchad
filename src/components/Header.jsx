@@ -5,19 +5,33 @@ import { useCart } from "../context/CartContext";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);      // Menu mobile
-  const [energiesOpen, setEnergiesOpen] = useState(false); // Dropdown Energies (desktop)
-  const [energiesMobileOpen, setEnergiesMobileOpen] = useState(false); // mobile submenu
+  
+  const [fossilOpen, setFossilOpen] = useState(false); // Dropdown Fossiles (desktop)
+  const [renewableOpen, setRenewableOpen] = useState(false); // Dropdown Renouvelables (desktop)
+  const [fossilMobileOpen, setFossilMobileOpen] = useState(false); // mobile submenu fossil
+  const [renewableMobileOpen, setRenewableMobileOpen] = useState(false); // mobile submenu renew
   const [cartOpen, setCartOpen] = useState(false);  // Modal panier
-  const energiesRef = useRef(null);
-  const energiesMobileRef = useRef(null);
+  
+  const fossilRef = useRef(null);
+  const renewableRef = useRef(null);
+  
+  const fossilMobileRef = useRef(null);
+  const renewableMobileRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(e) {
-      if (energiesRef.current && !energiesRef.current.contains(e.target)) {
-        setEnergiesOpen(false);
+      if (fossilRef.current && !fossilRef.current.contains(e.target)) {
+        setFossilOpen(false);
       }
-      if (energiesMobileRef.current && !energiesMobileRef.current.contains(e.target)) {
-        setEnergiesMobileOpen(false);
+      if (renewableRef.current && !renewableRef.current.contains(e.target)) {
+        setRenewableOpen(false);
+      }
+      
+      if (fossilMobileRef.current && !fossilMobileRef.current.contains(e.target)) {
+        setFossilMobileOpen(false);
+      }
+      if (renewableMobileRef.current && !renewableMobileRef.current.contains(e.target)) {
+        setRenewableMobileOpen(false);
       }
     }
 
@@ -88,11 +102,10 @@ export default function Header() {
 
   const navItems = [
     { label: "Accueil", href: "/" },
-    { label: "Énergies", href: "", isSelect: true },
+    { label: "Fossiles", href: "/energies-fossiles", isSelect: true },
+    { label: "Renouvelables", href: "/energies-renouvelables", isSelect: true },
     { label: "Technologies", href: "/technologies" },
     { label: "ESG", href: "/esg" },
-    { label: "Services", href: "/services" },
-    { label: "Boutique", href: "/shop" },
     { label: "Blog", href: "/blog" },
     { label: "À propos", href: "/about" },
   ];
@@ -112,23 +125,50 @@ export default function Header() {
             {/* MENU DESKTOP */}
             <div className="hidden md:flex items-center space-x-1">
               {navItems.map((item) => {
-                if (item.isSelect) {
+                if (item.label === "Fossiles") {
                   return (
-                    <div key="energies" className="relative px-2" ref={energiesRef}>
+                    <div key="fossiles" className="relative px-2" ref={fossilRef}>
                       <button
                         aria-haspopup="true"
-                        aria-expanded={energiesOpen}
+                        aria-expanded={fossilOpen}
                         type="button"
-                        onClick={() => setEnergiesOpen((s) => !s)}
+                        onClick={() => setFossilOpen((s) => !s)}
                         className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
                       >
-                        Énergies
+                        Fossiles
                       </button>
 
-                      {energiesOpen && (
+                      {fossilOpen && (
                         <div className="absolute right-0 mt-2 w-56 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/energies-renouvelables" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnergiesOpen(false)}>Énergies renouvelables</a>
-                          <a href="/energies-fossiles" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnergiesOpen(false)}>Énergies fossiles</a>
+                          <a href="/energies-fossiles#services" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Nos services</a>
+                          <a href="/energies-fossiles#products" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Nos produits</a>
+                          
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                if (item.label === "Renouvelables") {
+                  return (
+                    <div key="renouvelables" className="relative px-2" ref={renewableRef}>
+                      <button
+                        aria-haspopup="true"
+                        aria-expanded={renewableOpen}
+                        type="button"
+                        onClick={() => setRenewableOpen((s) => !s)}
+                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
+                      >
+                        Renouvelables
+                      </button>
+
+                      {renewableOpen && (
+                        <div className="absolute right-0 mt-2 w-56 bg-white border rounded-md shadow-lg z-50">
+                          <a href="/energies-renouvelables#solutions" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Nos solutions</a>
+                          <a href="/energies-renouvelables#bioenergies" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Bioénergies</a>
+                          <a href="/energies-renouvelables#solaire" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Solaire</a>
+                          <a href="/energies-renouvelables#eolien" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Éolien</a>
+                          <a href="/energies-renouvelables#dechets" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Gestion des déchets</a>
                         </div>
                       )}
                     </div>
@@ -189,22 +229,48 @@ export default function Header() {
             <div className="md:hidden pb-6 border-t border-gray-200">
               <div className="space-y-1 py-4">
                 {navItems.map((item) => {
-                  if (item.isSelect) {
+                  if (item.label === "Fossiles") {
                     return (
-                      <div key="energies-mobile" className="px-2" ref={energiesMobileRef}>
+                      <div key="fossiles-mobile" className="px-2" ref={fossilMobileRef}>
                         <button
                           type="button"
-                          onClick={() => setEnergiesMobileOpen((s) => !s)}
+                          onClick={() => setFossilMobileOpen((s) => !s)}
                           className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
                         >
-                          <span>Énergies</span>
-                          <span className={`transform transition-transform ${energiesMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
+                          <span>Fossiles</span>
+                          <span className={`transform transition-transform ${fossilMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
                         </button>
 
-                        {energiesMobileOpen && (
+                        {fossilMobileOpen && (
                           <div className="pl-4 mt-2 space-y-1">
-                            <a href="/energies-renouvelables" onClick={() => { setIsOpen(false); setEnergiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Énergies renouvelables</a>
-                            <a href="/energies-fossiles" onClick={() => { setIsOpen(false); setEnergiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Énergies fossiles</a>
+                            <a href="/energies-fossiles#services" onClick={() => { setIsOpen(false); setFossilMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Nos services</a>
+                            <a href="/energies-fossiles#products" onClick={() => { setIsOpen(false); setFossilMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Nos produits</a>
+                            
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+
+                  if (item.label === "Renouvelables") {
+                    return (
+                      <div key="renewable-mobile" className="px-2" ref={renewableMobileRef}>
+                        <button
+                          type="button"
+                          onClick={() => setRenewableMobileOpen((s) => !s)}
+                          className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
+                        >
+                          <span>Renouvelables</span>
+                          <span className={`transform transition-transform ${renewableMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
+                        </button>
+
+                        {renewableMobileOpen && (
+                          <div className="pl-4 mt-2 space-y-1">
+                            <a href="/energies-renouvelables#solutions" onClick={() => { setIsOpen(false); setRenewableMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Nos solutions</a>
+                            <a href="/energies-renouvelables#bioenergies" onClick={() => { setIsOpen(false); setRenewableMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Bioénergies</a>
+                            <a href="/energies-renouvelables#solaire" onClick={() => { setIsOpen(false); setRenewableMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Solaire</a>
+                            <a href="/energies-renouvelables#eolien" onClick={() => { setIsOpen(false); setRenewableMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Éolien</a>
+                            <a href="/energies-renouvelables#dechets" onClick={() => { setIsOpen(false); setRenewableMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gestion des déchets</a>
                           </div>
                         )}
                       </div>
