@@ -101,9 +101,10 @@ export default function Header() {
   };
 
   const navItems = [
-    { label: "Accueil", href: "/" },
     { label: "Fossiles", href: "/energies-fossiles", isSelect: true },
     { label: "Renouvelables", href: "/energies-renouvelables", isSelect: true },
+    { label: "Environnement", href: "/environnement" },
+    { label: "Bien-être", href: "/bien-etre" },
     { label: "Technologies", href: "/technologies" },
     { label: "ESG", href: "/esg" },
     { label: "Blog", href: "/blog" },
