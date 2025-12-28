@@ -23,6 +23,12 @@ export default function BienEtrePage() {
               <a href="#programs" className="inline-block px-5 py-3 text-[#1E5FA8] border border-[#1E5FA8] rounded-md">Voir les programmes</a>
             </div>
 
+            <div className="mt-4 flex flex-wrap gap-4 text-sm">
+              <a href="#hygiene-sante" className="text-[#1E5FA8] hover:underline">Hygiène &amp; Santé</a>
+              <a href="#securite" className="text-[#1E5FA8] hover:underline">Sécurité</a>
+              <a href="#carriere-famille" className="text-[#1E5FA8] hover:underline">Carrière &amp; Famille</a>
+            </div>
+
             <div className="mt-6 grid grid-cols-3 gap-3 max-w-sm">
               <div className="text-center">
                 <div className="text-xl font-bold text-[#0f4f7d]">+120</div>
@@ -41,6 +47,93 @@ export default function BienEtrePage() {
 
           <div className="rounded-xl overflow-hidden shadow-lg h-72 md:h-96">
             <img src="/h6.png" alt="Bien-être" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      </section>
+
+      {/* Additional sections requested */}
+      <section id="hygiene-sante" className="scroll-mt-28 py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-start gap-8 md:gap-12">
+            <div className="w-14 h-14 flex items-center justify-center rounded-lg bg-gradient-to-br from-[#E6F8F4] to-white text-[#0EA5A3] shadow-md">🩺</div>
+            <div>
+              <h2 className="text-2xl font-bold mb-3">Hygiène &amp; Santé</h2>
+              <p className="text-gray-700 mb-6 max-w-2xl">Actions de prévention sanitaire, dépistage, protocoles d'hygiène sur site et campagnes de sensibilisation pour réduire les risques sanitaires. Nous adaptons les interventions à vos contraintes opérationnelles.</p>
+
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1">
+                  <h4 className="font-semibold mb-2">Audits & recommandations</h4>
+                  <p className="text-sm text-gray-600 mb-3">Évaluation sur site avec plan d'action priorisé.</p>
+                  <a href="/contact" className="text-sm text-[#1E5FA8] font-semibold">Contactez‑nous →</a>
+                </div>
+
+                <div className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1">
+                  <h4 className="font-semibold mb-2">Campagnes de dépistage</h4>
+                  <p className="text-sm text-gray-600 mb-3">Organisation complète (logistique, communication, suivi).</p>
+                  <a href="/contact" className="text-sm text-[#1E5FA8] font-semibold">En savoir plus →</a>
+                </div>
+
+                <div className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1">
+                  <h4 className="font-semibold mb-2">Formations hygiène</h4>
+                  <p className="text-sm text-gray-600 mb-3">Modules pratiques pour équipes et encadrement.</p>
+                  <a href="/contact" className="text-sm text-[#1E5FA8] font-semibold">Demander une démo →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="securite" className="scroll-mt-28 py-12 px-4 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1">
+              <div className="w-14 h-14 flex items-center justify-center rounded-lg bg-gradient-to-br from-[#E8F9FF] to-white text-[#0f4f7d] shadow-md">🛡️</div>
+              <h2 className="text-2xl font-bold mt-4 mb-3">Sécurité</h2>
+              <p className="text-gray-700 mb-6">Prévention des risques professionnels, plans d'urgence, formations sécurité et mise en conformité réglementaire. Des parcours pratiques pour vos équipes.</p>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition">
+                  <h4 className="font-semibold mb-2">Évaluation des risques</h4>
+                  <p className="text-sm text-gray-600">Cartographie des dangers, procédures et mesures correctives.</p>
+                </div>
+                <div className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition">
+                  <h4 className="font-semibold mb-2">Plans & exercices</h4>
+                  <p className="text-sm text-gray-600">Simulations et optimisation des réponses d'urgence.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full md:w-1/3 bg-white rounded-xl overflow-hidden shadow-lg">
+              <img src="/r.png" alt="Sécurité" className="w-full h-56 object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="carriere-famille" className="scroll-mt-28 py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-start gap-8 md:gap-12">
+            <div className="w-14 h-14 flex items-center justify-center rounded-lg bg-gradient-to-br from-[#FFF8F4] to-white text-[#b3552a] shadow-md">🏡</div>
+            <div>
+              <h2 className="text-2xl font-bold mb-3">Carrière &amp; Famille</h2>
+              <p className="text-gray-700 mb-6 max-w-2xl">Initiatives pour concilier carrière et vie familiale : horaires flexibles, congés parentaux, soutien à la parentalité et développement professionnel. Nous aidons à formaliser des politiques RH pratiques et inclusives.</p>
+
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition">
+                  <h4 className="font-semibold mb-2">Politiques RH</h4>
+                  <p className="text-sm text-gray-600">Rédaction et accompagnement pour des politiques durables.</p>
+                </div>
+                <div className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition">
+                  <h4 className="font-semibold mb-2">Soutien parental</h4>
+                  <p className="text-sm text-gray-600">Ressources, groupes de soutien et conseils pratiques.</p>
+                </div>
+                <div className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition">
+                  <h4 className="font-semibold mb-2">Développement</h4>
+                  <p className="text-sm text-gray-600">Plans de carrière & formations pour progression interne.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

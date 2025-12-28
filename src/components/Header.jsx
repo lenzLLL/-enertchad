@@ -105,9 +105,10 @@ export default function Header() {
     { label: "Renouvelables", href: "/energies-renouvelables", isSelect: true },
     { label: "Environnement", href: "/environnement" },
     { label: "Bien-être", href: "/bien-etre" },
+    { label: "Mobilité", href: "/mobilite" },
+    { label: "Investisseurs", href: "/investisseurs" },
     { label: "Technologies", href: "/technologies" },
-    { label: "ESG", href: "/esg" },
-    { label: "Blog", href: "/blog" },
+
     { label: "À propos", href: "/about" },
   ];
 
@@ -186,12 +187,7 @@ export default function Header() {
                   </a>
                 );
               })}
-              <a
-                href="/contact"
-                className="ml-4 text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
-              >
-                Contact
-              </a>
+        
             </div>
 
             {/* PANIER + BOUTON ACHETER */}
