@@ -486,7 +486,7 @@ export default function Home() {
       
 
       {/* Services Section with Segments */}
-      <section className="py-8 md:py-32 px-4 bg-gradient-to-b from-[#F5E6D3] to-white relative overflow-hidden">
+      <section className="py-8  px-4 bg-gradient-to-b from-[#F5E6D3] to-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A]/10 rounded-full blur-3xl"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
