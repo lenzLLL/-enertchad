@@ -86,6 +86,49 @@ export default function page() {
               </div>
             </div>
           </section>
+
+          {/* Sections demandées pour le dropdown Gouvernance */}
+          <section id="securite-bien-etre" className="scroll-mt-28 py-12 px-4">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl font-bold mb-3">Sécurité & bien‑être</h2>
+              <p className="text-gray-700 mb-4">Mesures et politiques garantissant la sécurité des sites et le bien‑être des collaborateurs et des communautés impactées.</p>
+            </div>
+          </section>
+
+          <section id="inclusion-diversite" className="scroll-mt-28 py-12 px-4 bg-gray-50">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl font-bold mb-3">Inclusion & diversité</h2>
+              <p className="text-gray-700 mb-4">Engagements pour l'égalité des chances, diversité et mesures anti‑discrimination au sein de l'entreprise.</p>
+            </div>
+          </section>
+
+          <section id="formation-leadership" className="scroll-mt-28 py-12 px-4">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl font-bold mb-3">Formation & leadership</h2>
+              <p className="text-gray-700 mb-4">Programmes de développement des compétences, leadership et renforcement des capacités pour managers et équipes.</p>
+            </div>
+          </section>
+
+          <section id="emplois-locaux" className="scroll-mt-28 py-12 px-4 bg-gray-50">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl font-bold mb-3">Emplois locaux</h2>
+              <p className="text-gray-700 mb-4">Politiques favorisant l'embauche locale, la formation et la création d'opportunités économiques durables.</p>
+            </div>
+          </section>
+
+          <section id="dialogue-social" className="scroll-mt-28 py-12 px-4">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl font-bold mb-3">Dialogue social</h2>
+              <p className="text-gray-700 mb-4">Mécanismes de consultation et de concertation avec les parties prenantes et représentants du personnel.</p>
+            </div>
+          </section>
+
+          <section id="programmes-communautaires" className="scroll-mt-28 py-12 px-4 bg-gray-50">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl font-bold mb-3">Programmes communautaires</h2>
+              <p className="text-gray-700 mb-4">Initiatives en faveur des communautés locales : santé, éducation, infrastructures et développement économique.</p>
+            </div>
+          </section>
         </div>
       </main>
     </div>

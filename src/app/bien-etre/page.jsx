@@ -138,42 +138,46 @@ export default function BienEtrePage() {
         </div>
       </section>
 
-      {/* Impact Social : sections demandées */}
-      <section id="impact-social" className="scroll-mt-28 py-12 px-4 bg-white">
+      {/* Inclusion, Emplois, Dialogue social, Programmes communautaires */}
+      <section id="inclusion-diversite" className="scroll-mt-28 py-12 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4">Impact Social</h2>
-          <p className="text-gray-700 mb-6">Nos engagements sociaux pour le bien‑être des collaborateurs et des communautés locales.</p>
+          <h2 className="text-2xl font-bold mb-3">Inclusion &amp; Diversité</h2>
+          <p className="text-gray-700 mb-4">Politiques et actions pour favoriser l'égalité des chances, l'inclusion des groupes sous‑représentés et la diversité de nos équipes.</p>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="p-4 bg-white rounded-lg shadow">Recrutement inclusif</div>
+            <div className="p-4 bg-white rounded-lg shadow">Mentorat & réseaux internes</div>
+            <div className="p-4 bg-white rounded-lg shadow">Mesures anti-discrimination</div>
+          </div>
+        </div>
+      </section>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-6 bg-white rounded-xl shadow">
-              <h4 className="font-semibold mb-2">Sécurité & bien‑être</h4>
-              <p className="text-sm text-gray-600">Prévention, protocoles et actions pour garantir la sécurité et la santé au travail.</p>
-            </div>
+      <section id="emplois-locaux" className="scroll-mt-28 py-12 px-4 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold mb-3">Emplois locaux</h2>
+          <p className="text-gray-700 mb-4">Priorité à l'embauche locale, développement des compétences et création d'emplois durables pour les communautés voisines.</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="p-4 bg-white rounded-lg shadow">Programmes d'alternance et apprentissage</div>
+            <div className="p-4 bg-white rounded-lg shadow">Partenariats avec centres de formation locaux</div>
+          </div>
+        </div>
+      </section>
 
-            <div className="p-6 bg-white rounded-xl shadow">
-              <h4 className="font-semibold mb-2">Inclusion & diversité</h4>
-              <p className="text-sm text-gray-600">Politiques et actions pour favoriser l'égalité des chances et la diversité.</p>
-            </div>
+      <section id="dialogue-social" className="scroll-mt-28 py-12 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold mb-3">Dialogue social</h2>
+          <p className="text-gray-700 mb-4">Canaux de dialogue et de concertation avec les représentants du personnel et les communautés pour anticiper et résoudre les impacts sociaux.</p>
+          <div className="p-4 bg-white rounded-lg shadow">Comités locaux, réunions publiques et mécanismes de plainte</div>
+        </div>
+      </section>
 
-            <div className="p-6 bg-white rounded-xl shadow">
-              <h4 className="font-semibold mb-2">Formation & leadership</h4>
-              <p className="text-sm text-gray-600">Programmes de formation, développement des compétences et leadership.</p>
-            </div>
-
-            <div className="p-6 bg-white rounded-xl shadow">
-              <h4 className="font-semibold mb-2">Emplois locaux</h4>
-              <p className="text-sm text-gray-600">Priorisation de l'emploi local et renforcement des capacités des communautés.</p>
-            </div>
-
-            <div className="p-6 bg-white rounded-xl shadow">
-              <h4 className="font-semibold mb-2">Dialogue social</h4>
-              <p className="text-sm text-gray-600">Relations sociales constructives, consultations et mécanismes de remontée des préoccupations.</p>
-            </div>
-
-            <div className="p-6 bg-white rounded-xl shadow">
-              <h4 className="font-semibold mb-2">Programmes communautaires</h4>
-              <p className="text-sm text-gray-600">Initiatives locales (santé, éducation, infrastructures) co‑construites avec les communautés.</p>
-            </div>
+      <section id="programmes-communautaires" className="scroll-mt-28 py-12 px-4 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold mb-3">Programmes communautaires</h2>
+          <p className="text-gray-700 mb-4">Initiatives ciblées : infrastructures locales, santé, éducation et projets économiques pour renforcer le capital social.</p>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="p-4 bg-white rounded-lg shadow">Projets d'eau potable</div>
+            <div className="p-4 bg-white rounded-lg shadow">Soutien aux écoles et formations</div>
+            <div className="p-4 bg-white rounded-lg shadow">Micro-projets économiques</div>
           </div>
         </div>
       </section>

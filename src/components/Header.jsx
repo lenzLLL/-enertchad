@@ -8,15 +8,27 @@ export default function Header() {
   
   const [fossilOpen, setFossilOpen] = useState(false); // Dropdown Fossiles (desktop)
   const [renewableOpen, setRenewableOpen] = useState(false); // Dropdown Renouvelables (desktop)
+  const [envOpen, setEnvOpen] = useState(false); // Dropdown Environnement (desktop)
+  const [socialOpen, setSocialOpen] = useState(false); // Dropdown Social (desktop)
+  const [govOpen, setGovOpen] = useState(false); // Dropdown Gouvernance (desktop)
   const [fossilMobileOpen, setFossilMobileOpen] = useState(false); // mobile submenu fossil
   const [renewableMobileOpen, setRenewableMobileOpen] = useState(false); // mobile submenu renew
+  const [envMobileOpen, setEnvMobileOpen] = useState(false);
+  const [socialMobileOpen, setSocialMobileOpen] = useState(false);
+  const [govMobileOpen, setGovMobileOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);  // Modal panier
   
   const fossilRef = useRef(null);
   const renewableRef = useRef(null);
+  const envRef = useRef(null);
+  const socialRef = useRef(null);
+  const govRef = useRef(null);
   
   const fossilMobileRef = useRef(null);
   const renewableMobileRef = useRef(null);
+  const envMobileRef = useRef(null);
+  const socialMobileRef = useRef(null);
+  const govMobileRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -26,12 +38,30 @@ export default function Header() {
       if (renewableRef.current && !renewableRef.current.contains(e.target)) {
         setRenewableOpen(false);
       }
+      if (envRef.current && !envRef.current.contains(e.target)) {
+        setEnvOpen(false);
+      }
+      if (socialRef.current && !socialRef.current.contains(e.target)) {
+        setSocialOpen(false);
+      }
+      if (govRef.current && !govRef.current.contains(e.target)) {
+        setGovOpen(false);
+      }
       
       if (fossilMobileRef.current && !fossilMobileRef.current.contains(e.target)) {
         setFossilMobileOpen(false);
       }
       if (renewableMobileRef.current && !renewableMobileRef.current.contains(e.target)) {
         setRenewableMobileOpen(false);
+      }
+      if (envMobileRef.current && !envMobileRef.current.contains(e.target)) {
+        setEnvMobileOpen(false);
+      }
+      if (socialMobileRef.current && !socialMobileRef.current.contains(e.target)) {
+        setSocialMobileOpen(false);
+      }
+      if (govMobileRef.current && !govMobileRef.current.contains(e.target)) {
+        setGovMobileOpen(false);
       }
     }
 
@@ -152,6 +182,31 @@ export default function Header() {
                   );
                 }
 
+                if (item.label === "Environnement") {
+                  return (
+                    <div key="environnement" className="relative px-2" ref={envRef}>
+                      <button
+                        aria-haspopup="true"
+                        aria-expanded={envOpen}
+                        type="button"
+                        onClick={() => setEnvOpen((s) => !s)}
+                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
+                      >
+                        Environnement
+                      </button>
+
+                      {envOpen && (
+                        <div className="absolute right-0 mt-2 w-64 bg-white border rounded-md shadow-lg z-50">
+                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Priorités environnementales</a>
+                          <a href="/environnement#dechets" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Gestion des déchets</a>
+                          <a href="/environnement#eau" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Gestion de l'eau</a>
+                          <a href="/environnement#air" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Qualité de l'air</a>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
                 if (item.label === "Renouvelables") {
                   return (
                     <div key="renouvelables" className="relative px-2" ref={renewableRef}>
@@ -172,6 +227,58 @@ export default function Header() {
                           <a href="/energies-renouvelables#eolien" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Éolien</a>
                           <a href="/energies-renouvelables#eolien" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Hydroélectricité</a>
                           <a href="/energies-renouvelables#eolien" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Géothermie</a>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                if (item.label === "Gouvernance") {
+                  return (
+                    <div key="gouvernance" className="relative px-2" ref={govRef}>
+                      <button
+                        aria-haspopup="true"
+                        aria-expanded={govOpen}
+                        type="button"
+                        onClick={() => setGovOpen((s) => !s)}
+                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
+                      >
+                        Gouvernance
+                      </button>
+
+                      {govOpen && (
+                        <div className="absolute right-0 mt-2 w-64 bg-white border rounded-md shadow-lg z-50">
+                          <a href="/gouvernance#securite-bien-etre" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Sécurité & bien‑être</a>
+                          <a href="/gouvernance#inclusion-diversite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Inclusion & diversité</a>
+                          <a href="/gouvernance#formation-leadership" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Formation & leadership</a>
+                          <a href="/gouvernance#emplois-locaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Emplois locaux</a>
+                          <a href="/gouvernance#dialogue-social" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Dialogue social</a>
+                          <a href="/gouvernance#programmes-communautaires" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Programmes communautaires</a>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                if (item.label === "Social") {
+                  return (
+                    <div key="social" className="relative px-2" ref={socialRef}>
+                      <button
+                        aria-haspopup="true"
+                        aria-expanded={socialOpen}
+                        type="button"
+                        onClick={() => setSocialOpen((s) => !s)}
+                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
+                      >
+                        Social
+                      </button>
+
+                      {socialOpen && (
+                        <div className="absolute right-0 mt-2 w-64 bg-white border rounded-md shadow-lg z-50">
+                          <a href="/bien-etre#securite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Sécurité & Bien‑être</a>
+                          <a href="/bien-etre#inclusion-diversite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Inclusion & Diversité</a>
+                          <a href="/bien-etre#emplois-locaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Emplois locaux</a>
+                          <a href="/bien-etre#programmes-communautaires" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Programmes communautaires</a>
                         </div>
                       )}
                     </div>
@@ -250,6 +357,29 @@ export default function Header() {
                     );
                   }
 
+                    if (item.label === "Environnement") {
+                      return (
+                        <div key="environnement-mobile" className="px-2" ref={envMobileRef}>
+                          <button
+                            type="button"
+                            onClick={() => setEnvMobileOpen((s) => !s)}
+                            className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
+                          >
+                            <span>Environnement</span>
+                            <span className={`transform transition-transform ${envMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
+                          </button>
+
+                          {envMobileOpen && (
+                            <div className="pl-4 mt-2 space-y-1">
+                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Priorités environnementales</a>
+                              <a href="/environnement#dechets" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Déchets</a>
+                              <a href="/environnement#eau" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Eau</a>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+
                   if (item.label === "Renouvelables") {
                     return (
                       <div key="renewable-mobile" className="px-2" ref={renewableMobileRef}>
@@ -274,6 +404,53 @@ export default function Header() {
                       </div>
                     );
                   }
+
+                    if (item.label === "Gouvernance") {
+                      return (
+                        <div key="gouvernance-mobile" className="px-2" ref={govMobileRef}>
+                          <button
+                            type="button"
+                            onClick={() => setGovMobileOpen((s) => !s)}
+                            className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
+                          >
+                            <span>Gouvernance</span>
+                            <span className={`transform transition-transform ${govMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
+                          </button>
+
+                          {govMobileOpen && (
+                            <div className="pl-4 mt-2 space-y-1">
+                              <a href="/gouvernance#securite-bien-etre" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sécurité & bien‑être</a>
+                              <a href="/gouvernance#inclusion-diversite" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Inclusion & Diversité</a>
+                              <a href="/gouvernance#formation-leadership" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Formation & leadership</a>
+                              <a href="/gouvernance#emplois-locaux" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Emplois locaux</a>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+
+                    if (item.label === "Social") {
+                      return (
+                        <div key="social-mobile" className="px-2" ref={socialMobileRef}>
+                          <button
+                            type="button"
+                            onClick={() => setSocialMobileOpen((s) => !s)}
+                            className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
+                          >
+                            <span>Social</span>
+                            <span className={`transform transition-transform ${socialMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
+                          </button>
+
+                          {socialMobileOpen && (
+                            <div className="pl-4 mt-2 space-y-1">
+                              <a href="/bien-etre#securite" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sécurité & Bien‑être</a>
+                              <a href="/bien-etre#inclusion-diversite" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Inclusion & Diversité</a>
+                              <a href="/bien-etre#emplois-locaux" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Emplois locaux</a>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
 
                   return (
                     <a
