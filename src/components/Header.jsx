@@ -280,6 +280,8 @@ export default function Header() {
                           <a href="/bien-etre#securite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Sécurité & Bien‑être</a>
                           <a href="/bien-etre#inclusion-diversite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Inclusion & Diversité</a>
                           <a href="/bien-etre#emplois-locaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Emplois locaux</a>
+                          <a href="/bien-etre#emplois-locaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Formation & Leadership</a>
+                          <a href="/bien-etre#emplois-locaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Dialogue social</a>
                           <a href="/bien-etre#programmes-communautaires" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Programmes communautaires</a>
                         </div>
                       )}
