@@ -145,7 +145,7 @@ export default function Header() {
     { label: "Environnement", href: "/environnement" },
     { label: "Social", href: "/bien-etre" },
     { label: "Gouvernance", href: "/gouvernance" },
-    { label: "Solutions", href: "/solution" },
+    { label: "Solution", href: "/solution" },
     { label: "Investisseurs", href: "/investisseurs" },
     { label: "Technologies", href: "/technologies" },
 
@@ -183,7 +183,7 @@ export default function Header() {
                         <div className="absolute right-0 mt-2 w-56 bg-white border rounded-md shadow-lg z-50">
                           <a href="/energies-fossiles#services" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Pétroles</a>
                           <a href="/energies-fossiles#products" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Gaz Naturel</a>
-                          <a href="/energies-fossiles#products" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>charbon</a>
+                          <a href="/energies-fossiles#products" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Charbon</a>
                           
                         </div>
                       )}
@@ -285,12 +285,13 @@ export default function Header() {
                       </button>
 
                       {solutionOpen && (
-                        <div className="absolute right-0 mt-2 w-72 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/solution#particuliers" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Particuliers & Professionnels</a>
-                          <a href="/solution#entreprises" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Entreprises & Industries</a>
-                          <a href="/solution#gouvernements" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Gouvernements & Institutions</a>
-                          <a href="/solution#solutions-industrielles" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Solutions Industrielles & Techniques</a>
-                          <a href="/solution#transition" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Transition Energétique & Durabilité</a>
+                        <div className="absolute right-0 mt-2 w-80 bg-white border rounded-md shadow-lg z-50">
+                             <a href="/solution#securite-bien-etre" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Sécurité & bien‑être</a>
+                          <a href="/solution#inclusion-diversite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Inclusion & diversité</a>
+                          <a href="/solution#formation-leadership" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Formation & leadership</a>
+                          <a href="/solution#emplois-locaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Emplois locaux</a>
+                          <a href="/solution#dialogue-social" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Dialogue social</a>
+                          <a href="/solution#programmes-communautaires" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Programmes communautaires</a>
                         </div>
                       )}
                     </div>
@@ -492,6 +493,13 @@ export default function Header() {
                               <a href="/solution#gouvernements" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gouvernements & Institutions</a>
                               <a href="/solution#solutions-industrielles" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Solutions Industrielles & Techniques</a>
                               <a href="/solution#transition" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Transition Energétique & Durabilité</a>
+                              <div className="border-t my-1" />
+                              <a href="/solution#securite-bien-etre" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sécurité & bien‑être</a>
+                              <a href="/solution#inclusion-diversite" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Inclusion & Diversité</a>
+                              <a href="/solution#formation-leadership" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Formation & Leadership</a>
+                              <a href="/solution#emplois-locaux" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Emplois locaux</a>
+                              <a href="/solution#dialogue-social" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Dialogue social</a>
+                              <a href="/solution#programmes-communautaires" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Programmes communautaires</a>
                             </div>
                           )}
                         </div>

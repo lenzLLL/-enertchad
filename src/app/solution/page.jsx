@@ -68,72 +68,43 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      {/* Cards overview */}
-      <section className="py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sections.map((s) => {
-              const Icon = s.icon
-              return (
-                <a key={s.id} href={`#${s.id}`} className="group block rounded-2xl p-4 transform hover:-translate-y-2 transition-all relative overflow-hidden" style={{border: '1px solid rgba(15,79,125,0.06)'}}>
-                  <div className={`absolute left-0 top-0 w-full h-1 bg-gradient-to-r ${s.color}`}></div>
-                  <div className="flex items-start gap-3 relative">
-                    <div className={`flex-shrink-0 inline-flex items-center justify-center w-14 h-14 rounded-xl text-white shadow-lg bg-gradient-to-br ${s.color}`}>
-                      <Icon size={20} />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-[#0f4f7d] mb-1">{s.title}</h3>
-                      <p className="text-sm text-gray-600 mb-3">{s.desc}</p>
-                      <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#1E5FA8] group-hover:underline">En savoir plus <span className="text-[#E6C34A]">→</span></span>
-                    </div>
-                  </div>
-                </a>
-              )
-            })}
-          </div>
-        </div>
-      </section>
+      {/* Cards overview removed to simplify page (anchors below used instead) */}
 
       {/* Detailed sections (cards-like layout) */}
-      <div className="max-w-6xl mx-auto px-4 py-12 grid gap-12">
-        {sections.map((s, idx) => {
-          const Icon = s.icon
-          return (
-            <section id={s.id} key={s.id} className="scroll-mt-28">
-                <div className="bg-white rounded-2xl shadow-xl overflow-hidden border">
-                  <div className="grid md:grid-cols-3">
-                    <div className={`p-6 flex items-center justify-center bg-gradient-to-br ${s.color}`}>
-                      <div className="text-white text-center">
-                        <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white/10 mb-3 shadow-lg">
-                          <Icon size={32} />
-                        </div>
-                        <h3 className="text-xl font-bold text-white">{s.title}</h3>
-                      </div>
-                    </div>
-                    <div className="md:col-span-2 p-6">
-                      <p className="text-gray-700 mb-4">{s.desc}</p>
-                      <div className="grid sm:grid-cols-2 gap-3">
-                        <div className="p-3 bg-gray-50 rounded-lg">Offre clé — Audit & feuille de route</div>
-                        <div className="p-3 bg-gray-50 rounded-lg">Mise en œuvre — Pilote & déploiement</div>
-                      </div>
-                    </div>
+        <div className="max-w-6xl mx-auto px-4 py-12 grid gap-8">
+        
+
+        {/* Social-related sections requested via header anchors */}
+        {[
+          { id: 'securite-bien-etre', title: 'Sécurité & bien‑être', desc: "Nous plaçons la sécurité et le bien‑être au centre de nos interventions. Nous réalisons des audits HSE complets, élaborons des protocoles sur‑mesure et déployons des formations pratiques pour les équipes. Le suivi post‑déploiement (indicateurs, KPIs, contrôles réguliers) garantit la durabilité des améliorations.", color: 'from-[#06b6d4] to-[#0ea5a4]'},
+          { id: 'inclusion-diversite', title: 'Inclusion & diversité', desc: "Nous aidons les organisations à formaliser des politiques inclusives : diagnostics RH, objectifs de recrutement, programmes de mentorat et campagnes de sensibilisation. Ces actions favorisent l'innovation, renforcent l'image employeur et améliorent la rétention des talents.", color: 'from-[#7c3aed] to-[#6366f1]'},
+          { id: 'formation-leadership', title: 'Formation & leadership', desc: "Nos parcours combinent e‑learning, ateliers pratiques et coaching pour accélérer l'acquisition de compétences techniques et managériales. Les modules sont adaptables, mesurables et délivrent des certifications ou attestations reconnues.", color: 'from-[#f97316] to-[#f43f5e]'},
+          { id: 'emplois-locaux', title: 'Emplois locaux', desc: "Nous favorisons l'emploi local via des programmes de recrutement ciblé, des formations professionnalisantes et des partenariats avec les fournisseurs régionaux. L'approche crée des emplois pérennes et soutient le développement économique des territoires.", color: 'from-[#10b981] to-[#059669]'},
+          { id: 'dialogue-social', title: 'Dialogue social', desc: "Nous instaurons des canaux de dialogue structurés : comités de pilotage, consultations régulières et mécanismes de médiation. Un dialogue continu permet d'anticiper les risques sociaux et de co‑construire des solutions acceptées par l'ensemble des parties prenantes.", color: 'from-[#f59e0b] to-[#f97316]'},
+          { id: 'programmes-communautaires', title: 'Programmes communautaires', desc: "Nous concevons et pilotons des projets à impact local : électrification, formation technique, soutien éducatif et amélioration d'infrastructures. Chaque projet est évalué sur ses résultats sociaux et économiques pour maximiser le bénéfice collectif.", color: 'from-[#3b82f6] to-[#60a5fa]'}
+        ].map((ss) => (
+          <section id={ss.id} key={ss.id} className="scroll-mt-28">
+            <div className="bg-white rounded-2xl overflow-hidden border transform transition-all duration-200 group hover:shadow-lg hover:-translate-y-1">
+              <div className="grid md:grid-cols-4">
+                <div className={`p-8 flex items-center justify-center md:col-span-1 bg-gradient-to-br ${ss.color}`}>
+                  <div className="text-white text-center">
+                    <h4 className="text-xl font-extrabold tracking-tight">{ss.title}</h4>
                   </div>
                 </div>
-            </section>
-          )
-        })}
+                <div className="md:col-span-3 p-8">
+                  <p className="text-gray-700 leading-relaxed mb-4">{ss.desc}</p>
+                  <ul className="list-disc list-inside text-gray-700 space-y-1">
+                    <li>Analyse et diagnostic adaptés au contexte local</li>
+                    <li>Mise en œuvre avec partenaires locaux</li>
+                    <li>Suivi et rapport d'impact périodique</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        ))}
 
-        <section className="py-12 px-6 rounded-2xl bg-gradient-to-r from-[#f8fafc] to-white shadow-inner border">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h3 className="text-2xl font-bold text-[#1E5FA8]">Besoin d'une solution sur-mesure ?</h3>
-              <p className="text-gray-600">Contactez-nous pour un diagnostic et une proposition adaptée.</p>
-            </div>
-            <div>
-              <a href="/contact" className="inline-block bg-[#E6C34A] text-[#1E5FA8] px-6 py-3 rounded-lg font-bold hover:scale-105 transition-transform">Nous contacter</a>
-            </div>
-          </div>
-        </section>
+        {/* End of social sections */}
       </div>
 
     </main>
