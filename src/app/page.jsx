@@ -497,7 +497,7 @@ export default function Home() {
           {/* Énergies Fossiles Segment */}
           <div className="mb-24">
             {/* Intro avec image */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-20 bg-gradient-to-br from-[#F5F9FF] to-white rounded-3xl p-2 lg:p-16">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-3 lg:gap-12 items-center mb-20 bg-gradient-to-br from-[#F5F9FF] to-white rounded-3xl p-2 lg:p-16">
               <div className="order-2 md:order-1">
               
                 <h3 className="text-2xl md:text-6xl font-bold text-[#1E5FA8] mb-6">Énergies Fossiles</h3>
@@ -510,7 +510,7 @@ export default function Home() {
          
              </div>
               </div>
-              <img src={"/h8.jpg"} alt="Énergies Fossiles" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
+              {/* <img src={"/h8.jpg"} alt="Énergies Fossiles" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" /> */}
             </div>
 
             <div className="flex items-center space-x-3 mb-8">
@@ -609,8 +609,8 @@ export default function Home() {
           {/* Énergies Renouvelables Segment */}
           <div className="mb-24">
             {/* Intro avec image */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-8 md:mb-20 bg-gradient-to-br from-[#F0F8E8] to-white rounded-3xl p-2 lg:p-16">
-              <img src={"/r.png"} alt="Énergies Renouvelables" className="rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-3 lg:gap-12 items-center mb-8 md:mb-20 bg-gradient-to-br from-[#F0F8E8] to-white rounded-3xl p-2 lg:p-16">
+              {/* <img src={"/r.png"} alt="Énergies Renouvelables" className="rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" /> */}
               <div>
                 <div className="inline-block mb-6 px-4 py-2 bg-green-100 rounded-full">
                   <span className="text-[#3AA655] font-bold text-xs uppercase tracking-widest">🌱 Solutions Durables & Écologiques</span>
@@ -819,7 +819,7 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
           {/* Services Complémentaires Segment */}
           <div className="mb-16">
             {/* Intro avec image */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-20 bg-gradient-to-br from-[#FEF9E8] to-white rounded-3xl p-2 lg:p-16">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-3 lg:gap-12 items-center mb-20 bg-gradient-to-br from-[#FEF9E8] to-white rounded-3xl p-2 lg:p-16">
               <div className="order-2 md:order-1">
                 <div className="inline-block mb-6 px-4 py-2 bg-yellow-100 rounded-full">
                   <span className="text-[#E6C34A] font-bold text-xs uppercase tracking-widest">🛠️ Automobile & Environnement</span>
@@ -832,7 +832,7 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
  
              </div>
               </div>
-              <img src={carWashImage} alt="Services Complémentaires" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
+              {/* <img src={carWashImage} alt="Services Complémentaires" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" /> */}
             </div>
 
             <div className="flex items-center space-x-3 mb-8">

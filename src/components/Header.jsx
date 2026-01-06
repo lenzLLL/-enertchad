@@ -145,7 +145,7 @@ export default function Header() {
     { label: "Environnement", href: "/environnement" },
     { label: "Social", href: "/bien-etre" },
     { label: "Gouvernance", href: "/gouvernance" },
-    { label: "Solution", href: "/solution" },
+    { label: "Solutions", href: "/solution" },
     { label: "Investisseurs", href: "/investisseurs" },
     { label: "Technologies", href: "/technologies" },
 
