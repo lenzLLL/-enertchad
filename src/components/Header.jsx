@@ -11,6 +11,7 @@ export default function Header() {
   const [envOpen, setEnvOpen] = useState(false); // Dropdown Environnement (desktop)
   const [socialOpen, setSocialOpen] = useState(false); // Dropdown Social (desktop)
   const [govOpen, setGovOpen] = useState(false); // Dropdown Gouvernance (desktop)
+  const [solutionOpen, setSolutionOpen] = useState(false); // Dropdown Solution (desktop)
   const [fossilMobileOpen, setFossilMobileOpen] = useState(false); // mobile submenu fossil
   const [renewableMobileOpen, setRenewableMobileOpen] = useState(false); // mobile submenu renew
   const [envMobileOpen, setEnvMobileOpen] = useState(false);
@@ -23,12 +24,14 @@ export default function Header() {
   const envRef = useRef(null);
   const socialRef = useRef(null);
   const govRef = useRef(null);
+  const solutionRef = useRef(null);
   
   const fossilMobileRef = useRef(null);
   const renewableMobileRef = useRef(null);
   const envMobileRef = useRef(null);
   const socialMobileRef = useRef(null);
   const govMobileRef = useRef(null);
+  const solutionMobileRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -47,6 +50,9 @@ export default function Header() {
       if (govRef.current && !govRef.current.contains(e.target)) {
         setGovOpen(false);
       }
+      if (solutionRef.current && !solutionRef.current.contains(e.target)) {
+        setSolutionOpen(false);
+      }
       
       if (fossilMobileRef.current && !fossilMobileRef.current.contains(e.target)) {
         setFossilMobileOpen(false);
@@ -62,6 +68,9 @@ export default function Header() {
       }
       if (govMobileRef.current && !govMobileRef.current.contains(e.target)) {
         setGovMobileOpen(false);
+      }
+      if (solutionMobileRef.current && !solutionMobileRef.current.contains(e.target)) {
+        setSolutionMobileOpen(false);
       }
     }
 
@@ -136,7 +145,7 @@ export default function Header() {
     { label: "Environnement", href: "/environnement" },
     { label: "Social", href: "/bien-etre" },
     { label: "Gouvernance", href: "/gouvernance" },
-    { label: "Mobilité", href: "/mobilite" },
+    { label: "Solution", href: "/solution" },
     { label: "Investisseurs", href: "/investisseurs" },
     { label: "Technologies", href: "/technologies" },
 
@@ -151,7 +160,7 @@ export default function Header() {
 
             {/* LOGO */}
             <a href="/" className="flex items-center">
-              <img src="/logo.png" alt="Logo" className="h-10 rounded-full w-auto" />
+              <img src="/logo.png" alt="Logo" className="h-12 max-w-[160px] w-auto object-contain rounded-md" />
             </a>
 
             {/* MENU DESKTOP */}
@@ -256,6 +265,32 @@ export default function Header() {
                           <a href="/gouvernance#audits-internes-externes" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Audits internes & externes</a>
                           <a href="/gouvernance#anti-corruption" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Anti‑corruption</a>
                           <a href="/gouvernance#decisions-tracables" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Décisions traçables</a>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                if (item.label === "Solution") {
+                  return (
+                    <div key="solution" className="relative px-2" ref={solutionRef}>
+                      <button
+                        aria-haspopup="true"
+                        aria-expanded={solutionOpen}
+                        type="button"
+                        onClick={() => setSolutionOpen((s) => !s)}
+                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
+                      >
+                        Solution
+                      </button>
+
+                      {solutionOpen && (
+                        <div className="absolute right-0 mt-2 w-72 bg-white border rounded-md shadow-lg z-50">
+                          <a href="/solution#particuliers" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Particuliers & Professionnels</a>
+                          <a href="/solution#entreprises" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Entreprises & Industries</a>
+                          <a href="/solution#gouvernements" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Gouvernements & Institutions</a>
+                          <a href="/solution#solutions-industrielles" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Solutions Industrielles & Techniques</a>
+                          <a href="/solution#transition" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Transition Energétique & Durabilité</a>
                         </div>
                       )}
                     </div>
@@ -432,6 +467,31 @@ export default function Header() {
                               <a href="/gouvernance#audits-internes-externes" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Audits internes & externes</a>
                               <a href="/gouvernance#anti-corruption" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Anti‑corruption</a>
                               <a href="/gouvernance#decisions-tracables" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Décisions traçables</a>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+
+                    if (item.label === "Solution") {
+                      return (
+                        <div key="solution-mobile" className="px-2" ref={solutionMobileRef}>
+                          <button
+                            type="button"
+                            onClick={() => setSolutionMobileOpen((s) => !s)}
+                            className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
+                          >
+                            <span>Solution</span>
+                            <span className={`transform transition-transform ${solutionMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
+                          </button>
+
+                          {solutionMobileOpen && (
+                            <div className="pl-4 mt-2 space-y-1">
+                              <a href="/solution#particuliers" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Particuliers & Professionnels</a>
+                              <a href="/solution#entreprises" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Entreprises & Industries</a>
+                              <a href="/solution#gouvernements" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gouvernements & Institutions</a>
+                              <a href="/solution#solutions-industrielles" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Solutions Industrielles & Techniques</a>
+                              <a href="/solution#transition" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Transition Energétique & Durabilité</a>
                             </div>
                           )}
                         </div>

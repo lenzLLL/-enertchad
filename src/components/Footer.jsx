@@ -19,7 +19,7 @@ export default function Footer() {
               <img 
                 src="/logo.png" 
                 alt="EnerTchad Logo" 
-                className="h-12 w-auto"
+                className="h-12 w-24 object-contain"
               />
               <h3 className="font-bold text-xl">EnerTchad</h3>
             </div>
