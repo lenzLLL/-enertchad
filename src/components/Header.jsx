@@ -104,12 +104,12 @@ export default function Header() {
     { label: "Fossiles", href: "/energies-fossiles", isSelect: true },
     { label: "Renouvelables", href: "/energies-renouvelables", isSelect: true },
     { label: "Environnement", href: "/environnement" },
-    { label: "Bien-être", href: "/bien-etre" },
+    { label: "Social", href: "/bien-etre" },
+    { label: "Gouvernance", href: "/gouvernance" },
     { label: "Mobilité", href: "/mobilite" },
     { label: "Investisseurs", href: "/investisseurs" },
     { label: "Technologies", href: "/technologies" },
 
-    { label: "À propos", href: "/about" },
   ];
 
   return (
@@ -142,8 +142,9 @@ export default function Header() {
 
                       {fossilOpen && (
                         <div className="absolute right-0 mt-2 w-56 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/energies-fossiles#services" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Nos services</a>
-                          <a href="/energies-fossiles#products" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Nos produits</a>
+                          <a href="/energies-fossiles#services" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Pétroles</a>
+                          <a href="/energies-fossiles#products" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Gaz Naturel</a>
+                          <a href="/energies-fossiles#products" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>charbon</a>
                           
                         </div>
                       )}
@@ -166,11 +167,11 @@ export default function Header() {
 
                       {renewableOpen && (
                         <div className="absolute right-0 mt-2 w-56 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/energies-renouvelables#solutions" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Nos solutions</a>
                           <a href="/energies-renouvelables#bioenergies" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Bioénergies</a>
                           <a href="/energies-renouvelables#solaire" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Solaire</a>
                           <a href="/energies-renouvelables#eolien" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Éolien</a>
-                          <a href="/energies-renouvelables#dechets" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Gestion des déchets</a>
+                          <a href="/energies-renouvelables#eolien" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Hydroélectricité</a>
+                          <a href="/energies-renouvelables#eolien" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Géothermie</a>
                         </div>
                       )}
                     </div>

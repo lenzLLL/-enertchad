@@ -32,6 +32,22 @@ export default function EnvironnementPage() {
         </div>
       </section>
 
+      {/* Priorités environnementales */}
+      <section id="priorites" className="py-12 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0f4f7d] mb-4">Priorités environnementales</h2>
+          <p className="text-gray-700 mb-6">Nos actions prioritaires pour réduire notre empreinte écologique et préserver les ressources naturelles.</p>
+          <ul className="grid sm:grid-cols-2 gap-3 list-inside text-gray-700">
+            <li className="before:content-['•'] before:text-[#1E5FA8]">Réduction des émissions</li>
+            <li className="before:content-['•'] before:text-[#1E5FA8]">Protection des ressources naturelles</li>
+            <li className="before:content-['•'] before:text-[#1E5FA8]">Gestion durable des déchets</li>
+            <li className="before:content-['•'] before:text-[#1E5FA8]">Préservation de la biodiversité</li>
+            <li className="before:content-['•'] before:text-[#1E5FA8]">Résilience climatique</li>
+            <li className="before:content-['•'] before:text-[#1E5FA8]">Reboisement & restauration</li>
+          </ul>
+        </div>
+      </section>
+
       {/* Sticky anchor nav */}
       <div className="sticky top-16 z-30 bg-white/80 backdrop-blur-sm border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4">
