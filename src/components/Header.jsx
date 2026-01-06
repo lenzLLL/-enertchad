@@ -249,13 +249,13 @@ export default function Header() {
                       </button>
 
                       {govOpen && (
-                        <div className="absolute right-0 mt-2 w-64 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/gouvernance#securite-bien-etre" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Sécurité & bien‑être</a>
-                          <a href="/gouvernance#inclusion-diversite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Inclusion & diversité</a>
-                          <a href="/gouvernance#formation-leadership" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Formation & leadership</a>
-                          <a href="/gouvernance#emplois-locaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Emplois locaux</a>
-                          <a href="/gouvernance#dialogue-social" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Dialogue social</a>
-                          <a href="/gouvernance#programmes-communautaires" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Programmes communautaires</a>
+                        <div className="absolute right-0 mt-2 w-72 bg-white border rounded-md shadow-lg z-50">
+                          <a href="/gouvernance#transparence-integrite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Transparence & intégrité</a>
+                          <a href="/gouvernance#conformite-reglementaire" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Conformité réglementaire</a>
+                          <a href="/gouvernance#gestion-des-risques" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Gestion des risques</a>
+                          <a href="/gouvernance#audits-internes-externes" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Audits internes & externes</a>
+                          <a href="/gouvernance#anti-corruption" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Anti‑corruption</a>
+                          <a href="/gouvernance#decisions-tracables" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Décisions traçables</a>
                         </div>
                       )}
                     </div>
@@ -424,10 +424,12 @@ export default function Header() {
 
                           {govMobileOpen && (
                             <div className="pl-4 mt-2 space-y-1">
-                              <a href="/gouvernance#securite-bien-etre" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sécurité & bien‑être</a>
-                              <a href="/gouvernance#inclusion-diversite" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Inclusion & Diversité</a>
-                              <a href="/gouvernance#formation-leadership" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Formation & leadership</a>
-                              <a href="/gouvernance#emplois-locaux" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Emplois locaux</a>
+                              <a href="/gouvernance#transparence-integrite" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Transparence & intégrité</a>
+                              <a href="/gouvernance#conformite-reglementaire" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Conformité réglementaire</a>
+                              <a href="/gouvernance#gestion-des-risques" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gestion des risques</a>
+                              <a href="/gouvernance#audits-internes-externes" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Audits internes & externes</a>
+                              <a href="/gouvernance#anti-corruption" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Anti‑corruption</a>
+                              <a href="/gouvernance#decisions-tracables" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Décisions traçables</a>
                             </div>
                           )}
                         </div>

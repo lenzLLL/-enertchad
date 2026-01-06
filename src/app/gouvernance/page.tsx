@@ -6,37 +6,49 @@ import React from 'react'
 export default function page() {
   const cards = [
     {
+      id: 'transparence-integrite',
       icon: Eye,
+      slug: "transparence-integrite",
       title: "Transparence & intégrité",
       text: "Publication d'informations claires et vérifiables ; culture d'intégrité à tous les niveaux.",
       color: "from-[#1E5FA8] to-[#3AA655]",
     },
     {
+      id: 'conformite-reglementaire',
       icon: ShieldCheck,
+      slug: "conformite-reglementaire",
       title: "Conformité réglementaire",
       text: "Respect des lois et processus de contrôle pour détecter et corriger tout manquement.",
       color: "from-[#3AA655] to-[#2d8242]",
     },
     {
+      id: 'gestion-des-risques',
       icon: AlertTriangle,
+      slug: "gestion-des-risques",
       title: "Gestion des risques",
       text: "Identification, évaluation et mitigation des risques stratégiques et opérationnels.",
       color: "from-[#E6C34A] to-[#FFD700]",
     },
     {
+      id: 'audits-internes-externes',
       icon: FileText,
+      slug: "audits-internes-externes",
       title: "Audits internes & externes",
       text: "Audits réguliers pour garantir l'efficacité des contrôles et l'amélioration continue.",
       color: "from-[#6b7280] to-[#374151]",
     },
     {
+      id: 'anti-corruption',
       icon: Users,
+      slug: "anti-corruption",
       title: "Anti‑corruption",
       text: "Tolérance zéro, formations et contrôles pour prévenir les pratiques inappropriées.",
       color: "from-[#ef4444] to-[#dc2626]",
     },
     {
+      id: 'decisions-tracables',
       icon: Gavel,
+      slug: "decisions-tracables",
       title: "Décisions traçables",
       text: "Consignation des décisions clés et des justifications pour assurer responsabilité et auditabilité.",
       color: "from-[#1E5FA8] to-[#164a8a]",
@@ -64,7 +76,7 @@ export default function page() {
             {cards.map((c, idx) => {
               const Icon = c.icon
               return (
-                <div key={idx} className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all border-t-4 border-transparent hover:border-[#E6C34A]">
+                  <div id={c.id} key={idx} className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all border-t-4 border-transparent hover:border-[#E6C34A]">
                   <div className={`inline-flex items-center justify-center w-14 h-14 rounded-lg mb-4 bg-gradient-to-br ${c.color} text-white`}>
                     <Icon size={24} />
                   </div>
@@ -87,48 +99,9 @@ export default function page() {
             </div>
           </section>
 
-          {/* Sections demandées pour le dropdown Gouvernance */}
-          <section id="securite-bien-etre" className="scroll-mt-28 py-12 px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl font-bold mb-3">Sécurité & bien‑être</h2>
-              <p className="text-gray-700 mb-4">Mesures et politiques garantissant la sécurité des sites et le bien‑être des collaborateurs et des communautés impactées.</p>
-            </div>
-          </section>
+      
 
-          <section id="inclusion-diversite" className="scroll-mt-28 py-12 px-4 bg-gray-50">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl font-bold mb-3">Inclusion & diversité</h2>
-              <p className="text-gray-700 mb-4">Engagements pour l'égalité des chances, diversité et mesures anti‑discrimination au sein de l'entreprise.</p>
-            </div>
-          </section>
-
-          <section id="formation-leadership" className="scroll-mt-28 py-12 px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl font-bold mb-3">Formation & leadership</h2>
-              <p className="text-gray-700 mb-4">Programmes de développement des compétences, leadership et renforcement des capacités pour managers et équipes.</p>
-            </div>
-          </section>
-
-          <section id="emplois-locaux" className="scroll-mt-28 py-12 px-4 bg-gray-50">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl font-bold mb-3">Emplois locaux</h2>
-              <p className="text-gray-700 mb-4">Politiques favorisant l'embauche locale, la formation et la création d'opportunités économiques durables.</p>
-            </div>
-          </section>
-
-          <section id="dialogue-social" className="scroll-mt-28 py-12 px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl font-bold mb-3">Dialogue social</h2>
-              <p className="text-gray-700 mb-4">Mécanismes de consultation et de concertation avec les parties prenantes et représentants du personnel.</p>
-            </div>
-          </section>
-
-          <section id="programmes-communautaires" className="scroll-mt-28 py-12 px-4 bg-gray-50">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl font-bold mb-3">Programmes communautaires</h2>
-              <p className="text-gray-700 mb-4">Initiatives en faveur des communautés locales : santé, éducation, infrastructures et développement économique.</p>
-            </div>
-          </section>
+         
         </div>
       </main>
     </div>
