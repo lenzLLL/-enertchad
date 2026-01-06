@@ -196,11 +196,13 @@ export default function Header() {
                       </button>
 
                       {envOpen && (
-                        <div className="absolute right-0 mt-2 w-64 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Priorités environnementales</a>
-                          <a href="/environnement#dechets" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Gestion des déchets</a>
-                          <a href="/environnement#eau" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Gestion de l'eau</a>
-                          <a href="/environnement#air" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Qualité de l'air</a>
+                        <div className="absolute right-0 mt-2 w-72 bg-white border rounded-md shadow-lg z-50">
+                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Réduction des émissions</a>
+                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Protection des ressources naturelles</a>
+                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Gestion durable des déchets</a>
+                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Préservation de la biodiversité</a>
+                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Résilience climatique</a>
+                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Reboisement & restauration</a>
                         </div>
                       )}
                     </div>
@@ -371,9 +373,12 @@ export default function Header() {
 
                           {envMobileOpen && (
                             <div className="pl-4 mt-2 space-y-1">
-                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Priorités environnementales</a>
-                              <a href="/environnement#dechets" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Déchets</a>
-                              <a href="/environnement#eau" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Eau</a>
+                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Réduction des émissions</a>
+                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Protection des ressources naturelles</a>
+                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gestion durable des déchets</a>
+                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Préservation de la biodiversité</a>
+                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Résilience climatique</a>
+                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Reboisement & restauration</a>
                             </div>
                           )}
                         </div>
