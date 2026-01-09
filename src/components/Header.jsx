@@ -287,12 +287,12 @@ export default function Header() {
 
                       {solutionOpen && (
                         <div className="absolute right-0 mt-2 w-80 bg-white border rounded-md shadow-lg z-50">
-                            <a href="/solutions#securite-bien-etre" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Sécurité & bien‑être</a>
-                            <a href="/solutions#inclusion-diversite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Inclusion & diversité</a>
-                            <a href="/solutions#formation-leadership" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Formation & leadership</a>
-                            <a href="/solutions#emplois-locaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Emplois locaux</a>
-                            <a href="/solutions#dialogue-social" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Dialogue social</a>
-                            <a href="/solutions#programmes-communautaires" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Programmes communautaires</a>
+                          <a href="/solutions#particuliers-professionnels" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Particuliers & Professionnels</a>
+                          <a href="/solutions#entreprises-industries" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Entreprises & Industries</a>
+                          <a href="/solutions#gouvernements-institutions" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Gouvernements & Institutions</a>
+                          <a href="/solutions#solutions-industrielles-techniques" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Solutions Industrielles & Techniques</a>
+                          <a href="/solutions#transition-energetique-durabilite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Transition Énergétique & Durabilité</a>
+                        
                         </div>
                       )}
                     </div>
@@ -494,13 +494,7 @@ export default function Header() {
                               <a href="/solutions#gouvernements-institutions" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gouvernements & Institutions</a>
                               <a href="/solutions#solutions-industrielles-techniques" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Solutions Industrielles & Techniques</a>
                               <a href="/solutions#transition-energetique-durabilite" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Transition Energétique & Durabilité</a>
-                              <div className="border-t my-1" />
-                              <a href="/solutions#securite-bien-etre" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sécurité & bien‑être</a>
-                              <a href="/solutions#inclusion-diversite" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Inclusion & Diversité</a>
-                              <a href="/solutions#formation-leadership" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Formation & Leadership</a>
-                              <a href="/solutions#emplois-locaux" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Emplois locaux</a>
-                              <a href="/solutions#dialogue-social" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Dialogue social</a>
-                              <a href="/solutions#programmes-communautaires" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Programmes communautaires</a>
+                              
                             </div>
                           )}
                         </div>
