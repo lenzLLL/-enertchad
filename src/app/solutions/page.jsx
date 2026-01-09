@@ -4,37 +4,37 @@ import Link from 'next/link'
 import { Users, Briefcase, Globe, Factory, Zap } from 'lucide-react'
 
 export default function SolutionsPage() {
-  const sections = [
+    const sections = [
     {
-      id: 'particuliers',
+      id: 'particuliers-professionnels',
       title: 'Particuliers & Professionnels',
       desc: "Installations solaires résidentielles, bornes de recharge, maintenance et solutions de financement adaptées.",
       icon: Users,
       color: 'from-blue-500 to-blue-600'
     },
     {
-      id: 'entreprises',
+      id: 'entreprises-industries',
       title: 'Entreprises & Industries',
       desc: "Audits énergétiques, optimisation des procédés, fourniture d'énergie et solutions d'efficacité pour sites industriels.",
       icon: Briefcase,
       color: 'from-green-500 to-green-600'
     },
     {
-      id: 'gouvernements',
+      id: 'gouvernements-institutions',
       title: 'Gouvernements & Institutions',
       desc: "Conseil politique, projets d'infrastructure et partenariats public‑privé pour accélérer la transition nationale.",
       icon: Globe,
       color: 'from-yellow-400 to-yellow-500'
     },
     {
-      id: 'solutions-industrielles',
+      id: 'solutions-industrielles-techniques',
       title: 'Solutions Industrielles & Techniques',
       desc: "Intégration d'équipements, automatisation, gestion des émissions et services de maintenance industrielle.",
       icon: Factory,
       color: 'from-indigo-500 to-indigo-700'
     },
     {
-      id: 'transition',
+      id: 'transition-energetique-durabilite',
       title: 'Transition Energétique & Durabilité',
       desc: "Feuille de route bas‑carbone, projets renouvelables, efficacité et financements verts.",
       icon: Zap,
@@ -58,7 +58,7 @@ export default function SolutionsPage() {
             <div className="flex flex-wrap gap-2 mb-6">
               <Link href="/contact" className="inline-block px-4 py-2.5 bg-[#1E5FA8] text-white rounded-md font-semibold">Nous contacter</Link>
               <Link href="/blog" className="inline-block px-4 py-2.5 border border-gray-200 rounded-md text-gray-700">Ressources</Link>
-              <a href="#particuliers" className="inline-block px-4 py-2.5 text-[#1E5FA8] border border-[#1E5FA8] rounded-md">Voir les sous-liens</a>
+              <a href="#particuliers-professionnels" className="inline-block px-4 py-2.5 text-[#1E5FA8] border border-[#1E5FA8] rounded-md">Voir les sous-liens</a>
             </div>
           </div>
 
