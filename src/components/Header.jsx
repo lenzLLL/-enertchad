@@ -182,7 +182,7 @@ export default function Header() {
 
                       {fossilOpen && (
                         <div className="absolute right-0 mt-2 w-56 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/energies-fossiles#services" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Pétroles</a>
+                          <a href="/energies-fossiles#services" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Pétrole</a>
                           <a href="/energies-fossiles#products" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Gaz Naturel</a>
                           <a href="/energies-fossiles#products" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Charbon</a>
                           
@@ -389,8 +389,9 @@ export default function Header() {
 
                         {fossilMobileOpen && (
                           <div className="pl-4 mt-2 space-y-1">
-                            <a href="/energies-fossiles#services" onClick={() => { setIsOpen(false); setFossilMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Nos services</a>
-                            <a href="/energies-fossiles#products" onClick={() => { setIsOpen(false); setFossilMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Nos produits</a>
+                            <a href="/energies-fossiles#services" onClick={() => { setIsOpen(false); setFossilMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Pétrole</a>
+                            <a href="/energies-fossiles#products" onClick={() => { setIsOpen(false); setFossilMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gaz Naturel</a>
+                            <a href="/energies-fossiles#products" onClick={() => { setIsOpen(false); setFossilMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Charbon</a>
                             
                           </div>
                         )}
@@ -494,7 +495,13 @@ export default function Header() {
                               <a href="/solutions#gouvernements-institutions" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gouvernements & Institutions</a>
                               <a href="/solutions#solutions-industrielles-techniques" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Solutions Industrielles & Techniques</a>
                               <a href="/solutions#transition-energetique-durabilite" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Transition Energétique & Durabilité</a>
-                              
+                              <div className="border-t my-1" />
+                              <a href="/solutions#securite-bien-etre" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sécurité & bien‑être</a>
+                              <a href="/solutions#inclusion-diversite" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Inclusion & Diversité</a>
+                              <a href="/solutions#formation-leadership" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Formation & Leadership</a>
+                              <a href="/solutions#emplois-locaux" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Emplois locaux</a>
+                              <a href="/solutions#dialogue-social" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Dialogue social</a>
+                              <a href="/solutions#programmes-communautaires" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Programmes communautaires</a>
                             </div>
                           )}
                         </div>
