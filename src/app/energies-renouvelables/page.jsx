@@ -237,8 +237,27 @@ export default function Services() {
     description: "Formations pour les professionnels du secteur.",
     desc: "Ateliers et formations techniques sur les dernières technologies en bioénergies, adaptés aux besoins des collectivités, entreprises et agriculteurs.",
     segment: "Énergies Renouvelables",
+  },  {
+    icon: Activity,
+    title: "Études Géothermiques",
+    description: "Analyses thermiques et potentiel géothermique du site.",
+    desc: "Études géothermiques détaillées pour évaluer le potentiel géothermique, caractérisation des sols et dimensionnement des systèmes de chauffage/refroidissement.",
+    segment: "Géothermie",
   },
-  
+  {
+    icon: Wrench,
+    title: "Installation Systèmes Géothermiques",
+    description: "Pose de pompes à chaleur et circuits géothermiques.",
+    desc: "Installation professionnelle de pompes à chaleur géothermiques, forage et mise en place des circuits pour chauffage, refroidissement et eau chaude.",
+    segment: "Géothermie",
+  },
+  {
+    icon: Settings,
+    title: "Maintenance & Monitoring",
+    description: "Suivi et entretien régulier des systèmes.",
+    desc: "Services de maintenance préventive, monitoring en temps réel et optimisation des performances pour garantir l'efficacité énergétique durable.",
+    segment: "Géothermie",
+  },  
        {
          icon: Sparkles,
          title: "Laverie Auto",
@@ -403,6 +422,17 @@ export default function Services() {
         "Valorisation de la biomasse et production d'énergies renouvelables : biomasse solide, biogaz, biocarburants et solutions de biohydrogène.",
       imageSrc: solarImage,
       icon: Leaf,
+      accentFrom: "#3AA655",
+      accentTo: "#2d8a45",
+    },
+    {
+      key: "Géothermie",
+      badge: "🌍 Géothermie",
+      title: "Géothermie",
+      description:
+        "Exploitation de la chaleur naturelle du sous-sol pour des solutions durables de chauffage, refroidissement et production d'eau chaude.",
+      imageSrc: solarImage,
+      icon: Activity,
       accentFrom: "#3AA655",
       accentTo: "#2d8a45",
     },
@@ -593,6 +623,59 @@ Nous intégrons les énergies renouvelables comme pilier stratégique de la tran
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
                           {wasteCollectionServices.map((service, idx) => {
+                            const ServiceIcon = service.icon;
+                            return (
+                              <div 
+                                key={idx}
+                                className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#3AA655]"
+                              >
+                                <div className="bg-gradient-to-br from-[#3AA655] to-[#2d8a45] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
+                                  {ServiceIcon ? (
+                                    <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                                  ) : (
+                                    <Droplet className="w-6 md:w-8 h-6 md:h-8 text-white" />
+                                  )}
+                                </div>
+                                <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#3AA655] transition line-clamp-1 md:line-clamp-none">
+                                  {service.title}
+                                </h4>
+                                <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                                  {service.description}
+                                </p>
+                                <a 
+                                  href={`/services/${toSlug(service.title)}`}
+                                  className="inline-flex items-center space-x-2 text-[#3AA655] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
+                                >
+                                  <span>En savoir plus</span>
+                                  <span className="transform group-hover:translate-x-1 transition">→</span>
+                                </a>
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        {/* Intro Géothermie avec image */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-8 md:mb-20 bg-gradient-to-br from-[#F0F8E8] to-white rounded-3xl p-2 lg:p-16 mt-24">
+                          <img src={"/r.png"} alt="Géothermie" className="rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
+                          <div>
+                            <div className="inline-block mb-6 px-4 py-2 bg-green-100 rounded-full">
+                              <span className="text-[#3AA655] font-bold text-xs uppercase tracking-widest">🌍 Chauffage & Refroidissement Durables</span>
+                            </div>
+                            <h3 className="text-2xl md:text-6xl font-bold text-[#3AA655] mb-6">Géothermie</h3>
+                            <p className="text-gray-700 text-xl leading-relaxed">
+                              EnerTchad propose des solutions géothermiques innovantes pour exploiter la chaleur naturelle du sous-sol. La géothermie offre une source d'énergie renouvelable, stable et performante pour le chauffage, le refroidissement et la production d'eau chaude sanitaire. En intégrant cette technologie durable, vous réduisez vos consommations énergétiques, vos émissions de CO₂ et vos coûts opérationnels à long terme, tout en contribuant à la transition énergétique et aux objectifs ESG.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div id="geothermie" className="flex items-center space-x-3 mb-8">
+                          <Activity className="w-8 h-8 text-[#3AA655]" />
+                          <h3 className="text-2xl font-bold text-[#3AA655]">Services Géothermiques</h3>
+                          <div className="flex-1 h-1 bg-gradient-to-r from-[#3AA655] to-transparent rounded-full"></div>
+                    
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
+                          {services.filter(s => s.segment === "Géothermie").map((service, idx) => {
                             const ServiceIcon = service.icon;
                             return (
                               <div 
