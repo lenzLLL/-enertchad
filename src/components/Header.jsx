@@ -12,12 +12,14 @@ export default function Header() {
   const [socialOpen, setSocialOpen] = useState(false); // Dropdown Social (desktop)
   const [govOpen, setGovOpen] = useState(false); // Dropdown Gouvernance (desktop)
   const [solutionOpen, setSolutionOpen] = useState(false); // Dropdown Solution (desktop)
+  const [technologiesOpen, setTechnologiesOpen] = useState(false); // Dropdown Technologies (desktop)
   const [fossilMobileOpen, setFossilMobileOpen] = useState(false); // mobile submenu fossil
   const [renewableMobileOpen, setRenewableMobileOpen] = useState(false); // mobile submenu renew
   const [envMobileOpen, setEnvMobileOpen] = useState(false);
   const [socialMobileOpen, setSocialMobileOpen] = useState(false);
   const [govMobileOpen, setGovMobileOpen] = useState(false);
   const [solutionMobileOpen, setSolutionMobileOpen] = useState(false);
+  const [technologiesMobileOpen, setTechnologiesMobileOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);  // Modal panier
   
   const fossilRef = useRef(null);
@@ -26,6 +28,7 @@ export default function Header() {
   const socialRef = useRef(null);
   const govRef = useRef(null);
   const solutionRef = useRef(null);
+  const technologiesRef = useRef(null);
   
   const fossilMobileRef = useRef(null);
   const renewableMobileRef = useRef(null);
@@ -33,6 +36,7 @@ export default function Header() {
   const socialMobileRef = useRef(null);
   const govMobileRef = useRef(null);
   const solutionMobileRef = useRef(null);
+  const technologiesMobileRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -72,6 +76,12 @@ export default function Header() {
       }
       if (solutionMobileRef.current && !solutionMobileRef.current.contains(e.target)) {
         setSolutionMobileOpen(false);
+      }
+      if (technologiesRef.current && !technologiesRef.current.contains(e.target)) {
+        setTechnologiesOpen(false);
+      }
+      if (technologiesMobileRef.current && !technologiesMobileRef.current.contains(e.target)) {
+        setTechnologiesMobileOpen(false);
       }
     }
 
@@ -326,6 +336,33 @@ export default function Header() {
                   );
                 }
 
+                if (item.label === "Technologies") {
+                  return (
+                    <div key="technologies" className="relative px-2" ref={technologiesRef}>
+                      <button
+                        aria-haspopup="true"
+                        aria-expanded={technologiesOpen}
+                        type="button"
+                        onClick={() => setTechnologiesOpen((s) => !s)}
+                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
+                      >
+                        {item.label}
+                      </button>
+
+                      {technologiesOpen && (
+                        <div className="absolute right-0 mt-2 w-80 bg-white border rounded-md shadow-lg z-50">
+                          <a href="/technologies#connectivite-reseaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Connectivité & Réseaux</a>
+                          <a href="/technologies#automatisation-supervision" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Automatisation & Supervision</a>
+                          <a href="/technologies#instrumentation-iiot" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Instrumentation & IIoT</a>
+                          <a href="/technologies#production-stockage-conversion" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Production, Stockage & Conversion</a>
+                          <a href="/technologies#donnees-ia-jumeau-numerique" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Données, IA & Jumeau Numérique</a>
+                          <a href="/technologies#securite-surveillance-exploitation" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Sécurité, Surveillance & Exploitation</a>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
                 return (
                   <a
                     key={item.href}
@@ -525,6 +562,35 @@ export default function Header() {
                               <a href="/bien-etre#securite" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sécurité & Bien‑être</a>
                               <a href="/bien-etre#inclusion-diversite" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Inclusion & Diversité</a>
                               <a href="/bien-etre#emplois-locaux" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Emplois locaux</a>
+                              <a href="/bien-etre#emplois-locaux" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Formation & Leadership</a>
+                              <a href="/bien-etre#emplois-locaux" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Dialogue social</a>
+                              <a href="/bien-etre#programmes-communautaires" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Programmes communautaires</a>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+
+                    if (item.label === "Technologies") {
+                      return (
+                        <div key="technologies-mobile" className="px-2" ref={technologiesMobileRef}>
+                          <button
+                            type="button"
+                            onClick={() => setTechnologiesMobileOpen((s) => !s)}
+                            className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
+                          >
+                            <span>Technologies</span>
+                            <span className={`transform transition-transform ${technologiesMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
+                          </button>
+
+                          {technologiesMobileOpen && (
+                            <div className="pl-4 mt-2 space-y-1">
+                              <a href="/technologies#connectivite-reseaux" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Connectivité & Réseaux</a>
+                              <a href="/technologies#automatisation-supervision" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Automatisation & Supervision</a>
+                              <a href="/technologies#instrumentation-iiot" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Instrumentation & IIoT</a>
+                              <a href="/technologies#production-stockage-conversion" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Production, Stockage & Conversion</a>
+                              <a href="/technologies#donnees-ia-jumeau-numerique" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Données, IA & Jumeau Numérique</a>
+                              <a href="/technologies#securite-surveillance-exploitation" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sécurité, Surveillance & Exploitation</a>
                             </div>
                           )}
                         </div>
