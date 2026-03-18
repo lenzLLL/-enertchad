@@ -2,10 +2,12 @@
 import { Menu, X, ShoppingCart, Check } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useCart } from "../context/CartContext";
-
+import { Search, Globe } from "lucide-react";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);      // Menu mobile
-  
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const [lang, setLang] = useState("FR");
   const [fossilOpen, setFossilOpen] = useState(false); // Dropdown Fossiles (desktop)
   const [renewableOpen, setRenewableOpen] = useState(false); // Dropdown Renouvelables (desktop)
   const [envOpen, setEnvOpen] = useState(false); // Dropdown Environnement (desktop)
@@ -149,18 +151,15 @@ export default function Header() {
       setOrderLoading(false);
     }
   };
-
-  const navItems = [
-    { label: "Fossiles", href: "/energies-fossiles", isSelect: true },
-    { label: "Renouvelables", href: "/energies-renouvelables", isSelect: true },
-    { label: "Environnement", href: "/environnement" },
-    { label: "Social", href: "/bien-etre" },
-    { label: "Gouvernance", href: "/gouvernance" },
-    { label: "Solutions", href: "/solutions" },
-    { label: "Investisseurs", href: "/investisseurs" },
-    { label: "Technologies", href: "/technologies" },
-
-  ];
+const navItems = [
+  { label: "Accueil", href: "/" },
+  { label: "Mission", href: "/mission" },
+  { label: "Activités", href: "/activites" },
+  { label: "Transition énergétique", href: "/transition-energetique" },
+  { label: "Technologies", href: "/technologies" },
+  { label: "Engagements", href: "/engagements" },
+  { label: "Investisseurs", href: "/investisseurs" },
+];
 
   return (
     <>
@@ -175,209 +174,99 @@ export default function Header() {
             </a>
 
             {/* MENU DESKTOP */}
-            <div className="hidden md:flex items-center space-x-1">
-              {navItems.map((item) => {
-                if (item.label === "Fossiles") {
-                  return (
-                    <div key="fossiles" className="relative px-2" ref={fossilRef}>
-                      <button
-                        aria-haspopup="true"
-                        aria-expanded={fossilOpen}
-                        type="button"
-                        onClick={() => setFossilOpen((s) => !s)}
-                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
-                      >
-                        Fossiles
-                      </button>
+            <div className="hidden md:flex items-center space-x-2">
 
-                      {fossilOpen && (
-                        <div className="absolute right-0 mt-2 w-56 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/energies-fossiles#services" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Pétrole</a>
-                          <a href="/energies-fossiles#products" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Gaz Naturel</a>
-                          <a href="/energies-fossiles#products" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setFossilOpen(false)}>Charbon</a>
-                          
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
+  {navItems.map((item) => (
+    <a
+      key={item.href}
+      href={item.href}
+      className="text-gray-700 hover:text-[#1E5FA8] px-3 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
+    >
+      {item.label}
+    </a>
+  ))}
 
-                if (item.label === "Environnement") {
-                  return (
-                    <div key="environnement" className="relative px-2" ref={envRef}>
-                      <button
-                        aria-haspopup="true"
-                        aria-expanded={envOpen}
-                        type="button"
-                        onClick={() => setEnvOpen((s) => !s)}
-                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
-                      >
-                        Environnement
-                      </button>
+  {/* CTA */}
+  <a
+    href="#"
+    className="ml-3 bg-[#1E5FA8] hover:bg-[#174a86] text-white px-5 py-2 rounded-lg font-bold transition"
+  >
+    Trouver une station
+  </a>
 
-                      {envOpen && (
-                        <div className="absolute right-0 mt-2 w-72 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Réduction des émissions</a>
-                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Protection des ressources naturelles</a>
-                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Gestion durable des déchets</a>
-                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Préservation de la biodiversité</a>
-                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Résilience climatique</a>
-                          <a href="/environnement#priorites-environnement" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setEnvOpen(false)}>Reboisement & restauration</a>
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
+   <div className="flex items-center gap-3 ml-4 relative">
 
-                if (item.label === "Renouvelables") {
-                  return (
-                    <div key="renouvelables" className="relative px-2" ref={renewableRef}>
-                      <button
-                        aria-haspopup="true"
-                        aria-expanded={renewableOpen}
-                        type="button"
-                        onClick={() => setRenewableOpen((s) => !s)}
-                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
-                      >
-                        Renouvelables
-                      </button>
+  {/* 🔍 SEARCH */}
+  <div className="relative">
+    <button
+      onClick={() => setSearchOpen(!searchOpen)}
+      className="p-2 rounded-full hover:bg-gray-100 transition"
+    >
+      <Search size={20} className="text-gray-600 hover:text-[#1E5FA8]" />
+    </button>
 
-                      {renewableOpen && (
-                        <div className="absolute right-0 mt-2 w-56 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/energies-renouvelables#bioenergies" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Bioénergies</a>
-                          <a href="/energies-renouvelables#solaire" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Solaire</a>
-                          <a href="/energies-renouvelables#eolien" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Éolien</a>
-                          <a href="/energies-renouvelables#eolien" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Hydroélectricité</a>
-                          <a href="/energies-renouvelables#geothermie" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setRenewableOpen(false)}>Géothermie</a>
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
+    {/* Input animé */}
+    <div className={`absolute right-0 top-12 transition-all duration-300 ${
+      searchOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
+    }`}>
+      <input
+        type="text"
+        placeholder="Rechercher..."
+        className="w-64 px-4 py-2 border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[#1E5FA8]"
+      />
+    </div>
+  </div>
 
-                if (item.label === "Gouvernance") {
-                  return (
-                    <div key="gouvernance" className="relative px-2" ref={govRef}>
-                      <button
-                        aria-haspopup="true"
-                        aria-expanded={govOpen}
-                        type="button"
-                        onClick={() => setGovOpen((s) => !s)}
-                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
-                      >
-                        Gouvernance
-                      </button>
+  {/* 🌐 LANGUE */}
+  <div className="relative">
+    <button
+      onClick={() => setLangOpen(!langOpen)}
+      className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-gray-100 transition"
+    >
+      <Globe className="text-gray-700 " size={18} />
+      <span className="text-sm text-gray-700 font-semibold">{lang}</span>
+    </button>
 
-                      {govOpen && (
-                        <div className="absolute right-0 mt-2 w-72 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/gouvernance#transparence-integrite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Transparence & intégrité</a>
-                          <a href="/gouvernance#conformite-reglementaire" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Conformité réglementaire</a>
-                          <a href="/gouvernance#gestion-des-risques" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Gestion des risques</a>
-                          <a href="/gouvernance#audits-internes-externes" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Audits internes & externes</a>
-                          <a href="/gouvernance#anti-corruption" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Anti‑corruption</a>
-                          <a href="/gouvernance#decisions-tracables" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setGovOpen(false)}>Décisions traçables</a>
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
+    {/* Dropdown langue */}
+    <div className={`absolute right-0 mt-2 w-24 bg-white border rounded-md shadow-lg transition-all duration-200 ${
+      langOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+    }`}>
+      {["FR", "EN"].map((l) => (
+        <button
+          key={l}
+          onClick={() => {
+            setLang(l);
+            setLangOpen(false);
+          }}
+          className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
+            lang === l ? "font-bold text-[#1E5FA8]" : ""
+          }`}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  </div>
 
-                if (item.label === "Solution" || item.label === "Solutions") {
-                  return (
-                    <div key="solution" className="relative px-2" ref={solutionRef}>
-                      <button
-                        aria-haspopup="true"
-                        aria-expanded={solutionOpen}
-                        type="button"
-                        onClick={() => setSolutionOpen((s) => !s)}
-                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
-                      >
-                        {item.label}
-                      </button>
+  </div>
 
-                      {solutionOpen && (
-                        <div className="absolute right-0 mt-2 w-80 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/solutions#particuliers-professionnels" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Particuliers & Professionnels</a>
-                          <a href="/solutions#entreprises-industries" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Entreprises & Industries</a>
-                          <a href="/solutions#gouvernements-institutions" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Gouvernements & Institutions</a>
-                          <a href="/solutions#solutions-industrielles-techniques" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Solutions Industrielles & Techniques</a>
-                          <a href="/solutions#transition-energetique-durabilite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSolutionOpen(false)}>Transition Énergétique & Durabilité</a>
-                        
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
-
-                if (item.label === "Social") {
-                  return (
-                    <div key="social" className="relative px-2" ref={socialRef}>
-                      <button
-                        aria-haspopup="true"
-                        aria-expanded={socialOpen}
-                        type="button"
-                        onClick={() => setSocialOpen((s) => !s)}
-                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
-                      >
-                        Social
-                      </button>
-
-                      {socialOpen && (
-                        <div className="absolute right-0 mt-2 w-64 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/bien-etre#securite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Sécurité & Bien‑être</a>
-                          <a href="/bien-etre#inclusion-diversite" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Inclusion & Diversité</a>
-                          <a href="/bien-etre#emplois-locaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Emplois locaux</a>
-                          <a href="/bien-etre#emplois-locaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Formation & Leadership</a>
-                          <a href="/bien-etre#emplois-locaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Dialogue social</a>
-                          <a href="/bien-etre#programmes-communautaires" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setSocialOpen(false)}>Programmes communautaires</a>
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
-
-                if (item.label === "Technologies") {
-                  return (
-                    <div key="technologies" className="relative px-2" ref={technologiesRef}>
-                      <button
-                        aria-haspopup="true"
-                        aria-expanded={technologiesOpen}
-                        type="button"
-                        onClick={() => setTechnologiesOpen((s) => !s)}
-                        className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
-                      >
-                        {item.label}
-                      </button>
-
-                      {technologiesOpen && (
-                        <div className="absolute right-0 mt-2 w-80 bg-white border rounded-md shadow-lg z-50">
-                          <a href="/technologies#connectivite-reseaux" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Connectivité & Réseaux</a>
-                          <a href="/technologies#automatisation-supervision" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Automatisation & Supervision</a>
-                          <a href="/technologies#instrumentation-iiot" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Instrumentation & IIoT</a>
-                          <a href="/technologies#production-stockage-conversion" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Production, Stockage & Conversion</a>
-                          <a href="/technologies#donnees-ia-jumeau-numerique" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Données, IA & Jumeau Numérique</a>
-                          <a href="/technologies#securite-surveillance-exploitation" className="block px-4 py-2 text-gray-700 hover:bg-gray-50" onClick={() => setTechnologiesOpen(false)}>Sécurité, Surveillance & Exploitation</a>
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
-
-                return (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
-                  >
-                    {item.label}
-                  </a>
-                );
-              })}
-        
+  {/* Panier */}
+  <button
+    className="relative text-[#1E5FA8] ml-3"
+    onClick={() => setCartOpen(true)}
+  >
+    <ShoppingCart size={24} />
+    {cartCount > 0 && (
+      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+        {cartCount}
+      </span>
+    )}
+  </button>
+           
             </div>
 
             {/* PANIER + BOUTON ACHETER */}
-            <div className="hidden md:flex items-center space-x-6">
+            {/* <div className="hidden md:flex items-center space-x-6">
               <button
                 className="relative text-[#1E5FA8]"
                 onClick={() => setCartOpen(true)}
@@ -396,237 +285,111 @@ export default function Header() {
               >
                 Acheter
               </a>
-            </div>
+            </div> */}
 
             {/* BOUTON MOBILE */}
+            <div className="flex md:hidden items-center justify-center gap-5">
+                <div className="flex items-center gap-3 ml-4 relative">
+
+  {/* 🔍 SEARCH */}
+  <div className="relative">
+    <button
+      onClick={() => setSearchOpen(!searchOpen)}
+      className="p-2 rounded-full hover:bg-gray-100 transition"
+    >
+      <Search size={20} className="text-gray-600 hover:text-[#1E5FA8]" />
+    </button>
+
+    {/* Input animé */}
+    <div className={`absolute right-0 top-12 transition-all duration-300 ${
+      searchOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
+    }`}>
+      <input
+        type="text"
+        placeholder="Rechercher..."
+        className="w-64 px-4 py-2 border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[#1E5FA8]"
+      />
+    </div>
+  </div>
+
+  {/* 🌐 LANGUE */}
+  <div className="relative">
+    <button
+      onClick={() => setLangOpen(!langOpen)}
+      className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-gray-100 transition"
+    >
+      <Globe className="text-gray-700 " size={18} />
+      <span className="text-sm text-gray-700 font-semibold">{lang}</span>
+    </button>
+
+    {/* Dropdown langue */}
+    <div className={`absolute right-0 mt-2 w-24 bg-white border rounded-md shadow-lg transition-all duration-200 ${
+      langOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+    }`}>
+      {["FR", "EN"].map((l) => (
+        <button
+          key={l}
+          onClick={() => {
+            setLang(l);
+            setLangOpen(false);
+          }}
+          className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
+            lang === l ? "font-bold text-[#1E5FA8]" : ""
+          }`}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  </div>
+
+                </div>
+                  <button
+    className="relative text-[#1E5FA8] ml-3"
+    onClick={() => setCartOpen(true)}
+  >
+    <ShoppingCart size={24} />
+    {cartCount > 0 && (
+      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+        {cartCount}
+      </span>
+    )}
+                 </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 text-[#1E5FA8]"
+              className=" p-2 text-[#1E5FA8]"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
+            </div>
           </div>
 
           {/* MENU MOBILE */}
           {isOpen && (
-            <div className="md:hidden pb-6 border-t border-gray-200">
-              <div className="space-y-1 py-4">
-                {navItems.map((item) => {
-                  if (item.label === "Fossiles") {
-                    return (
-                      <div key="fossiles-mobile" className="px-2" ref={fossilMobileRef}>
-                        <button
-                          type="button"
-                          onClick={() => setFossilMobileOpen((s) => !s)}
-                          className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
-                        >
-                          <span>Fossiles</span>
-                          <span className={`transform transition-transform ${fossilMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
-                        </button>
+            <div className="space-y-1 py-4">
+  {navItems.map((item) => (
+    <a
+      key={item.href}
+      href={item.href}
+      onClick={() => setIsOpen(false)}
+      className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium"
+    >
+      {item.label}
+    </a>
+  ))}
 
-                        {fossilMobileOpen && (
-                          <div className="pl-4 mt-2 space-y-1">
-                            <a href="/energies-fossiles#services" onClick={() => { setIsOpen(false); setFossilMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Pétrole</a>
-                            <a href="/energies-fossiles#products" onClick={() => { setIsOpen(false); setFossilMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gaz Naturel</a>
-                            <a href="/energies-fossiles#products" onClick={() => { setIsOpen(false); setFossilMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Charbon</a>
-                            
-                          </div>
-                        )}
-                      </div>
-                    );
-                  }
+  {/* CTA mobile */}
+  <a
+    href="/stations"
+    onClick={() => setIsOpen(false)}
+    className="block text-center px-4 py-3 bg-[#1E5FA8] text-white rounded-lg font-bold mt-2"
+  >
+    Trouver une station
+  </a>
 
-                    if (item.label === "Environnement") {
-                      return (
-                        <div key="environnement-mobile" className="px-2" ref={envMobileRef}>
-                          <button
-                            type="button"
-                            onClick={() => setEnvMobileOpen((s) => !s)}
-                            className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
-                          >
-                            <span>Environnement</span>
-                            <span className={`transform transition-transform ${envMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
-                          </button>
-
-                          {envMobileOpen && (
-                            <div className="pl-4 mt-2 space-y-1">
-                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Réduction des émissions</a>
-                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Protection des ressources naturelles</a>
-                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gestion durable des déchets</a>
-                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Préservation de la biodiversité</a>
-                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Résilience climatique</a>
-                              <a href="/environnement#priorites-environnement" onClick={() => { setIsOpen(false); setEnvMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Reboisement & restauration</a>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    }
-
-                  if (item.label === "Renouvelables") {
-                    return (
-                      <div key="renewable-mobile" className="px-2" ref={renewableMobileRef}>
-                        <button
-                          type="button"
-                          onClick={() => setRenewableMobileOpen((s) => !s)}
-                          className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
-                        >
-                          <span>Renouvelables</span>
-                          <span className={`transform transition-transform ${renewableMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
-                        </button>
-
-                        {renewableMobileOpen && (
-                          <div className="pl-4 mt-2 space-y-1">
-                            <a href="/energies-renouvelables#bioenergies" onClick={() => { setIsOpen(false); setRenewableMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Bioénergies</a>
-                            <a href="/energies-renouvelables#solaire" onClick={() => { setIsOpen(false); setRenewableMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Solaire</a>
-                            <a href="/energies-renouvelables#eolien" onClick={() => { setIsOpen(false); setRenewableMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Éolien</a>
-                            <a href="/energies-renouvelables#eolien" onClick={() => { setIsOpen(false); setRenewableMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Hydroélectricité</a>
-                            <a href="/energies-renouvelables#geothermie" onClick={() => { setIsOpen(false); setRenewableMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Géothermie</a>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  }
-
-                    if (item.label === "Gouvernance") {
-                      return (
-                        <div key="gouvernance-mobile" className="px-2" ref={govMobileRef}>
-                          <button
-                            type="button"
-                            onClick={() => setGovMobileOpen((s) => !s)}
-                            className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
-                          >
-                            <span>Gouvernance</span>
-                            <span className={`transform transition-transform ${govMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
-                          </button>
-
-                          {govMobileOpen && (
-                            <div className="pl-4 mt-2 space-y-1">
-                              <a href="/gouvernance#transparence-integrite" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Transparence & intégrité</a>
-                              <a href="/gouvernance#conformite-reglementaire" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Conformité réglementaire</a>
-                              <a href="/gouvernance#gestion-des-risques" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gestion des risques</a>
-                              <a href="/gouvernance#audits-internes-externes" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Audits internes & externes</a>
-                              <a href="/gouvernance#anti-corruption" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Anti‑corruption</a>
-                              <a href="/gouvernance#decisions-tracables" onClick={() => { setIsOpen(false); setGovMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Décisions traçables</a>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    }
-
-                    if (item.label === "Solution" || item.label === "Solutions") {
-                      return (
-                        <div key="solution-mobile" className="px-2" ref={solutionMobileRef}>
-                          <button
-                            type="button"
-                            onClick={() => setSolutionMobileOpen((s) => !s)}
-                            className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
-                          >
-                            <span>{item.label}</span>
-                            <span className={`transform transition-transform ${solutionMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
-                          </button>
-
-                          {solutionMobileOpen && (
-                            <div className="pl-4 mt-2 space-y-1">
-                              <a href="/solutions#particuliers-professionnels" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Particuliers & Professionnels</a>
-                              <a href="/solutions#entreprises-industries" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Entreprises & Industries</a>
-                              <a href="/solutions#gouvernements-institutions" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Gouvernements & Institutions</a>
-                              <a href="/solutions#solutions-industrielles-techniques" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Solutions Industrielles & Techniques</a>
-                              <a href="/solutions#transition-energetique-durabilite" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Transition Energétique & Durabilité</a>
-                              <div className="border-t my-1" />
-                              <a href="/solutions#securite-bien-etre" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sécurité & bien‑être</a>
-                              <a href="/solutions#inclusion-diversite" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Inclusion & Diversité</a>
-                              <a href="/solutions#formation-leadership" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Formation & Leadership</a>
-                              <a href="/solutions#emplois-locaux" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Emplois locaux</a>
-                              <a href="/solutions#dialogue-social" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Dialogue social</a>
-                              <a href="/solutions#programmes-communautaires" onClick={() => { setIsOpen(false); setSolutionMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Programmes communautaires</a>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    }
-
-                    if (item.label === "Social") {
-                      return (
-                        <div key="social-mobile" className="px-2" ref={socialMobileRef}>
-                          <button
-                            type="button"
-                            onClick={() => setSocialMobileOpen((s) => !s)}
-                            className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
-                          >
-                            <span>Social</span>
-                            <span className={`transform transition-transform ${socialMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
-                          </button>
-
-                          {socialMobileOpen && (
-                            <div className="pl-4 mt-2 space-y-1">
-                              <a href="/bien-etre#securite" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sécurité & Bien‑être</a>
-                              <a href="/bien-etre#inclusion-diversite" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Inclusion & Diversité</a>
-                              <a href="/bien-etre#emplois-locaux" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Emplois locaux</a>
-                              <a href="/bien-etre#emplois-locaux" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Formation & Leadership</a>
-                              <a href="/bien-etre#emplois-locaux" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Dialogue social</a>
-                              <a href="/bien-etre#programmes-communautaires" onClick={() => { setIsOpen(false); setSocialMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Programmes communautaires</a>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    }
-
-                    if (item.label === "Technologies") {
-                      return (
-                        <div key="technologies-mobile" className="px-2" ref={technologiesMobileRef}>
-                          <button
-                            type="button"
-                            onClick={() => setTechnologiesMobileOpen((s) => !s)}
-                            className="w-full text-left px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
-                          >
-                            <span>Technologies</span>
-                            <span className={`transform transition-transform ${technologiesMobileOpen ? "rotate-180" : "rotate-0"}`}>&#9662;</span>
-                          </button>
-
-                          {technologiesMobileOpen && (
-                            <div className="pl-4 mt-2 space-y-1">
-                              <a href="/technologies#connectivite-reseaux" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Connectivité & Réseaux</a>
-                              <a href="/technologies#automatisation-supervision" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Automatisation & Supervision</a>
-                              <a href="/technologies#instrumentation-iiot" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Instrumentation & IIoT</a>
-                              <a href="/technologies#production-stockage-conversion" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Production, Stockage & Conversion</a>
-                              <a href="/technologies#donnees-ia-jumeau-numerique" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Données, IA & Jumeau Numérique</a>
-                              <a href="/technologies#securite-surveillance-exploitation" onClick={() => { setIsOpen(false); setTechnologiesMobileOpen(false); }} className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg">Sécurité, Surveillance & Exploitation</a>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    }
-
-                  return (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
-                    >
-                      {item.label}
-                    </a>
-                  );
-                })}
-              </div>
-
-              <div className="border-t border-gray-200 pt-4 space-y-3 px-2">
-                <button
-                  onClick={() => setCartOpen(true)}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-50 text-[#1E5FA8] rounded-lg font-semibold hover:bg-blue-100 transition-colors"
-                >
-                  <ShoppingCart size={20} /> Panier
-                </button>
-
-                <a
-                  href="/contact"
-                  onClick={() => setIsOpen(false)}
-                  className="w-full block text-center px-4 py-3 bg-gradient-to-r from-[#1E5FA8] to-[#3AA655] text-white rounded-lg font-semibold hover:shadow-lg transition-all"
-                >
-                  Nous Contacter
-                </a>
-              </div>
-            </div>
+  {/* Recherche + langue */}
+  
+</div>
           )}
         </nav>
       </header>

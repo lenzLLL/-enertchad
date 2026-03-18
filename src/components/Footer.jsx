@@ -3,7 +3,6 @@ import {
   Phone,
   MapPin,
   Facebook,
-  Instagram,
   Twitter,
   Linkedin,
 } from "lucide-react";
@@ -38,7 +37,7 @@ export default function Footer() {
                 href="#"
                 className="bg-white/10 p-2 rounded-lg hover:bg-[#E6C34A] hover:text-[#1E5FA8] transition"
               >
-                <Instagram size={18} />
+                <Linkedin size={18} />
               </a>
               <a
                 href="#"
@@ -46,96 +45,66 @@ export default function Footer() {
               >
                 <Twitter size={18} />
               </a>
-              <a
-                href="#"
-                className="bg-white/10 p-2 rounded-lg hover:bg-[#E6C34A] hover:text-[#1E5FA8] transition"
-              >
-                <Linkedin size={18} />
-              </a>
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Nos Services</h4>
+            <h4 className="font-bold text-lg mb-4">Services</h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="/services"
+                  href="/stations"
                   className="text-gray-200 hover:text-[#E6C34A] transition"
                 >
-                  Stations-service
+                  Trouver une station
                 </a>
               </li>
               <li>
                 <a
-                  href="/services"
+                  href="/#faq"
                   className="text-gray-200 hover:text-[#E6C34A] transition"
                 >
-                  Recharge électrique
+                  FAQ
                 </a>
               </li>
               <li>
                 <a
-                  href="/services"
+                  href="/support"
                   className="text-gray-200 hover:text-[#E6C34A] transition"
                 >
-                  Énergie solaire
+                  Support / SAV
                 </a>
               </li>
               <li>
                 <a
-                  href="/services"
+                  href="/pro"
                   className="text-gray-200 hover:text-[#E6C34A] transition"
                 >
-                  Huiles moteur
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/services"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Laverie automobile
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/services"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Maintenance auto
+                  Espace Pro
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Navigation */}
+          {/* Entreprise */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Liens rapides</h4>
+            <h4 className="font-bold text-lg mb-4">Entreprise</h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="/"
+                  href="/blog"
                   className="text-gray-200 hover:text-[#E6C34A] transition"
                 >
-                  Accueil
+                  Actualités
                 </a>
               </li>
               <li>
                 <a
-                  href="/about"
+                  href="/carrieres"
                   className="text-gray-200 hover:text-[#E6C34A] transition"
                 >
-                  À propos
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/shop"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Boutique
+                  Carrières
                 </a>
               </li>
               <li>
@@ -143,51 +112,39 @@ export default function Footer() {
                   href="/blog"
                   className="text-gray-200 hover:text-[#E6C34A] transition"
                 >
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/contact"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Contact
+                  Presse
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Légal */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Nous contacter</h4>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start space-x-3">
-                <Phone
-                  size={18}
-                  className="text-[#E6C34A] mt-1 flex-shrink-0"
-                />
-                <div>
-                  <div className="text-gray-200">+235 62 123 456</div>
-                  <div className="text-gray-300 text-xs">Lun - Dim: 24/7</div>
-                </div>
+            <h4 className="font-bold text-lg mb-4">Légal</h4>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <a
+                  href="/mentions-legales"
+                  className="text-gray-200 hover:text-[#E6C34A] transition"
+                >
+                  Mentions légales
+                </a>
               </li>
-              <li className="flex items-start space-x-3">
-                <Mail size={18} className="text-[#E6C34A] mt-1 flex-shrink-0" />
-                <div>
-                  <div className="text-gray-200">contact@enertchad.td</div>
-                  <div className="text-gray-300 text-xs">Réponse sous 24h</div>
-                </div>
+              <li>
+                <a
+                  href="/confidentialite"
+                  className="text-gray-200 hover:text-[#E6C34A] transition"
+                >
+                  Politique de confidentialité
+                </a>
               </li>
-              <li className="flex items-start space-x-3">
-                <MapPin
-                  size={18}
-                  className="text-[#E6C34A] mt-1 flex-shrink-0"
-                />
-                <span className="text-gray-200">
-                  Avenue Charles de Gaulle
-                  <br />
-                  N'Djaména, Tchad
-                </span>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-200 hover:text-[#E6C34A] transition"
+                >
+                  Newsletter
+                </a>
               </li>
             </ul>
           </div>
@@ -199,17 +156,6 @@ export default function Footer() {
             <p className="text-center text-gray-300 text-sm">
               &copy; 2025 EnerTchad S.A. Tous droits réservés.
             </p>
-            <div className="flex space-x-6 text-xs text-gray-300">
-              <a href="#" className="hover:text-[#E6C34A] transition">
-                Mentions légales
-              </a>
-              <a href="#" className="hover:text-[#E6C34A] transition">
-                Politique de confidentialité
-              </a>
-              <a href="#" className="hover:text-[#E6C34A] transition">
-                CGV
-              </a>
-            </div>
           </div>
         </div>
       </div>
